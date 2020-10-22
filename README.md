@@ -8,5 +8,5 @@ I like to use NodeJS, React, Javascripts, AWS and Firebase. That being said, I l
 
 ## Find me around the web 🌎
 
-- Kayaking off waterfalls on <a href"https://www.instagram.com/whatsthekracken/">Instagram</a>
-- Sharing my views on <a href"https://www.linkedin.com/in/seanmcternan/">LinkedIn</a>
+- Kayaking off waterfalls on <a href"https://www.instagram.com/whatsthekracken">Instagram</a>
+- Sharing my views on <a href"https://www.linkedin.com/in/seanmcternan">LinkedIn</a>
