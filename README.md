@@ -12,6 +12,8 @@ I am a software developer who is passionate about the outdoors 🌱🌲, I like 
 - Express.js 
 - MongoDB 
 - DynamoDB 
+- Lambda
+- Cognito
 - Serverless  
 - Firebase 
 
