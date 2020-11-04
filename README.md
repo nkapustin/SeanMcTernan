@@ -2,7 +2,7 @@
 
 # Hi I'm Seán 👋
 
-I am a software developer who is passionate about the outdoors 🌱🌲, I like to merge my two passions whenever I can! Right now I am working on an open source river gauge system to communicate flow data from a remote river to kayakers. As I live in beatutiful British Columbia, cellphone coverage is not an option so we must look to thes skies and use satelites 🛰️. 
+I am a software developer who is passionate about the outdoors 🌱🌲, I like to merge my two passions whenever I can! Right now I am working on an open source river gauge system to communicate flow data from a remote river to kayakers. As I live in beautiful British Columbia, cellphone coverage is not an option, so we must look to the skies and use satellites 🛰️. 
 
 ## Technologies I like to use:
 - Node.js 
