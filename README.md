@@ -10,7 +10,7 @@ I am a software developer who is passionate about the outdoors 🌱🌲, I like 
 | Node.js     | JavaScript                  | React         |
 | TypeScript  | Express.js                  | MongoDB       |
 | DynamoDB    | Lambda.                     | Cognito       |
-| Serverless  | Firebase                    | SEED.         |
+| Serverless  | Firebase                    | SEED         |
 
 
 ## I'm online 🌎
