@@ -1,4 +1,4 @@
-  <img src="https://github.com/SeanMcTernan/SeanMcTernan/blob/main/Laptop.gif?raw=true" alt="Sean Mc Ternan GitHub Motion Graphic">
+  <img src="https://github.com/SeanMcTernan/SeanMcTernan/blob/master/ReadMe_Images/Laptop.gif?raw=true" alt="Sean Mc Ternan GitHub Motion Graphic">
 
 # Hi I'm Seán 👋
 
