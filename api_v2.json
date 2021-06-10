@@ -1868,17 +1868,17 @@
         "type": "object",
         "properties": {
           "contactId": {
-            "title": "Existing contact id",
+            "description": "Existing contact id in hexadecimal format",
             "type": "string",
             "example": "607f0558a7c898629dd47d7a"
           },
           "contactPhone": {
-            "title": "Unique contact phone",
+            "description": "Unique contact phone",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "title": "Contact first name",
+            "description": "Contact first name",
             "type": "string",
             "example": "John",
             "enum": [
@@ -1886,7 +1886,7 @@
             ]
           },
           "lastName": {
-            "title": "Contact last name",
+            "description": "Contact last name",
             "type": "string",
             "example": "Doe",
             "enum": [
@@ -1894,12 +1894,12 @@
             ]
           },
           "email": {
-            "title": "Contact email - Required: Valid Email",
+            "description": "Contact email - Required: Valid Email",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "title": "Birth date - Required: ISO format: yyyy-mm-dd",
+            "description": "Birth date - Required: ISO format: yyyy-mm-dd",
             "type": "string",
             "format": "date",
             "example": "1985-05-05",
@@ -1908,7 +1908,7 @@
             ]
           },
           "groups": {
-            "title": "List of groups, where contact should be included",
+            "description": "List of groups, where contact should be included",
             "type": "array",
             "example": [
               {
@@ -1921,7 +1921,7 @@
             }
           },
           "customFields": {
-            "title": "Custom fields are key value pairs with custom information, like tags",
+            "description": "Custom fields are key value pairs with custom information, like tags",
             "type": "object",
             "additionalProperties": {
               "title": "Custom fields are key value pairs with custom information, like tags",
@@ -1934,7 +1934,7 @@
             }
           },
           "comment": {
-            "title": "Comment attached to contact",
+            "description": "Comment attached to contact",
             "type": "string",
             "example": "VIP client",
             "enum": [
@@ -1942,7 +1942,7 @@
             ]
           },
           "subscriptionStatus": {
-            "title": "Contact subscription status",
+            "description": "Contact subscription status",
             "type": "string",
             "example": "OPT_IN",
             "enum": [
@@ -1953,18 +1953,19 @@
             ]
           },
           "created": {
-            "title": "Created timestamp - Required: ISO format",
+            "description": "Created timestamp - Required: ISO format",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "title": "Updated timestamp - Required: ISO format",
+            "description": "Updated timestamp - Required: ISO format",
             "type": "string",
             "format": "date-time",
             "example": "2021-05-28T20:20:08.489Z"
           },
           "updateSource": {
+            "description": "The source from which the contact was updated",
             "type": "string",
             "enum": [
               "IMPORTED_FROM_FILE",
