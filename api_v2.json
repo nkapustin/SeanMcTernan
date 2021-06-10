@@ -876,7 +876,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageView"
+                  "$ref": "#/components/schemas/GroupPageView"
                 }
               }
             }
@@ -1943,6 +1943,29 @@
             "name": "group name"
           }
         ]
+      },
+      "GroupPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "title": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Group"
+            }
+          },
+          "totalPages": {
+            "title": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "title": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
       },
       "Group": {
         "title": "Page content, number of elements is restricted by page size",
