@@ -25,7 +25,7 @@
       "description": "An endpoint to assist in batch operations on your contacts. Using the operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
-      "name": "Lists",
+      "name": "Contact groups",
       "description": "The following endpoints allow you to manage your lists. Groups (or segments) can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
@@ -216,7 +216,7 @@
     "/api/contact-groups/{groupId}": {
       "get": {
         "tags": [
-          "Lists"
+          "Contact groups"
         ],
         "summary": "Get group",
         "description": "Retrieve a group of contacts that you have uploaded to the SimpleTexting system.",
@@ -248,7 +248,7 @@
       },
       "put": {
         "tags": [
-          "Lists"
+          "Contact groups"
         ],
         "summary": "Update group",
         "description": "Update the name of an extisting group.",
@@ -283,7 +283,7 @@
       },
       "delete": {
         "tags": [
-          "Lists"
+          "Contact groups"
         ],
         "summary": "Delete group",
         "description": "Delete and existing group using the group id.",
@@ -845,7 +845,7 @@
     "/api/contact-groups": {
       "get": {
         "tags": [
-          "Lists"
+          "Contact groups"
         ],
         "summary": "Fetch Groups (Lists & Segments)",
         "description": "Fetch all groups & segments from the SimpleTexting system.",
@@ -893,7 +893,7 @@
       },
       "post": {
         "tags": [
-          "Lists"
+          "Contact groups"
         ],
         "summary": "Create group",
         "description": "Create a new group on the SimpleTexting system.",
