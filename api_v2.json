@@ -54,7 +54,7 @@
     },
     {
       "name": "Contact Groups",
-      "description": "The following endpoints allow you to manage your lists. Groups can be used to manage your contacts so the right message is being sent to the right people."
+      "description": "The following endpoints allow you to manage your lists. Groups (or segments) can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
       "name": "Messages",
@@ -234,12 +234,13 @@
           "Contact Groups"
         ],
         "summary": "Get group",
+        "description": "Retrieve a group of contacts that you have uploaded to the SimpleTexting system.",
         "operationId": "getGroup",
         "parameters": [
           {
             "name": "groupId",
             "in": "path",
-            "description": "group id in hexadecimal format",
+            "description": "Group id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -265,12 +266,13 @@
           "Contact Groups"
         ],
         "summary": "Update group",
+        "description": "Update the name of an extisting group.",
         "operationId": "updateGroup",
         "parameters": [
           {
             "name": "groupId",
             "in": "path",
-            "description": "group id in hexadecimal format",
+            "description": "Group id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -299,12 +301,13 @@
           "Contact Groups"
         ],
         "summary": "Delete group",
+        "description": "Delete and existing group using the group id.",
         "operationId": "deleteGroup",
         "parameters": [
           {
             "name": "groupId",
             "in": "path",
-            "description": "group id in hexadecimal format",
+            "description": "Group id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -843,6 +846,7 @@
           "Contact Groups"
         ],
         "summary": "Fetch Groups (Lists & Segments)",
+        "description": "Fetch all groups & segments from the SimpleTexting system.",
         "operationId": "getGroups",
         "parameters": [
           {
@@ -890,6 +894,7 @@
           "Contact Groups"
         ],
         "summary": "Create group",
+        "description": "Create a new group on the SimpleTexting system.",
         "operationId": "createGroup",
         "requestBody": {
           "content": {
