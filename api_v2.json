@@ -1160,6 +1160,7 @@
           "contactPhone": {
             "title": "Unique contact phone",
             "type": "string",
+            "example": "1234567890",
             "enum": [
               "range[10, 10]"
             ]
