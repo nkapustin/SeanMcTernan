@@ -349,7 +349,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/WebhookPageView"
+                  "$ref": "#/components/schemas/PageView"
                 }
               }
             }
@@ -1614,7 +1614,7 @@
           }
         }
       },
-      "WebhookPageView": {
+      "PageView": {
         "type": "object",
         "properties": {
           "content": {
