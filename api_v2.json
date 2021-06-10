@@ -42,7 +42,7 @@
     },
     {
       "name": "Custom Fields",
-      "description": "Endpoints to fetch custom fields"
+      "description": "SimpleTexting's Custom Fields feature plays a key role in managing your customer data. Not only does it give you enormous flexibility when it comes to [collecting](https://help.simpletexting.com/using-simpletexting/apps-and-features/collecting-subscriber-data) or [importing](https://help.simpletexting.com/using-simpletexting/lists-and-contacts/importing-contacts) data, it also lets you quickly and easily personalize each message in a [mass text](https://simpletexting.com/mass-texting/) campaign."
     },
     {
       "name": "Messages",
@@ -137,7 +137,7 @@
           "Contacts"
         ],
         "summary": "Fetch a contact",
-        "description": "Fetch a contact via their unique id",
+        "description": "Fetch a contact via their unique id.",
         "operationId": "getContact",
         "parameters": [
           {
@@ -168,7 +168,7 @@
           "Contacts"
         ],
         "summary": "Update a contact",
-        "description": "Update a contact's information via their unique id",
+        "description": "Update a contact's information via their unique id.",
         "operationId": "updateContact",
         "parameters": [
           {
@@ -213,7 +213,7 @@
           "Contacts"
         ],
         "summary": "Delete a contact",
-        "description": "Delete a contact via their unique id",
+        "description": "Delete a contact via their unique id.",
         "operationId": "deleteContact",
         "parameters": [
           {
@@ -674,7 +674,7 @@
           "Contacts"
         ],
         "summary": "Fetch all Contacts",
-        "description": "Fetch all contacts from the SimpleTexting system",
+        "description": "Fetch all contacts from the SimpleTexting system.",
         "operationId": "fetchContacts",
         "parameters": [
           {
@@ -744,7 +744,7 @@
           "Contacts"
         ],
         "summary": "Create a contact",
-        "description": "Create a brand new contact, and specifiy the group they should live in",
+        "description": "Create a brand new contact, and specifiy the group they should live in.",
         "operationId": "createContact",
         "parameters": [
           {
@@ -1031,6 +1031,7 @@
           "Custom Fields"
         ],
         "summary": "Fetch custom fields",
+        "description": "Fetch all custom fields you've created on the SimpleTexting system.",
         "operationId": "getCustomFields",
         "parameters": [
           {
