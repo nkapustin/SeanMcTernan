@@ -62,7 +62,7 @@
     },
     {
       "name": "Contacts",
-      "description": "Endpoints to edit contacts"
+      "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
     }
   ],
   "paths": {
@@ -137,6 +137,7 @@
           "Contacts"
         ],
         "summary": "Fetch a contact",
+        "description": "Fetch a contact via their unique id",
         "operationId": "getContact",
         "parameters": [
           {
@@ -167,6 +168,7 @@
           "Contacts"
         ],
         "summary": "Update a contact",
+        "description": "Update a contact's information via their unique id",
         "operationId": "updateContact",
         "parameters": [
           {
@@ -211,6 +213,7 @@
           "Contacts"
         ],
         "summary": "Delete a contact",
+        "description": "Delete a contact via their unique id",
         "operationId": "deleteContact",
         "parameters": [
           {
@@ -671,6 +674,7 @@
           "Contacts"
         ],
         "summary": "Fetch all Contacts",
+        "description": "Fetch all contacts from the SimpleTexting system",
         "operationId": "fetchContacts",
         "parameters": [
           {
@@ -740,6 +744,7 @@
           "Contacts"
         ],
         "summary": "Create a contact",
+        "description": "Create a brand new contact, and specifiy the group they should live in",
         "operationId": "createContact",
         "parameters": [
           {
