@@ -1196,15 +1196,12 @@
           "comment": {
             "description": "Comment attached to contact \n\nExample: VIP client",
             "type": "string",
-            "example": "VIP client",
-            "enum": [
-              "range[1, 1000]"
-            ]
+            "example": "VIP client"
           },
           "groupIds": {
-            "description": "List of contact group IDs or names to replace or add \n\nExample: [\"507f191e810c19729de860ea\",\"My First List\"]",
+            "description": "List of contact group IDs or names to replace or add \n\nExample: [\"507f191e810c19729de860ea\", \"My First List\"]",
             "type": "array",
-            "example": "[\"507f191e810c19729de860ea\",\"My First List\"]"
+            "example": "[507f191e810c19729de860ea, My First List]"
           }
         }
       },
