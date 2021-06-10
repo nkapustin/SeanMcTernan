@@ -1053,7 +1053,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageView"
+                  "$ref": "#/components/schemas/CustomFieldPageView"
                 }
               }
             }
@@ -1820,6 +1820,40 @@
         },
         "description": "Page representation for search/fetch result"
       },
+      "CustomFieldPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "title": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomField"
+            }
+          },
+          "totalPages": {
+            "title": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "title": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
+      "CustomField": {
+        "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+        "type": "object",
+        "properties": {
+          "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+          "type": "string",
+          "example": "{\"zipcode\":\"12345\"}"
+        },
+        "example": {
+          "zipcode": "12345"
+        },
       "Contact": {
         "title": "Page content, number of elements is restricted by page size",
         "required": [
