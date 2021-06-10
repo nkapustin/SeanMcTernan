@@ -999,11 +999,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Page of media items",
+            "description": "Successful. Returns a page of media items.",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageView"
+                  "$ref": "#/components/schemas/MediaItemsPageView"
                 }
               }
             }
@@ -1339,6 +1339,29 @@
             }
           }
         }
+      },
+      "MediaItemsPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "title": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StFileDto"
+            }
+          },
+          "totalPages": {
+            "title": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "title": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
       },
       "StFileDto": {
         "type": "object",
