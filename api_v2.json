@@ -480,7 +480,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageView"
+                  "$ref": "#/components/schemas/Message"
                 }
               }
             }
@@ -490,7 +490,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageView"
+                  "$ref": "#/components/schemas/Message"
                 }
               }
             }
@@ -1622,6 +1622,74 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Webhook"
+            }
+          },
+          "totalPages": {
+            "title": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "title": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
+      "Webhook": {
+        "title": "Page content, number of elements is restricted by page size",
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "webhookId": {
+            "type": "string"
+          },
+          "url": {
+            "title": "URL for handling POST request",
+            "type": "string"
+          },
+          "triggers": {
+            "title": "Trigger webhook on event types",
+            "type": "array",
+            "items": {
+              "title": "Trigger webhook on event types",
+              "type": "string",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "title": "The maximum number of requests that can be sent within one second",
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantPhone": {
+            "title": "Optional: requests will come exclusively for the specified tenant phone number",
+            "type": "string"
+          },
+          "contactPhone": {
+            "title": "Optional: requests will come exclusively for the specified contact phone number",
+            "type": "string"
+          }
+        }
+      },
+      "MessagePageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "title": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Message"
             }
           },
           "totalPages": {
