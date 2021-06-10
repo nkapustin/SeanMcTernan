@@ -50,7 +50,7 @@
     },
     {
       "name": "Contacts Batch",
-      "description": "Batch operation endpoint for contacts"
+      "description": "An endpoint to assist in batch operations on your contacts. Using the operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
       "name": "Contact Groups",
@@ -58,7 +58,7 @@
     },
     {
       "name": "Messages",
-      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts, whatever the situation is. Below are some endpoint that allow you to get the most out of the message sending features of SimpleTexting."
+      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. Below are some endpoint that allow you to get the most out of the message sending features of SimpleTexting."
     },
     {
       "name": "Contacts",
@@ -796,6 +796,7 @@
           "Contacts Batch"
         ],
         "summary": "Process Contacts batch update.",
+        "description": "Update multiple fields at ones for a batch of contacts. You can update first name, last name, emails, groups and much more.",
         "operationId": "processBatchUpdate",
         "requestBody": {
           "content": {
@@ -827,6 +828,7 @@
           "Contacts Batch"
         ],
         "summary": "Process Contacts batch delete by contact phone",
+        "description": "Delete an array of contacts from the SimpleTexting System via their phone numbers.",
         "operationId": "processBatchDelete",
         "requestBody": {
           "content": {
@@ -1977,7 +1979,7 @@
     "securitySchemes": {
       "API Key": {
         "type": "apiKey",
-        "description": "Each time you make a request to our API, we use a token to authenticate your account. API requests without authentication will fail. Your API token can be found under",
+        "description":"Each time you make a request to our API, we use a token to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your API token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
         "name": "Authorization",
         "in": "header"
       }
