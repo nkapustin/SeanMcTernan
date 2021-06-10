@@ -594,13 +594,13 @@
                   "file": {
                     "type": "string",
                     "description": "Media file to be uploaded",
-                    "format": "binary"
+                    "format": "binary",
+                    "required": true
                   }
                 }
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
