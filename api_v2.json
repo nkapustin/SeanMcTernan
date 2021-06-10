@@ -1853,7 +1853,8 @@
         },
         "example": {
           "zipcode": "12345"
-        },
+        }
+      },
       "Contact": {
         "title": "Page content, number of elements is restricted by page size",
         "required": [
