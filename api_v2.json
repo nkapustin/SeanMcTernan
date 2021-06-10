@@ -1421,10 +1421,6 @@
           "link": {
             "title": "Link to be used for Upload",
             "type": "string"
-          },
-          "shared": {
-            "title": "Optional: Shared between teammates",
-            "type": "boolean"
           }
         },
         "description": "UploadByLink Request"
