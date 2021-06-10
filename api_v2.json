@@ -1158,8 +1158,10 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "title": "Unique contact phone",
             "type": "string",
+            "enum": [
+              "range[10, 10]"
+            ],
             "example": "1234567890"
           },
           "firstName": {
