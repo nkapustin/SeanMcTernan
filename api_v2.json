@@ -13,14 +13,6 @@
   "servers": [
     {
       "url": "/v2"
-    },
-    {
-      "url": "/v2"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
     }
   ],
   "tags": [
