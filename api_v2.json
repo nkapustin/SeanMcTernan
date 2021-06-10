@@ -179,7 +179,8 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/SingleContactUpdate"
-              }
+              },
+              "example": true
             }
           },
           "required": true
