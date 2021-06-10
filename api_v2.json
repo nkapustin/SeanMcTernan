@@ -1226,7 +1226,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "title": "SMS OR MMS? AUTO by default",
+            "description": "Configures how to present your message,\n\nAUTO - means that SimpleTexting will find more relative type for your message content, \n\nSMS_STRICTLY will send only single sms or return  an error, \n\nMMS will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\nExample: SINGLE_SMS_STRICTLY",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1236,37 +1236,32 @@
             ]
           },
           "subject": {
-            "title": "Subject (available for MMS)",
+            "description": "MMS Subject (available for MMS) \n\nExample: New In Store",
             "type": "string",
             "example": "Some message from SimpleTexting"
           },
           "text": {
-            "title": "Text",
+            "description": "Text Body \n\nExample: Hello! How are you?",
             "type": "string",
             "example": "Hello! How are you?"
           },
           "contactPhone": {
-            "title": "Contact phone",
+            "description": "Contact phone \n\nExample: 1234567890",
             "type": "string",
             "example": "1234567890"
           },
           "fallbackText": {
-            "title": "Custom fallback text if mms cannot be received. Should contains '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message",
+            "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\nExample: [url=%%fallback_link%%]",
             "type": "string",
-            "example": "Some text"
+            "example": "[url=%%fallback_link%%]"
           },
           "mediaItems": {
-            "title": "List of mms media urls for temporal storing or media items ids",
+            "description": "List of mms media urls for temporal storing or media items ids \n\nExample: [\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]",
             "type": "array",
             "example": [
               "https://txt.so/img.jpg",
               "507f1f77bcf86cd799439011"
-            ],
-            "items": {
-              "title": "List of mms media urls for temporal storing or media items ids",
-              "type": "string",
-              "example": "[\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439011\"]"
-            }
+            ]
           }
         }
       },
