@@ -117,13 +117,13 @@
           "Contacts"
         ],
         "summary": "Fetch a contact",
-        "description": "Fetch a contact via their unique id.",
+        "description": "Fetch a contact via their unique id, or their phone number. The phone number is the preferred parameter for this call.",
         "operationId": "getContact",
         "parameters": [
           {
             "name": "contactIdOrNumber",
             "in": "path",
-            "description": "Contact ID in hexadecimal format or phone number",
+            "description": "Contact id in hexadecimal format or phone number",
             "required": true,
             "schema": {
               "type": "string"
