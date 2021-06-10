@@ -78,7 +78,7 @@
         },
         "responses": {
           "204": {
-            "description": "Successful. Webhook is updated."
+            "description": "Successful. Webhook was updated."
           },
           "404": {
             "description": "Error. Webhook not found."
@@ -106,7 +106,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successful. Webhook is deleted."
+            "description": "Successful. Webhook was deleted."
           }
         }
       }
@@ -277,7 +277,7 @@
         },
         "responses": {
           "204": {
-            "description": "Success. Group updated"
+            "description": "Successful. Group updated."
           }
         }
       },
@@ -302,7 +302,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success. Group was deleted"
+            "description": "Success. Group was deleted."
           }
         }
       }
@@ -375,7 +375,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Webhook is created."
+            "description": "Successful. Webhook was created."
           },
           "400": {
             "description": "Error. Invalid phone format."
@@ -607,7 +607,7 @@
         },
         "responses": {
           "200": {
-            "description": "Uploaded media",
+            "description": "Successful. Uploaded media.",
             "content": {
               "*/*": {
                 "schema": {
@@ -651,7 +651,7 @@
         },
         "responses": {
           "200": {
-            "description": "Uploaded media",
+            "description": "Successful. Uploaded media.",
             "content": {
               "*/*": {
                 "schema": {
@@ -802,7 +802,7 @@
         },
         "responses": {
           "201": {
-            "description": "Contact batch update was processed",
+            "description": "Successful. Contact batch update was processed",
             "content": {
               "*/*": {
                 "schema": {
@@ -834,7 +834,7 @@
         },
         "responses": {
           "201": {
-            "description": "Contact batch delete was processed",
+            "description": "Successful. Contact batch delete was processed",
             "content": {
               "*/*": {
                 "schema": {
@@ -914,7 +914,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Group was created"
+            "description": "Successful. Group was created"
           }
         }
       }
@@ -1093,6 +1093,7 @@
           }
         ],
         "responses": {
+          "description": "Successful. Media was deleted.",
           "204": {
             "description": "Media is deleted"
           }
