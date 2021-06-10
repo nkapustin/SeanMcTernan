@@ -1858,7 +1858,7 @@
         "type": "object",
         "properties": {
           "_id": {
-            "title": "Group id in hexadecimal format",
+            "title": "Webhook id in hexadecimal format",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
@@ -1882,12 +1882,6 @@
             "type": "integer",
             "format": "int32",
             "example": 15
-          },
-          "username": {
-            "title": "User ID of the Custom Field creator",
-            "type": "integer",
-            "format": "int32",
-            "example": 151000000004
           }
         }
       },
