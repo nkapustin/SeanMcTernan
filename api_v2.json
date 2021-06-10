@@ -26,7 +26,7 @@
   "tags": [
     {
       "name": "Media Items",
-      "description": "Endpoints to manage media items"
+      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
     },
     {
       "name": "Contact Groups",
