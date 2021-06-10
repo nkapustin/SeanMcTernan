@@ -3,7 +3,7 @@
   "info": {
     "title": "Integration WS API Documentation",
     "version": "2.0.0",
-    "description" : "# Introduction  \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.\n\n",
+    "description" : "# Introduction  \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.",
     "termsOfService": "https://simpletexting.com/terms/",
     "contact": {
       "name": "SimpleTexting",
@@ -20,7 +20,7 @@
   ],
   "security": [
     {
-      "API Key": []
+      "api_key": []
     }
   ],
   "tags": [
