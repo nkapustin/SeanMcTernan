@@ -216,7 +216,7 @@
     "/api/contact-groups/{groupId}": {
       "get": {
         "tags": [
-          "Contact Groups"
+          "Lists"
         ],
         "summary": "Get group",
         "description": "Retrieve a group of contacts that you have uploaded to the SimpleTexting system.",
@@ -248,7 +248,7 @@
       },
       "put": {
         "tags": [
-          "Contact Groups"
+          "Lists"
         ],
         "summary": "Update group",
         "description": "Update the name of an extisting group.",
@@ -283,7 +283,7 @@
       },
       "delete": {
         "tags": [
-          "Contact Groups"
+          "Lists"
         ],
         "summary": "Delete group",
         "description": "Delete and existing group using the group id.",
@@ -837,7 +837,7 @@
     "/api/contact-groups": {
       "get": {
         "tags": [
-          "Contact Groups"
+          "Lists"
         ],
         "summary": "Fetch Groups (Lists & Segments)",
         "description": "Fetch all groups & segments from the SimpleTexting system.",
@@ -885,7 +885,7 @@
       },
       "post": {
         "tags": [
-          "Contact Groups"
+          "Lists"
         ],
         "summary": "Create group",
         "description": "Create a new group on the SimpleTexting system.",
