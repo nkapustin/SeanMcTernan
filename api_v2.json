@@ -627,6 +627,18 @@
         "summary": "Upload media by link",
         "description" : "Upload media via a link. The file can then be sent along with your message to a contact.",
         "operationId": "uploadByLink",
+        "parameters": [
+          {
+            "name": "shared",
+            "in": "query",
+            "description": "State whether media is shared between teammates",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1411,7 +1423,7 @@
             "type": "string"
           },
           "shared": {
-            "title": "Shared between teammates",
+            "title": "Optional: Shared between teammates",
             "type": "boolean"
           }
         },
