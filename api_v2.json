@@ -178,8 +178,79 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SingleContactUpdate",
-                "example": true
+                "type": "object",
+                "properties": {
+                  "contactPhone": {
+                    "title": "Unique contact phone - This field should be specified if you wish to update the contacts phone number",
+                    "type": "string",
+                    "example": "1234567890",
+                    "enum": [
+                      "range[10, 10]"
+                    ]
+                  },
+                  "firstName": {
+                    "title": "Contact first name",
+                    "type": "string",
+                    "example": "John",
+                    "enum": [
+                      "range[1, 100]"
+                    ]
+                  },
+                  "lastName": {
+                    "title": "Contact last name",
+                    "type": "string",
+                    "example": "Doe",
+                    "enum": [
+                      "range[1, 100]"
+                    ]
+                  },
+                  "email": {
+                    "title": "Contact email",
+                    "type": "string",
+                    "example": "john.doe@simpletext.org"
+                  },
+                  "birthday": {
+                    "title": "Birth date in ISO format: yyyy-mm-dd",
+                    "type": "string",
+                    "example": "1985-05-05",
+                    "enum": [
+                      "range[10, 10]"
+                    ]
+                  },
+                  "customFields": {
+                    "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+                    "type": "object",
+                    "additionalProperties": {
+                      "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+                      "type": "string",
+                      "example": "{\"zipcode\":\"12345\"}"
+                    },
+                    "example": {
+                      "zipcode": "12345"
+                    }
+                  },
+                  "comment": {
+                    "title": "Comment attached to contact",
+                    "type": "string",
+                    "example": "VIP client",
+                    "enum": [
+                      "range[1, 1000]"
+                    ]
+                  },
+                  "groupIds": {
+                    "title": "List of contact group IDs or names to replace or add",
+                    "type": "array",
+                    "example": [
+                      "507f191e810c19729de860ea",
+                      "My First List"
+                    ],
+                    "items": {
+                      "title": "List of contact group IDs or names to replace or add",
+                      "type": "string",
+                      "example": "[\"507f191e810c19729de860ea\",\"My First List\"]"
+                    }
+                  }
+                }
               }
             }
           },
@@ -1158,7 +1229,7 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "title": "Unique contact phone",
+            "title": "Unique contact phone - This field should be specified if you wish to update the contacts phone number",
             "type": "string",
             "example": "1234567890",
             "enum": [
