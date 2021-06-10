@@ -58,7 +58,7 @@
     },
     {
       "name": "Messages",
-      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. Below are some endpoint that allow you to get the most out of the message sending features of SimpleTexting."
+      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoint that allow you to get the most out of the message sending features of SimpleTexting."
     },
     {
       "name": "Contacts",
@@ -110,7 +110,7 @@
           "Webhooks"
         ],
         "summary": "Delete a webhook",
-        "description": "Delete an exsisting wenbook by its unique id",
+        "description": "Delete an exsisting webhook by its unique id",
         "operationId": "deleteWebhook",
         "parameters": [
           {
@@ -550,7 +550,7 @@
           "Messages"
         ],
         "summary": "Evaluate message",
-        "description": "Evaluate the body of your message before sending it to your contact(s)",
+        "description": "Evaluate the body of your message before sending it to your contact(s).",
         "operationId": "evaluateMessage",
         "requestBody": {
           "content": {
