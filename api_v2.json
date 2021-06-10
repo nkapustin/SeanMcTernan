@@ -25,7 +25,7 @@
       "description": "An endpoint to assist in batch operations on your contacts. Using the operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
-      "name": "Contact Groups",
+      "name": "Lists",
       "description": "The following endpoints allow you to manage your lists. Groups (or segments) can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
