@@ -349,7 +349,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageView"
+                  "$ref": "#/components/schemas/WebhookPageView"
                 }
               }
             }
@@ -480,7 +480,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "$ref": "#/components/schemas/MessagePageView"
                 }
               }
             }
@@ -490,7 +490,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "$ref": "#/components/schemas/MessagePageView"
                 }
               }
             }
@@ -999,7 +999,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Page of media items",
+            "description": "Success. Returns and array of media items.",
             "content": {
               "*/*": {
                 "schema": {
@@ -1614,7 +1614,7 @@
           }
         }
       },
-      "PageView": {
+      "WebhookPageView": {
         "type": "object",
         "properties": {
           "content": {
@@ -1681,6 +1681,29 @@
             "type": "string"
           }
         }
+      },
+      "MessagePageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "title": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            }
+          },
+          "totalPages": {
+            "title": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "title": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
       },
       "Message": {
         "title": "Page content, number of elements is restricted by page size",
