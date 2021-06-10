@@ -600,7 +600,7 @@
               }
             }
           },
-            "required": true
+          "required": true
         },
         "responses": {
           "200": {
@@ -1418,7 +1418,8 @@
         "properties": {
           "link": {
             "title": "Link to be used for Upload",
-            "type": "string"
+            "type": "string",
+            "example": "https://img.gazeta.ru/files3/941/10500941/cat-pic905-895x505-29911.jpg"
           }
         },
         "description": "UploadByLink Request"
