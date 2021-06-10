@@ -1,0 +1,1962 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Integration WS API Documentation",
+    "version": "2.0.0",
+    "description": "API used for Third Party Integration",
+    "termsOfService": "https://simpletexting.com/terms/",
+    "contact": {
+      "name": "SimpleTexting",
+      "url": "https://simpletexting.com/contact-us/"
+    }
+  },
+  "servers": [
+    {
+      "url": "/v2"
+    },
+    {
+      "url": "/v2"
+    }
+  ],
+  "security": [
+    {
+      "api_key": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Media Items",
+      "description": "Endpoints to manage media items"
+    },
+    {
+      "name": "Contact Groups",
+      "description": "Endpoint to Fetch Groups (Lists & Segments)"
+    },
+    {
+      "name": "Webhooks",
+      "description": "Endpoints to manage user created webhooks"
+    },
+    {
+      "name": "Contacts",
+      "description": "Endpoints to Fetch an Ordered List of all Contacts"
+    },
+    {
+      "name": "Custom Fields",
+      "description": "Endpoints to fetch custom fields"
+    },
+    {
+      "name": "Messages",
+      "description": "Endpoints to operate messages"
+    },
+    {
+      "name": "Contacts Batch",
+      "description": "Batch operation endpoint for contacts"
+    },
+    {
+      "name": "Contact Groups",
+      "description": "Endpoints to manage groups (lists)"
+    },
+    {
+      "name": "Messages",
+      "description": "Endpoints to fetch messages"
+    },
+    {
+      "name": "Contacts",
+      "description": "Endpoints to edit contacts"
+    }
+  ],
+  "paths": {
+    "/api/webhooks/{webhookId}": {
+      "put": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Update a webhook",
+        "operationId": "updateWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful. Webhook is updated."
+          },
+          "404": {
+            "description": "Error. Webhook not found."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Delete a webhook",
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful. Webhook is deleted."
+          }
+        }
+      }
+    },
+    "/api/contacts/{contactIdOrNumber}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Fetch a contact",
+        "operationId": "getContact",
+        "parameters": [
+          {
+            "name": "contactIdOrNumber",
+            "in": "path",
+            "description": "Contact ID in hexadecimal format or phone number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Fetched contact.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Update a contact",
+        "operationId": "updateContact",
+        "parameters": [
+          {
+            "name": "contactIdOrNumber",
+            "in": "path",
+            "description": "Contact ID in hexadecimal format or phone number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupsReplacement",
+            "in": "query",
+            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SingleContactUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful. Contact updated."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Delete a contact",
+        "operationId": "deleteContact",
+        "parameters": [
+          {
+            "name": "contactIdOrNumber",
+            "in": "path",
+            "description": "Contact ID in hexadecimal format or phone number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful. Contact deleted."
+          }
+        }
+      }
+    },
+    "/api/contact-groups/{groupId}": {
+      "get": {
+        "tags": [
+          "Contact Groups"
+        ],
+        "summary": "Get group",
+        "operationId": "getGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "group id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Fetched list.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contact Groups"
+        ],
+        "summary": "Update group",
+        "operationId": "updateGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "group id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group Dto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success. Group updated"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contact Groups"
+        ],
+        "summary": "Delete group",
+        "operationId": "deleteGroup",
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "group id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success. Group was deleted"
+          }
+        }
+      }
+    },
+    "/api/webhooks": {
+      "get": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Fetch webhooks",
+        "operationId": "getWebhooks",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Returns page of webhooks.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Create a webhook",
+        "operationId": "createWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful. Webhook is created."
+          },
+          "400": {
+            "description": "Error. Invalid phone format."
+          }
+        }
+      }
+    },
+    "/api/messages": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Fetch messages",
+        "operationId": "getMessages",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "accountPhone",
+            "in": "query",
+            "description": "Account phone number",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": 555888
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "First sent/received timestamp",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
+          },
+          {
+            "name": "contactPhone",
+            "in": "query",
+            "description": "Account phone number",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": 8001234567
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category - available only for MT (Mobile Terminating) messages",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "API"
+          },
+          {
+            "name": "directionType",
+            "in": "query",
+            "description": "MT/MO (Mobile-Terminated / Mobile-Originated)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "MT",
+                "MO"
+              ]
+            },
+            "example": "MO"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Returns page of messages.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageView"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Send message",
+        "operationId": "createMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful. Message was created."
+          },
+          "400": {
+            "description": "Error. Message cannot be sent as single sms."
+          }
+        }
+      }
+    },
+    "/api/messages/evaluate": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Evaluate message",
+        "operationId": "evaluateMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful. Evaluation result.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error. Message is too long.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mediaitems/upload": {
+      "post": {
+        "tags": [
+          "Media Items"
+        ],
+        "summary": "Upload media",
+        "operationId": "upload",
+        "parameters": [
+          {
+            "name": "shared",
+            "in": "query",
+            "description": "Media is shared",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "description": "Media",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Uploaded media",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/StFileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mediaitems/loadByLink": {
+      "post": {
+        "tags": [
+          "Media Items"
+        ],
+        "summary": "Upload media by link",
+        "operationId": "uploadByLink",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadByLink"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Uploaded media",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/StFileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Fetch all Contacts",
+        "operationId": "fetchContacts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "List contacts updated since a specified date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "Specifies the sort order for results. Results are sorted by 'since' field",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "desc"
+            },
+            "example": "desc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Returns an array of contacts.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Create a contact",
+        "operationId": "createContact",
+        "parameters": [
+          {
+            "name": "upsert",
+            "in": "query",
+            "description": "If contact exists for phone number from dto: true - update, false - fail",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": false
+          },
+          {
+            "name": "groupsReplacement",
+            "in": "query",
+            "description": "For upsert mode: set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful. Contact created."
+          }
+        }
+      }
+    },
+    "/api/contacts-batch/batch-update": {
+      "post": {
+        "tags": [
+          "Contacts Batch"
+        ],
+        "summary": "Process Contacts batch update.",
+        "operationId": "processBatchUpdate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactsBatchUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Contact batch update was processed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactsBatchUpdateResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contacts-batch/batch-delete": {
+      "post": {
+        "tags": [
+          "Contacts Batch"
+        ],
+        "summary": "Process Contacts batch delete by contact phone",
+        "operationId": "processBatchDelete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactsBatchDelete"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Contact batch delete was processed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactsBatchDeleteResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contact-groups": {
+      "get": {
+        "tags": [
+          "Contact Groups"
+        ],
+        "summary": "Fetch Groups (Lists & Segments)",
+        "operationId": "getGroups",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Returns an array of groups.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contact Groups"
+        ],
+        "summary": "Create group",
+        "operationId": "createGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group Dto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success. Group was created"
+          }
+        }
+      }
+    },
+    "/api/messages/{messageId}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get message",
+        "operationId": "getMessage",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "description": "message id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Fetched message information.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error. Message not found.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mediaitems": {
+      "get": {
+        "tags": [
+          "Media Items"
+        ],
+        "summary": "Fetch media items",
+        "operationId": "getMediaItems",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Number of page",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Page of media items",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/custom-fields": {
+      "get": {
+        "tags": [
+          "Custom Fields"
+        ],
+        "summary": "Fetch custom fields",
+        "operationId": "getCustomFields",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful. Returns an array of custom fields.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mediaitems/{mediaItemId}": {
+      "delete": {
+        "tags": [
+          "Media Items"
+        ],
+        "summary": "Delete media",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "mediaItemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Media is deleted"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WebhookRequest": {
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "title": "URL for handling POST request",
+            "type": "string",
+            "example": "https://example.com"
+          },
+          "triggers": {
+            "title": "Trigger a webhook on specific platform events",
+            "type": "array",
+            "example": [
+              "INCOMING_MESSAGE"
+            ],
+            "items": {
+              "title": "Trigger a webhook on specific platform events",
+              "type": "string",
+              "example": "[\"INCOMING_MESSAGE\"]",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "title": "The maximum number of requests that can be sent within one second",
+            "maximum": 25,
+            "type": "integer",
+            "format": "int32",
+            "example": 25
+          },
+          "tenantPhone": {
+            "title": "Optional: requests will come exclusively for the specified tenant phone number",
+            "type": "string",
+            "example": "8889928418"
+          },
+          "contactPhone": {
+            "title": "Optional: requests will come exclusively for the specified contact phone number",
+            "type": "string",
+            "example": "3051234567"
+          }
+        }
+      },
+      "SingleContactUpdate": {
+        "type": "object",
+        "properties": {
+          "contactPhone": {
+            "title": "Unique contact phone",
+            "type": "string",
+            "example": "1234567890",
+            "enum": [
+              "range[10, 10]"
+            ]
+          },
+          "firstName": {
+            "title": "Contact first name",
+            "type": "string",
+            "example": "John",
+            "enum": [
+              "range[1, 100]"
+            ]
+          },
+          "lastName": {
+            "title": "Contact last name",
+            "type": "string",
+            "example": "Doe",
+            "enum": [
+              "range[1, 100]"
+            ]
+          },
+          "email": {
+            "title": "Contact email",
+            "type": "string",
+            "example": "john.doe@simpletext.org"
+          },
+          "birthday": {
+            "title": "Birth date in ISO format: yyyy-mm-dd",
+            "type": "string",
+            "example": "1985-05-05",
+            "enum": [
+              "range[10, 10]"
+            ]
+          },
+          "customFields": {
+            "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+            "type": "object",
+            "additionalProperties": {
+              "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+              "type": "string",
+              "example": "{\"zipcode\":\"12345\"}"
+            },
+            "example": {
+              "zipcode": "12345"
+            }
+          },
+          "comment": {
+            "title": "Comment attached to contact",
+            "type": "string",
+            "example": "VIP client",
+            "enum": [
+              "range[1, 1000]"
+            ]
+          },
+          "groupIds": {
+            "title": "List of contact group IDs or names to replace or add",
+            "type": "array",
+            "example": [
+              "507f191e810c19729de860ea",
+              "My First List"
+            ],
+            "items": {
+              "title": "List of contact group IDs or names to replace or add",
+              "type": "string",
+              "example": "[\"507f191e810c19729de860ea\",\"My First List\"]"
+            }
+          }
+        }
+      },
+      "Group Dto": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Group name",
+            "type": "string"
+          }
+        }
+      },
+      "MessageRequest": {
+        "required": [
+          "contactPhone",
+          "mode",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "mode": {
+            "title": "SMS OR MMS? AUTO by default",
+            "type": "string",
+            "example": "MMS_STRICTLY",
+            "enum": [
+              "AUTO",
+              "SINGLE_SMS_STRICTLY",
+              "MMS_STRICTLY"
+            ]
+          },
+          "subject": {
+            "title": "Subject (available for MMS)",
+            "type": "string",
+            "example": "Some message from SimpleTexting"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string",
+            "example": "Hello! How are you?"
+          },
+          "contactPhone": {
+            "title": "Contact phone",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "fallbackText": {
+            "title": "Custom fallback text if mms cannot be received. Should contains '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message",
+            "type": "string",
+            "example": "Some text"
+          },
+          "mediaItems": {
+            "title": "List of mms media urls for temporal storing or media items ids",
+            "type": "array",
+            "example": [
+              "https://txt.so/img.jpg",
+              "507f1f77bcf86cd799439011"
+            ],
+            "items": {
+              "title": "List of mms media urls for temporal storing or media items ids",
+              "type": "string",
+              "example": "[\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439011\"]"
+            }
+          }
+        }
+      },
+      "MessageInfo": {
+        "type": "object",
+        "properties": {
+          "detectedCategory": {
+            "title": "Autodetected category of message",
+            "type": "string",
+            "example": "SMS",
+            "enum": [
+              "SMS",
+              "MMS",
+              "EXTENDED_SMS"
+            ]
+          },
+          "length": {
+            "title": "Message length in chars",
+            "type": "integer",
+            "format": "int32",
+            "example": 134
+          },
+          "remains": {
+            "title": "Remaining characters",
+            "type": "integer",
+            "format": "int32",
+            "example": 23
+          },
+          "maxLength": {
+            "title": "Message max length in chars with current type and encoding",
+            "type": "integer",
+            "format": "int32",
+            "example": 300
+          },
+          "containsUtfChars": {
+            "title": "Is UTF encoding used?",
+            "type": "boolean",
+            "example": false
+          },
+          "sumOfCredits": {
+            "title": "How much credits message will cost",
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "warnings": {
+            "title": "List of warning messages if present",
+            "type": "array",
+            "items": {
+              "title": "List of warning messages if present",
+              "type": "string"
+            }
+          },
+          "errors": {
+            "title": "List of error messages if present",
+            "type": "array",
+            "items": {
+              "title": "List of error messages if present",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "StFileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string"
+          },
+          "gallery": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "ext": {
+            "type": "string"
+          },
+          "canDelete": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UploadByLink": {
+        "required": [
+          "link"
+        ],
+        "type": "object",
+        "properties": {
+          "link": {
+            "title": "Link to be used for Upload",
+            "type": "string"
+          },
+          "shared": {
+            "title": "Shared between teammates",
+            "type": "boolean"
+          }
+        },
+        "description": "UploadByLink Request"
+      },
+      "ContactUpdate": {
+        "required": [
+          "contactPhone"
+        ],
+        "type": "object",
+        "properties": {
+          "contactPhone": {
+            "title": "Unique contact phone",
+            "type": "string",
+            "example": "1234567890",
+            "enum": [
+              "range[10, 10]"
+            ]
+          },
+          "firstName": {
+            "title": "Contact first name",
+            "type": "string",
+            "example": "John",
+            "enum": [
+              "range[1, 100]"
+            ]
+          },
+          "lastName": {
+            "title": "Contact last name",
+            "type": "string",
+            "example": "Doe",
+            "enum": [
+              "range[1, 100]"
+            ]
+          },
+          "email": {
+            "title": "Contact email",
+            "type": "string",
+            "example": "john.doe@simpletext.org"
+          },
+          "birthday": {
+            "title": "Birth date in ISO format: yyyy-mm-dd",
+            "type": "string",
+            "example": "1985-05-05",
+            "enum": [
+              "range[10, 10]"
+            ]
+          },
+          "customFields": {
+            "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+            "type": "object",
+            "additionalProperties": {
+              "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
+              "type": "string",
+              "example": "{\"zipcode\":\"12345\"}"
+            },
+            "example": {
+              "zipcode": "12345"
+            }
+          },
+          "comment": {
+            "title": "Comment attached to contact",
+            "type": "string",
+            "example": "VIP client",
+            "enum": [
+              "range[1, 1000]"
+            ]
+          },
+          "groupIds": {
+            "title": "List of contact group IDs or names to replace or add",
+            "type": "array",
+            "example": [
+              "507f191e810c19729de860ea",
+              "My First List"
+            ],
+            "items": {
+              "title": "List of contact group IDs or names to replace or add",
+              "type": "string",
+              "example": "[\"507f191e810c19729de860ea\",\"My First List\"]"
+            }
+          }
+        }
+      },
+      "ContactsBatchUpdate": {
+        "required": [
+          "updates"
+        ],
+        "type": "object",
+        "properties": {
+          "groupsReplacement": {
+            "title": "Groups update mode: replace (default) or add",
+            "type": "boolean"
+          },
+          "updates": {
+            "title": "List of updates for contacts",
+            "maxItems": 500,
+            "minItems": 0,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactUpdate"
+            }
+          }
+        },
+        "description": "Add new contacts or update existing, based on unique contact phone. One contact per object in the array"
+      },
+      "ContactUpdateResult": {
+        "title": "List of update results",
+        "type": "object",
+        "properties": {
+          "done": {
+            "title": "If operation was successful",
+            "type": "boolean",
+            "example": true
+          },
+          "contactPhone": {
+            "title": "Contact phone from update request",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "contactId": {
+            "title": "Contact id if contact exists",
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011"
+          },
+          "errorCode": {
+            "title": "Operation error code, if operation has failed",
+            "type": "string",
+            "example": "CONTACT_CREATE_FAILED",
+            "enum": [
+              "CONTACT_CREATE_INTERNAL_ERROR",
+              "CONTACT_UPDATE_INTERNAL_ERROR",
+              "CONTACT_IMPORT_LIMIT_IS_REACHED",
+              "CONTACT_CREATE_FAILED",
+              "CONTACT_UPDATE_FAILED"
+            ]
+          },
+          "errorMessage": {
+            "title": "Additional error message if operation has failed",
+            "type": "string",
+            "example": "Contacts limit is reached"
+          }
+        }
+      },
+      "ContactsBatchUpdateResult": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "title": "List of update results",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactUpdateResult"
+            }
+          }
+        }
+      },
+      "ContactsBatchDelete": {
+        "required": [
+          "contactPhones"
+        ],
+        "type": "object",
+        "properties": {
+          "contactPhones": {
+            "title": "List of contact phones for deletion",
+            "maxItems": 500,
+            "minItems": 0,
+            "type": "array",
+            "example": [
+              "1234567890"
+            ],
+            "items": {
+              "title": "List of contact phones for deletion",
+              "type": "string",
+              "example": "[\"1234567890\"]"
+            }
+          }
+        },
+        "description": "ContactsBatchDelete"
+      },
+      "ContactDeleteResult": {
+        "title": "List of deletion results",
+        "type": "object",
+        "properties": {
+          "done": {
+            "title": "If operation was successful",
+            "type": "boolean",
+            "example": true
+          },
+          "contactPhone": {
+            "title": "Contact phone from delete request",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "contactId": {
+            "title": "Contact id if contact was found or null",
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011"
+          },
+          "errorCode": {
+            "title": "Operation error code, if operation has failed",
+            "type": "string",
+            "example": "UNKNOWN_CONTACT_PHONE",
+            "enum": [
+              "UNKNOWN_CONTACT_PHONE",
+              "CONTACT_DELETE_INTERNAL_ERROR"
+            ]
+          },
+          "errorMessage": {
+            "title": "Additional error message if operation has failed",
+            "type": "string",
+            "example": "Contact with provided phone number is missing"
+          }
+        }
+      },
+      "ContactsBatchDeleteResult": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "title": "List of deletion results",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactDeleteResult"
+            }
+          }
+        }
+      },
+      "PageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "title": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Webhook"
+            }
+          },
+          "totalPages": {
+            "title": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "title": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
+      "Webhook": {
+        "title": "Page content, number of elements is restricted by page size",
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "webhookId": {
+            "type": "string"
+          },
+          "url": {
+            "title": "URL for handling POST request",
+            "type": "string"
+          },
+          "triggers": {
+            "title": "Trigger webhook on event types",
+            "type": "array",
+            "items": {
+              "title": "Trigger webhook on event types",
+              "type": "string",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "title": "The maximum number of requests that can be sent within one second",
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantPhone": {
+            "title": "Optional: requests will come exclusively for the specified tenant phone number",
+            "type": "string"
+          },
+          "contactPhone": {
+            "title": "Optional: requests will come exclusively for the specified contact phone number",
+            "type": "string"
+          }
+        }
+      },
+      "Message": {
+        "title": "Page content, number of elements is restricted by page size",
+        "type": "object",
+        "properties": {
+          "subject": {
+            "title": "Subject (available for MMS)",
+            "type": "string",
+            "example": "Some message from SimpleTexting"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string",
+            "example": "Hello! How are you?"
+          },
+          "contactPhone": {
+            "title": "Contact phone",
+            "type": "string",
+            "example": "8001234567"
+          },
+          "accountPhone": {
+            "title": "Account phone (primary or secondary)",
+            "type": "string",
+            "example": "555888"
+          },
+          "directionType": {
+            "title": "MT/MO (Mobile-Terminated / Mobile-Originated)",
+            "type": "string",
+            "example": "MO",
+            "enum": [
+              "MT",
+              "MO"
+            ]
+          },
+          "timestamp": {
+            "title": "Date of sending, ISO 8601",
+            "type": "string",
+            "format": "date-time",
+            "example": "2020-04-28T23:20:08.489Z"
+          },
+          "referenceType": {
+            "title": "Reference type (available only for MT messages)",
+            "type": "string",
+            "example": "API"
+          },
+          "category": {
+            "title": "Message category",
+            "type": "string",
+            "example": "SMS",
+            "enum": [
+              "SMS",
+              "MMS",
+              "EXTENDED_SMS"
+            ]
+          },
+          "mediaItems": {
+            "title": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+            "type": "array",
+            "example": [
+              "507f1f77bcf86cd799439011",
+              "507f1f77bcf86cd799439333"
+            ],
+            "items": {
+              "title": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+              "type": "string",
+              "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
+            }
+          }
+        }
+      },
+      "Contact": {
+        "title": "Page content, number of elements is restricted by page size",
+        "required": [
+          "contactId",
+          "contactPhone",
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "contactId": {
+            "title": "Existing contact id",
+            "type": "string",
+            "example": "607f0558a7c898629dd47d7a"
+          },
+          "contactPhone": {
+            "title": "Unique contact phone",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "firstName": {
+            "title": "Contact first name",
+            "type": "string",
+            "example": "John",
+            "enum": [
+              "range[1, 100]"
+            ]
+          },
+          "lastName": {
+            "title": "Contact last name",
+            "type": "string",
+            "example": "Doe",
+            "enum": [
+              "range[1, 100]"
+            ]
+          },
+          "email": {
+            "title": "Contact email - Required: Valid Email",
+            "type": "string",
+            "example": "john.doe@simpletext.org"
+          },
+          "birthday": {
+            "title": "Birth date - Required: ISO format: yyyy-mm-dd",
+            "type": "string",
+            "format": "date",
+            "example": "1985-05-05",
+            "enum": [
+              null
+            ]
+          },
+          "groups": {
+            "title": "List of groups, where contact should be included",
+            "type": "array",
+            "example": [
+              {
+                "id": "5f6c760379f4e93135aac72b",
+                "name": "group name"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Contact group"
+            }
+          },
+          "customFields": {
+            "title": "Custom fields are key value pairs with custom information, like tags",
+            "type": "object",
+            "additionalProperties": {
+              "title": "Custom fields are key value pairs with custom information, like tags",
+              "type": "string",
+              "example": "{\"zipcode\":\"12345\",\"position\":\"manager\"}"
+            },
+            "example": {
+              "zipcode": "12345",
+              "position": "manager"
+            }
+          },
+          "comment": {
+            "title": "Comment attached to contact",
+            "type": "string",
+            "example": "VIP client",
+            "enum": [
+              "range[1, 1000]"
+            ]
+          },
+          "subscriptionStatus": {
+            "title": "Contact subscription status",
+            "type": "string",
+            "example": "OPT_IN",
+            "enum": [
+              "OPT_IN",
+              "OPT_OUT",
+              "WAIT_SMS_CONFIRMATION",
+              "REJECT_CONFIRMATION"
+            ]
+          },
+          "created": {
+            "title": "Created timestamp - Required: ISO format",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "updated": {
+            "title": "Updated timestamp - Required: ISO format",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-05-28T20:20:08.489Z"
+          },
+          "updateSource": {
+            "type": "string",
+            "enum": [
+              "IMPORTED_FROM_FILE",
+              "PUBLIC_API",
+              "MAILCHIMP_SYNC",
+              "KEYWORD",
+              "WEB_FORM",
+              "MANUAL",
+              "REMINDER",
+              "ZAPIER",
+              "WORKATO",
+              "CONFIRMATION",
+              "INCOMING_MESSAGE"
+            ]
+          }
+        }
+      },
+      "Contact group": {
+        "title": "List of groups, where contact should be included",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Existing group id",
+            "type": "string",
+            "example": "5f6c760379f4e93135aac72a"
+          },
+          "name": {
+            "title": "Existing group name",
+            "type": "string",
+            "example": "group name"
+          }
+        },
+        "example": [
+          {
+            "id": "5f6c760379f4e93135aac72b",
+            "name": "group name"
+          }
+        ]
+      },
+      "Group": {
+        "title": "Page content, number of elements is restricted by page size",
+        "type": "object",
+        "properties": {
+          "groupId": {
+            "title": "Group id in hexadecimal format",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "name": {
+            "title": "Group name",
+            "type": "string"
+          },
+          "created": {
+            "title": "Created timestamp",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated": {
+            "title": "Updated timestamp",
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "totalContactsCount": {
+            "title": "Total contacts count",
+            "type": "integer",
+            "format": "int32"
+          },
+          "activeContactsCount": {
+            "title": "Active contacts count",
+            "type": "integer",
+            "format": "int32"
+          },
+          "invalidContactsCount": {
+            "title": "Invalid contacts count",
+            "type": "integer",
+            "format": "int32"
+          },
+          "unsubscribedContactsCount": {
+            "title": "Unsubscribed contacts count",
+            "type": "integer",
+            "format": "int32"
+          },
+          "keywords": {
+            "title": "Keywords that bound to the group",
+            "type": "array",
+            "items": {
+              "title": "Keywords that bound to the group",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "description": "API key for",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}
