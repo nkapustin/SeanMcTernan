@@ -128,7 +128,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "507f1f77bcf86cd799439011"
+            "example": "507f1f77bcf86cd799439011 / 3053012747"
           }
         ],
         "responses": {
