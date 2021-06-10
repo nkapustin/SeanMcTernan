@@ -54,7 +54,7 @@
     },
     {
       "name": "Contact Groups",
-      "description": "Endpoints to manage groups (lists)"
+      "description": "The following endpoints allow you to manage your lists. Groups can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
       "name": "Messages",
@@ -604,7 +604,7 @@
                 "properties": {
                   "file": {
                     "type": "string",
-                    "description": "Media file to be uploaded.",
+                    "description": "Media file to be uploaded",
                     "format": "binary"
                   }
                 }
@@ -1072,7 +1072,7 @@
           {
             "name": "mediaItemId",
             "in": "path",
-            "description": "The item id of the media you would like to delete.",
+            "description": "The item id of the media you would like to delete",
             "required": true,
             "schema": {
               "type": "string"
