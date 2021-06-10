@@ -579,6 +579,7 @@
           "Media Items"
         ],
         "summary": "Upload media",
+        "description" : "Upload media directly that can be sent along with your message to a contact.",
         "operationId": "upload",
         "parameters": [
           {
@@ -631,6 +632,7 @@
           "Media Items"
         ],
         "summary": "Upload media by link",
+        "description" : "Upload media via a link. The file can then be sent along with your message to a contact.",
         "operationId": "uploadByLink",
         "requestBody": {
           "content": {
@@ -965,6 +967,7 @@
           "Media Items"
         ],
         "summary": "Fetch media items",
+        "description" : "Retrieve items that you have previously uploaded to the SimpleTexting system.",
         "operationId": "getMediaItems",
         "parameters": [
           {
@@ -1063,6 +1066,7 @@
           "Media Items"
         ],
         "summary": "Delete media",
+        "description" : "Remove items that you have previously uploaded to the SimpleTexting system.",
         "operationId": "delete",
         "parameters": [
           {
