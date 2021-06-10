@@ -25,28 +25,8 @@
   ],
   "tags": [
     {
-      "name": "Media Items",
-      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
-    },
-    {
-      "name": "Contact Groups",
-      "description": "Endpoint to Fetch Groups (Lists & Segments)"
-    },
-    {
-      "name": "Webhooks",
-      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
-    },
-    {
       "name": "Contacts",
-      "description": "Endpoints to Fetch an Ordered List of all Contacts"
-    },
-    {
-      "name": "Custom Fields",
-      "description": "SimpleTexting's Custom Fields feature plays a key role in managing your customer data. Not only does it give you enormous flexibility when it comes to [collecting](https://help.simpletexting.com/using-simpletexting/apps-and-features/collecting-subscriber-data) or [importing](https://help.simpletexting.com/using-simpletexting/lists-and-contacts/importing-contacts) data, it also lets you quickly and easily personalize each message in a [mass text](https://simpletexting.com/mass-texting/) campaign."
-    },
-    {
-      "name": "Messages",
-      "description": "Endpoints to operate messages"
+      "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
     },
     {
       "name": "Contacts Batch",
@@ -57,12 +37,20 @@
       "description": "The following endpoints allow you to manage your lists. Groups (or segments) can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
+      "name": "Custom Fields",
+      "description": "SimpleTexting's Custom Fields feature plays a key role in managing your customer data. Not only does it give you enormous flexibility when it comes to [collecting](https://help.simpletexting.com/using-simpletexting/apps-and-features/collecting-subscriber-data) or [importing](https://help.simpletexting.com/using-simpletexting/lists-and-contacts/importing-contacts) data, it also lets you quickly and easily personalize each message in a [mass text](https://simpletexting.com/mass-texting/) campaign."
+    },
+    {
+      "name": "Media Items",
+      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
+    },
+    {
       "name": "Messages",
       "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoint that allow you to get the most out of the message sending features of SimpleTexting."
     },
     {
-      "name": "Contacts",
-      "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
+      "name": "Webhooks",
+      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
     }
   ],
   "paths": {
