@@ -586,6 +586,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -594,8 +595,7 @@
                   "file": {
                     "type": "string",
                     "description": "Media file to be uploaded",
-                    "format": "binary",
-                    "required": true
+                    "format": "binary"
                   }
                 }
               }
