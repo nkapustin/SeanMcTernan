@@ -1857,20 +1857,15 @@
         "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
         "type": "object",
         "properties": {
-          "_id": {
-            "title": "Custom Field id in hexadecimal format",
+          "label": {
+            "title": "Label Given to Custom Field Type",
             "type": "string",
-            "example": "507f191e810c19729de860ea"
+            "example": "My Custom Field" 
           },
           "type": {
             "title": "Custom Field Type",
             "type": "string",
             "example": "text"
-          },
-          "label": {
-            "title": "Label Given to Custom Field Type",
-            "type": "string",
-            "example": "My Custom Field" 
           },
           "mergeTag": {
             "title": "Merge tag to be added to message",
