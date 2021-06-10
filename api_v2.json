@@ -1085,11 +1085,12 @@
           {
             "name": "mediaItemId",
             "in": "path",
-            "description": "The item id of the media you would like to delete",
+            "description": "The mediaItemId of the media you would like to delete in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "507f1f77bcf86cd799439011"
           }
         ],
         "responses": {
