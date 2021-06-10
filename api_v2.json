@@ -1951,9 +1951,9 @@
       }
     },
     "securitySchemes": {
-      "api_key": {
+      "API Key": {
         "type": "apiKey",
-        "description": "API key for",
+        "description": "Each time you make a request to our API, we use a token to authenticate your account. API requests without authentication will fail. Your API token can be found under",
         "name": "Authorization",
         "in": "header"
       }
