@@ -178,9 +178,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SingleContactUpdate"
-              },
-              "example": true
+                "$ref": "#/components/schemas/SingleContactUpdate",
+                "example": true
+              }
             }
           },
           "required": true
@@ -1158,11 +1158,11 @@
         "type": "object",
         "properties": {
           "contactPhone": {
+            "title": "Unique contact phone",
             "type": "string",
             "enum": [
               "range[10, 10]"
-            ],
-            "example": "1234567890"
+            ]
           },
           "firstName": {
             "title": "Contact first name",
