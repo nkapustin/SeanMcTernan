@@ -579,7 +579,6 @@
             "name": "shared",
             "in": "query",
             "description": "State whether media is shared between teammates",
-            "required": true,
             "schema": {
               "type": "boolean",
               "default": true
@@ -588,11 +587,8 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "required": [
-                  "file"
-                ],
                 "type": "object",
                 "properties": {
                   "file": {
@@ -632,7 +628,6 @@
             "name": "shared",
             "in": "query",
             "description": "State whether media is shared between teammates",
-            "required": true,
             "schema": {
               "type": "boolean",
               "default": true
