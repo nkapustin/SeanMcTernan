@@ -127,15 +127,6 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "contactIdOrNumber",
-            "in": "path",
-            "description": "Contact id in hexadecimal format or phone number",
-            "required": true,
-            "schema": {
-              "type": "string"
             },
             "examples": {
               "phone": {
