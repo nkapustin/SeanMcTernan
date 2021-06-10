@@ -34,7 +34,7 @@
     },
     {
       "name": "Webhooks",
-      "description": "Endpoints to manage user created webhooks"
+      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
     },
     {
       "name": "Contacts",
@@ -72,12 +72,13 @@
           "Webhooks"
         ],
         "summary": "Update a webhook",
+        "description": "Update an exsisting webhook by its unique id",
         "operationId": "updateWebhook",
         "parameters": [
           {
             "name": "webhookId",
             "in": "path",
-            "description": "webhook id in hexadecimal format",
+            "description": "Webhook id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -109,12 +110,13 @@
           "Webhooks"
         ],
         "summary": "Delete a webhook",
+        "description": "Delete an exsisting wenbook by its unique id",
         "operationId": "deleteWebhook",
         "parameters": [
           {
             "name": "webhookId",
             "in": "path",
-            "description": "webhook id in hexadecimal format",
+            "description": "Webhook id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -328,6 +330,7 @@
           "Webhooks"
         ],
         "summary": "Fetch webhooks",
+        "description": "Fetch all webhooks that you have created",
         "operationId": "getWebhooks",
         "parameters": [
           {
@@ -375,6 +378,7 @@
           "Webhooks"
         ],
         "summary": "Create a webhook",
+        "description": "Create a new webhook from scratch",
         "operationId": "createWebhook",
         "requestBody": {
           "content": {
