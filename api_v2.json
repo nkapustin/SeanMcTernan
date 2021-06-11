@@ -1928,7 +1928,7 @@
             "example": [
               {
                 "id": "5f6c760379f4e93135aac72b",
-                "name": "group name"
+                "name": "My First List"
               }
             ],
             "items": {
@@ -2007,13 +2007,13 @@
           "name": {
             "title": "Existing group name",
             "type": "string",
-            "example": "group name"
+            "example": "My First List"
           }
         },
         "example": [
           {
             "id": "5f6c760379f4e93135aac72b",
-            "name": "group name"
+            "name": "My First List"
           }
         ]
       },
