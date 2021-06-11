@@ -128,7 +128,7 @@
             "schema": {
               "type": "string"
             },
-            "example": "507f1f77bcf86cd799439011 / 3051234567"
+            "example": "3051234567 or 507f1f77bcf86cd799439011"
           }
         ],
         "responses": {
@@ -1115,18 +1115,18 @@
         "type": "object",
         "properties": {
           "url": {
-            "title": "URL for handling POST request",
+            "description": "URL for handling POST request",
             "type": "string",
             "example": "https://example.com"
           },
           "triggers": {
-            "title": "Trigger a webhook on specific platform events",
+            "description": "Trigger a webhook on specific platform events",
             "type": "array",
             "example": [
               "INCOMING_MESSAGE"
             ],
             "items": {
-              "title": "Trigger a webhook on specific platform events",
+              "description": "Trigger a webhook on specific platform events",
               "type": "string",
               "example": "[\"INCOMING_MESSAGE\"]",
               "enum": [
@@ -1139,19 +1139,19 @@
             }
           },
           "requestPerSecLimit": {
-            "title": "The maximum number of requests that can be sent within one second",
+            "description": "The maximum number of requests that can be sent within one second",
             "maximum": 25,
             "type": "integer",
             "format": "int32",
             "example": 25
           },
           "tenantPhone": {
-            "title": "Optional: requests will come exclusively for the specified tenant phone number",
+            "description": "Optional: requests will come exclusively for the specified tenant phone number",
             "type": "string",
             "example": "8889928418"
           },
           "contactPhone": {
-            "title": "Optional: requests will come exclusively for the specified contact phone number",
+            "description": "Optional: requests will come exclusively for the specified contact phone number",
             "type": "string",
             "example": "3051234567"
           }
@@ -1189,7 +1189,7 @@
             "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
-              "title": "\n\n Example: \n\n{\"zipcode\":\"12345\"}",
+              "description": "\n\n Example: \n\n{\"zipcode\":\"12345\"}",
               "type": "string",
               "example": "{\"zipcode\":\"12345\"}"
             },
@@ -1319,7 +1319,7 @@
         "type": "object",
         "properties": {
           "detectedCategory": {
-            "title": "Autodetected category of message",
+            "description": "Autodetected category of message",
             "type": "string",
             "example": "SMS",
             "enum": [
@@ -1329,47 +1329,47 @@
             ]
           },
           "length": {
-            "title": "Message length in chars",
+            "description": "Message length in chars",
             "type": "integer",
             "format": "int32",
             "example": 134
           },
           "remains": {
-            "title": "Remaining characters",
+            "description": "Remaining characters",
             "type": "integer",
             "format": "int32",
             "example": 23
           },
           "maxLength": {
-            "title": "Message max length in chars with current type and encoding",
+            "description": "Message max length in chars with current type and encoding",
             "type": "integer",
             "format": "int32",
             "example": 300
           },
           "containsUtfChars": {
-            "title": "Is UTF encoding used?",
+            "description": "Is UTF encoding used?",
             "type": "boolean",
             "example": false
           },
           "sumOfCredits": {
-            "title": "How much credits message will cost",
+            "description": "How much credits message will cost",
             "type": "integer",
             "format": "int32",
             "example": 1
           },
           "warnings": {
-            "title": "List of warning messages if present",
+            "description": "List of warning messages if present",
             "type": "array",
             "items": {
-              "title": "List of warning messages if present",
+              "description": "List of warning messages if present",
               "type": "string"
             }
           },
           "errors": {
-            "title": "List of error messages if present",
+            "description": "List of error messages if present",
             "type": "array",
             "items": {
-              "title": "List of error messages if present",
+              "description": "List of error messages if present",
               "type": "string"
             }
           }
@@ -1386,12 +1386,12 @@
             }
           },
           "totalPages": {
-            "title": "Total number of pages, which is number of elements divided by page size",
+            "description": "Total number of pages, which is number of elements divided by page size",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "title": "Total number of elements",
+            "description": "Total number of elements",
             "type": "integer",
             "format": "int64"
           }
@@ -1442,7 +1442,7 @@
         "type": "object",
         "properties": {
           "link": {
-            "title": "Link to be used for Upload",
+            "description": "Link to be used for Upload",
             "type": "string",
             "example": "https://img.gazeta.ru/files3/941/10500941/cat-pic905-895x505-29911.jpg"
           }
@@ -1456,35 +1456,35 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "title": "Unique contact phone",
+            "description": "Unique contact phone",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "title": "Contact first name",
+            "description": "Contact first name",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "title": "Contact last name",
+            "description": "Contact last name",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "title": "Contact email",
+            "description": "Contact email",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "title": "Birth date in ISO format: yyyy-mm-dd",
+            "description": "Birth date in ISO format: yyyy-mm-dd",
             "type": "string",
             "example": "1985-05-05"
           },
           "customFields": {
-            "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
-              "title": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+              "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
               "type": "string",
               "example": "{\"zipcode\":\"12345\"}"
             },
@@ -1493,12 +1493,12 @@
             }
           },
           "comment": {
-            "title": "Comment attached to contact",
+            "description": "Comment attached to contact",
             "type": "string",
             "example": "VIP client"
           },
           "groupIds": {
-            "title": "List of contact group IDs or names to replace or add",
+            "description": "List of contact group IDs or names to replace or add",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -1518,7 +1518,7 @@
             "type": "boolean"
           },
           "updates": {
-            "title": "List of updates for contacts",
+            "description": "List of updates for contacts",
             "maxItems": 500,
             "minItems": 0,
             "type": "array",
@@ -1530,26 +1530,26 @@
         "description": "Add new contacts or update existing, based on unique contact phone. One contact per object in the array"
       },
       "ContactUpdateResult": {
-        "title": "List of update results",
+        "description": "List of update results",
         "type": "object",
         "properties": {
           "done": {
-            "title": "If operation was successful",
+            "description": "If operation was successful",
             "type": "boolean",
             "example": true
           },
           "contactPhone": {
-            "title": "Contact phone from update request",
+            "description": "Contact phone from update request",
             "type": "string",
             "example": "1234567890"
           },
           "contactId": {
-            "title": "Contact id if contact exists",
+            "description": "Contact id if contact exists",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
           "errorCode": {
-            "title": "Operation error code, if operation has failed",
+            "description": "Operation error code, if operation has failed",
             "type": "string",
             "example": "CONTACT_CREATE_FAILED",
             "enum": [
@@ -1561,7 +1561,7 @@
             ]
           },
           "errorMessage": {
-            "title": "Additional error message if operation has failed",
+            "description": "Additional error message if operation has failed",
             "type": "string",
             "example": "Contacts limit is reached"
           }
@@ -1571,7 +1571,7 @@
         "type": "object",
         "properties": {
           "results": {
-            "title": "List of update results",
+            "description": "List of update results",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ContactUpdateResult"
@@ -1586,7 +1586,7 @@
         "type": "object",
         "properties": {
           "contactPhones": {
-            "title": "List of contact phones for deletion",
+            "description": "List of contact phones for deletion",
             "maxItems": 500,
             "minItems": 0,
             "type": "array",
@@ -1594,7 +1594,7 @@
               "1234567890"
             ],
             "items": {
-              "title": "List of contact phones for deletion",
+              "description": "List of contact phones for deletion",
               "type": "string",
               "example": "[\"1234567890\"]"
             }
@@ -1603,26 +1603,26 @@
         "description": "ContactsBatchDelete"
       },
       "ContactDeleteResult": {
-        "title": "List of deletion results",
+        "description": "List of deletion results",
         "type": "object",
         "properties": {
           "done": {
-            "title": "If operation was successful",
+            "description": "If operation was successful",
             "type": "boolean",
             "example": true
           },
           "contactPhone": {
-            "title": "Contact phone from delete request",
+            "description": "Contact phone from delete request",
             "type": "string",
             "example": "1234567890"
           },
           "contactId": {
-            "title": "Contact id if contact was found or null",
+            "description": "Contact id if contact was found or null",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
           "errorCode": {
-            "title": "Operation error code, if operation has failed",
+            "description": "Operation error code, if operation has failed",
             "type": "string",
             "example": "UNKNOWN_CONTACT_PHONE",
             "enum": [
@@ -1631,7 +1631,7 @@
             ]
           },
           "errorMessage": {
-            "title": "Additional error message if operation has failed",
+            "description": "Additional error message if operation has failed",
             "type": "string",
             "example": "Contact with provided phone number is missing"
           }
@@ -1641,7 +1641,7 @@
         "type": "object",
         "properties": {
           "results": {
-            "title": "List of deletion results",
+            "description": "List of deletion results",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ContactDeleteResult"
@@ -1660,12 +1660,12 @@
             }
           },
           "totalPages": {
-            "title": "Total number of pages, which is number of elements divided by page size",
+            "description": "Total number of pages, which is number of elements divided by page size",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "title": "Total number of elements",
+            "description": "Total number of elements",
             "type": "integer",
             "format": "int64"
           }
@@ -1684,14 +1684,14 @@
             "type": "string"
           },
           "url": {
-            "title": "URL for handling POST request",
+            "description": "URL for handling POST request",
             "type": "string"
           },
           "triggers": {
-            "title": "Trigger webhook on event types",
+            "description": "Trigger webhook on event types",
             "type": "array",
             "items": {
-              "title": "Trigger webhook on event types",
+              "description": "Trigger webhook on event types",
               "type": "string",
               "enum": [
                 "INCOMING_MESSAGE",
@@ -1703,16 +1703,16 @@
             }
           },
           "requestPerSecLimit": {
-            "title": "The maximum number of requests that can be sent within one second",
+            "description": "The maximum number of requests that can be sent within one second",
             "type": "integer",
             "format": "int32"
           },
           "tenantPhone": {
-            "title": "Optional: requests will come exclusively for the specified tenant phone number",
+            "description": "Optional: requests will come exclusively for the specified tenant phone number",
             "type": "string"
           },
           "contactPhone": {
-            "title": "Optional: requests will come exclusively for the specified contact phone number",
+            "description": "Optional: requests will come exclusively for the specified contact phone number",
             "type": "string"
           }
         }
@@ -1728,12 +1728,12 @@
             }
           },
           "totalPages": {
-            "title": "Total number of pages, which is number of elements divided by page size",
+            "description": "Total number of pages, which is number of elements divided by page size",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "title": "Total number of elements",
+            "description": "Total number of elements",
             "type": "integer",
             "format": "int64"
           }
@@ -1745,27 +1745,27 @@
         "type": "object",
         "properties": {
           "subject": {
-            "title": "Subject (available for MMS)",
+            "description": "Subject (available for MMS)",
             "type": "string",
             "example": "Some message from SimpleTexting"
           },
           "text": {
-            "title": "Text",
+            "description": "Text",
             "type": "string",
             "example": "Hello! How are you?"
           },
           "contactPhone": {
-            "title": "Contact phone",
+            "description": "Contact phone",
             "type": "string",
             "example": "8001234567"
           },
           "accountPhone": {
-            "title": "Account phone (primary or secondary)",
+            "description": "Account phone (primary or secondary)",
             "type": "string",
             "example": "555888"
           },
           "directionType": {
-            "title": "MT/MO (Mobile-Terminated / Mobile-Originated)",
+            "description": "MT/MO (Mobile-Terminated / Mobile-Originated)",
             "type": "string",
             "example": "MO",
             "enum": [
@@ -1774,18 +1774,18 @@
             ]
           },
           "timestamp": {
-            "title": "Date of sending, ISO 8601",
+            "description": "Date of sending, ISO 8601",
             "type": "string",
             "format": "date-time",
             "example": "2020-04-28T23:20:08.489Z"
           },
           "referenceType": {
-            "title": "Reference type (available only for MT messages)",
+            "description": "Reference type (available only for MT messages)",
             "type": "string",
             "example": "API"
           },
           "category": {
-            "title": "Message category",
+            "description": "Message category",
             "type": "string",
             "example": "SMS",
             "enum": [
@@ -1795,14 +1795,14 @@
             ]
           },
           "mediaItems": {
-            "title": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
             "type": "array",
             "example": [
               "507f1f77bcf86cd799439011",
               "507f1f77bcf86cd799439333"
             ],
             "items": {
-              "title": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+              "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
               "type": "string",
               "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
             }
@@ -1820,12 +1820,12 @@
             }
           },
           "totalPages": {
-            "title": "Total number of pages, which is number of elements divided by page size",
+            "description": "Total number of pages, which is number of elements divided by page size",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "title": "Total number of elements",
+            "description": "Total number of elements",
             "type": "integer",
             "format": "int64"
           }
@@ -1843,12 +1843,12 @@
             }
           },
           "totalPages": {
-            "title": "Total number of pages, which is number of elements divided by page size",
+            "description": "Total number of pages, which is number of elements divided by page size",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "title": "Total number of elements",
+            "description": "Total number of elements",
             "type": "integer",
             "format": "int64"
           }
@@ -1856,26 +1856,26 @@
         "description": "Page representation for search/fetch result"
       },
       "CustomField": {
-        "title": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+        "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
         "type": "object",
         "properties": {
           "label": {
-            "title": "Label Given to Custom Field Type",
+            "description": "Label Given to Custom Field Type",
             "type": "string",
             "example": "My Custom Field" 
           },
           "type": {
-            "title": "Custom Field Type",
+            "description": "Custom Field Type",
             "type": "string",
             "example": "text"
           },
           "mergeTag": {
-            "title": "Merge tag to be added to message",
+            "description": "Merge tag to be added to message",
             "type": "string",
             "example": "my_custom_field" 
           },
           "defaultMaxLength": {
-            "title": "Max length of the custom field",
+            "description": "Max length of the custom field",
             "type": "integer",
             "format": "int32",
             "example": 15
@@ -1943,7 +1943,7 @@
             "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
-              "title": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+              "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
               "type": "string",
               "example": "{\"zipcode\":\"12345\",\"position\":\"manager\"}"
             },
@@ -2003,12 +2003,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "title": "Existing group id",
+            "description": "Existing group id",
             "type": "string",
             "example": "5f6c760379f4e93135aac72a"
           },
           "name": {
-            "title": "Existing group name",
+            "description": "Existing group name",
             "type": "string",
             "example": "My First List"
           }
@@ -2031,12 +2031,12 @@
             }
           },
           "totalPages": {
-            "title": "Total number of pages, which is number of elements divided by page size",
+            "description": "Total number of pages, which is number of elements divided by page size",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "title": "Total number of elements",
+            "description": "Total number of elements",
             "type": "integer",
             "format": "int64"
           }
@@ -2048,53 +2048,53 @@
         "type": "object",
         "properties": {
           "groupId": {
-            "title": "Group id in hexadecimal format",
+            "description": "Group id in hexadecimal format",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "title": "Group name",
+            "description": "Group name",
             "type": "string"
           },
           "created": {
-            "title": "Created timestamp",
+            "description": "Created timestamp",
             "type": "string",
             "format": "date-time"
           },
           "updated": {
-            "title": "Updated timestamp",
+            "description": "Updated timestamp",
             "type": "string",
             "format": "date-time"
           },
           "description": {
-            "title": "Description",
+            "description": "Description",
             "type": "string"
           },
           "totalContactsCount": {
-            "title": "Total contacts count",
+            "description": "Total contacts count",
             "type": "integer",
             "format": "int32"
           },
           "activeContactsCount": {
-            "title": "Active contacts count",
+            "description": "Active contacts count",
             "type": "integer",
             "format": "int32"
           },
           "invalidContactsCount": {
-            "title": "Invalid contacts count",
+            "description": "Invalid contacts count",
             "type": "integer",
             "format": "int32"
           },
           "unsubscribedContactsCount": {
-            "title": "Unsubscribed contacts count",
+            "description": "Unsubscribed contacts count",
             "type": "integer",
             "format": "int32"
           },
           "keywords": {
-            "title": "Keywords that bound to the group",
+            "description": "Keywords that bound to the group",
             "type": "array",
             "items": {
-              "title": "Keywords that bound to the group",
+              "description": "Keywords that bound to the group",
               "type": "string"
             }
           }
