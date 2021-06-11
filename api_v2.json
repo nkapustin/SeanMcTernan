@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Integration WS API Documentation",
-    "version": "2.0.0",
+    "version": "2.0",
     "description" : "# Introduction  \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API.\n\n<SecurityDefinitions />\n",
     "termsOfService": "https://simpletexting.com/terms/",
     "contact": {
@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "/v2"
+      "url": "https://api-app2.simpletexting.com/v2"
     }
   ],
   "tags": [
@@ -1226,7 +1226,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message:\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n  - **SMS_STRICTLY** will send only single sms or return  an error\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\nExample: SINGLE_SMS_STRICTLY",
+            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\nExample: SINGLE_SMS_STRICTLY",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
