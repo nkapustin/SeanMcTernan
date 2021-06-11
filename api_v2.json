@@ -715,13 +715,13 @@
             "required": false,
             "schema": {
               "type": "string",
-              "default": "desc"
+              "default": "desc",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
             },
-            "example": "desc",
-            "enum": [
-              "ASC",
-              "DESC"
-            ]
+            "example": "desc"
           }
         ],
         "responses": {
