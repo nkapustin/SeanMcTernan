@@ -78,10 +78,10 @@
         },
         "responses": {
           "204": {
-            "description": "Successful. Webhook was updated."
+            "description": "Success, Webhook was updated"
           },
           "404": {
-            "description": "Error. Webhook not found."
+            "description": "Error, Webhook not found"
           }
         }
       },
@@ -106,7 +106,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successful. Webhook was deleted."
+            "description": "Success, Webhook was deleted"
           }
         }
       }
@@ -133,7 +133,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Fetched contact.",
+            "description": "Success, Fetched contact",
             "content": {
               "application/json": {
                 "schema": {
@@ -186,7 +186,7 @@
         },
         "responses": {
           "204": {
-            "description": "Successful. Contact updated."
+            "description": "Success, Contact updated"
           }
         }
       },
@@ -211,7 +211,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successful. Contact deleted."
+            "description": "Success, Contact deleted"
           }
         }
       }
@@ -238,7 +238,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Fetched list.",
+            "description": "Success, Fetched list",
             "content": {
               "application/json": {
                 "schema": {
@@ -280,7 +280,7 @@
         },
         "responses": {
           "204": {
-            "description": "Successful. Group updated."
+            "description": "Success, Group updated"
           }
         }
       },
@@ -305,7 +305,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success. Group was deleted."
+            "description": "Success, Group was deleted"
           }
         }
       }
@@ -348,7 +348,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Returns page of webhooks.",
+            "description": "Success, Returns page of webhooks",
             "content": {
               "application/json": {
                 "schema": {
@@ -378,10 +378,10 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Webhook was created."
+            "description": "Success, Webhook was created"
           },
           "400": {
-            "description": "Error. Invalid phone format."
+            "description": "Error, Invalid phone format"
           }
         }
       }
@@ -479,7 +479,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Returns page of messages.",
+            "description": "Success, Returns page of messages",
             "content": {
               "application/json": {
                 "schema": {
@@ -489,7 +489,7 @@
             }
           },
           "429": {
-            "description": "Too many requests",
+            "description": "Error, Too many requests",
             "content": {
               "application/json": {
                 "schema": {
@@ -519,10 +519,10 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Message was created."
+            "description": "Success, Message was created"
           },
           "400": {
-            "description": "Error. Message cannot be sent as single sms."
+            "description": "Error, Message cannot be sent as single sms"
           }
         }
       }
@@ -547,7 +547,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Evaluation result.",
+            "description": "Success, Evaluation result",
             "content": {
               "application/json": {
                 "schema": {
@@ -557,7 +557,7 @@
             }
           },
           "400": {
-            "description": "Error. Message is too long.",
+            "description": "Error, Message is too long",
             "content": {
               "application/json": {
                 "schema": {
@@ -565,6 +565,127 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/mediaitems": {
+      "get": {
+        "tags": [
+          "Media Items"
+        ],
+        "summary": "Fetch media items",
+        "description" : "Retrieve items that you have previously uploaded to the SimpleTexting system.",
+        "operationId": "getMediaItems",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Number of pages",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, Returns a page of media items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaItemsPageView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mediaitems/loadByLink": {
+      "post": {
+        "tags": [
+          "Media Items"
+        ],
+        "summary": "Upload media by link",
+        "description" : "Upload media via a link. The file can then be sent along with your message to a contact.",
+        "operationId": "uploadByLink",
+        "parameters": [
+          {
+            "name": "shared",
+            "in": "query",
+            "description": "State whether media is shared between teammates",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadByLink"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success, Uploaded media",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StFileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mediaitems/{mediaItemId}": {
+      "delete": {
+        "tags": [
+          "Media Items"
+        ],
+        "summary": "Delete media",
+        "description" : "Remove items that you have previously uploaded to the SimpleTexting system.",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "mediaItemId",
+            "in": "path",
+            "description": "The mediaItemId in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "description": "Success, Media was deleted",
+          "204": {
+            "description": "Media is deleted"
           }
         }
       }
@@ -607,50 +728,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful. Uploaded media.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StFileDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/mediaitems/loadByLink": {
-      "post": {
-        "tags": [
-          "Media Items"
-        ],
-        "summary": "Upload media by link",
-        "description" : "Upload media via a link. The file can then be sent along with your message to a contact.",
-        "operationId": "uploadByLink",
-        "parameters": [
-          {
-            "name": "shared",
-            "in": "query",
-            "description": "State whether media is shared between teammates",
-            "schema": {
-              "type": "boolean",
-              "default": true
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UploadByLink"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful. Uploaded media.",
+            "description": "Success, Uploaded media",
             "content": {
               "application/json": {
                 "schema": {
@@ -726,7 +804,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Returns an array of contacts.",
+            "description": "Success, Returns an array of contacts",
             "content": {
               "application/json": {
                 "schema": {
@@ -780,7 +858,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Contact created."
+            "description": "Success, Contact created"
           }
         }
       }
@@ -805,7 +883,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Contact batch update was processed",
+            "description": "Success, Contact batch update was processed",
             "content": {
               "application/json": {
                 "schema": {
@@ -837,7 +915,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Contact batch delete was processed",
+            "description": "Success, Contact batch delete was processed",
             "content": {
               "application/json": {
                 "schema": {
@@ -887,7 +965,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Returns an array of groups.",
+            "description": "Success, Returns an array of groups.",
             "content": {
               "application/json": {
                 "schema": {
@@ -917,7 +995,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successful. Group was created"
+            "description": "Success, Group was created"
           }
         }
       }
@@ -944,7 +1022,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Fetched message information.",
+            "description": "Success, Fetched message information",
             "content": {
               "application/json": {
                 "schema": {
@@ -954,7 +1032,7 @@
             }
           },
           "404": {
-            "description": "Error. Message not found.",
+            "description": "Error, Message not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -969,56 +1047,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Message"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/mediaitems": {
-      "get": {
-        "tags": [
-          "Media Items"
-        ],
-        "summary": "Fetch media items",
-        "description" : "Retrieve items that you have previously uploaded to the SimpleTexting system.",
-        "operationId": "getMediaItems",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Number of pages",
-            "required": false,
-            "schema": {
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            },
-            "example": 0
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "description": "Page size",
-            "required": false,
-            "schema": {
-              "maximum": 500,
-              "type": "integer",
-              "format": "int32",
-              "default": 50
-            },
-            "example": 50
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful. Returns a page of media items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MediaItemsPageView"
                 }
               }
             }
@@ -1064,7 +1092,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful. Returns an array of custom fields.",
+            "description": "Success, Returns an array of custom fields",
             "content": {
               "application/json": {
                 "schema": {
@@ -1072,34 +1100,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/api/mediaitems/{mediaItemId}": {
-      "delete": {
-        "tags": [
-          "Media Items"
-        ],
-        "summary": "Delete media",
-        "description" : "Remove items that you have previously uploaded to the SimpleTexting system.",
-        "operationId": "delete",
-        "parameters": [
-          {
-            "name": "mediaItemId",
-            "in": "path",
-            "description": "The mediaItemId in hexadecimal format",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "507f1f77bcf86cd799439011"
-          }
-        ],
-        "responses": {
-          "description": "Successful. Media was deleted.",
-          "204": {
-            "description": "Media is deleted"
           }
         }
       }
