@@ -1911,7 +1911,7 @@
             "example": "Doe"
           },
           "email": {
-            "description": "Contact email - Required: Valid Email",
+            "description": "Contact email",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
