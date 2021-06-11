@@ -1379,7 +1379,7 @@
         "type": "object",
         "properties": {
           "content": {
-            "title": "Page content, number of elements is restricted by page size",
+            "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StFileDto"
@@ -1653,7 +1653,7 @@
         "type": "object",
         "properties": {
           "content": {
-            "title": "Page content, number of elements is restricted by page size",
+            "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Webhook"
@@ -1673,7 +1673,7 @@
         "description": "Page representation for search/fetch result"
       },
       "Webhook": {
-        "title": "Page content, number of elements is restricted by page size",
+        "description": "Page content, number of elements is restricted by page size",
         "required": [
           "triggers",
           "url"
@@ -1721,7 +1721,7 @@
         "type": "object",
         "properties": {
           "content": {
-            "title": "Page content, number of elements is restricted by page size",
+            "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Message"
@@ -1741,7 +1741,7 @@
         "description": "Page representation for search/fetch result"
       },
       "Message": {
-        "title": "Page content, number of elements is restricted by page size",
+        "description": "Page content, number of elements is restricted by page size",
         "type": "object",
         "properties": {
           "subject": {
@@ -1813,7 +1813,7 @@
         "type": "object",
         "properties": {
           "content": {
-            "title": "Page content, number of elements is restricted by page size",
+            "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Contact"
@@ -1836,7 +1836,7 @@
         "type": "object",
         "properties": {
           "content": {
-            "title": "Page content, number of elements is restricted by page size",
+            "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomField"
@@ -1883,7 +1883,7 @@
         }
       },
       "Contact": {
-        "title": "Page content, number of elements is restricted by page size",
+        "description": "Page content, number of elements is restricted by page size",
         "required": [
           "contactId",
           "contactPhone",
@@ -2024,7 +2024,7 @@
         "type": "object",
         "properties": {
           "content": {
-            "title": "Page content, number of elements is restricted by page size",
+            "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Group"
@@ -2044,7 +2044,7 @@
         "description": "Page representation for search/fetch result"
       },
       "Group": {
-        "title": "Page content, number of elements is restricted by page size",
+        "description": "Page content, number of elements is restricted by page size",
         "type": "object",
         "properties": {
           "groupId": {
