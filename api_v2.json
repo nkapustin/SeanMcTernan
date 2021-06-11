@@ -1470,35 +1470,35 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Unique contact phone",
+            "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "description": "Contact first name",
+            "description": "Contact first name \n\n**Example:** `John`",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "description": "Contact last name",
+            "description": "Contact last name \n\n**Example:** `Doe`",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "description": "Contact email",
+            "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "description": "Birth date in ISO format: yyyy-mm-dd",
+            "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
             "type": "string",
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
-              "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+              "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
               "type": "string",
               "example": "{\"zipcode\":\"12345\"}"
             },
@@ -1507,12 +1507,12 @@
             }
           },
           "comment": {
-            "description": "Comment attached to contact",
+            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
             "type": "string",
             "example": "VIP client"
           },
           "groupIds": {
-            "description": "List of contact group IDs or names to replace or add",
+            "description": "List of contact group IDs or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
