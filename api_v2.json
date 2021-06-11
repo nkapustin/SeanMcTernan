@@ -26,7 +26,7 @@
     },
     {
       "name": "Contact groups",
-      "description": "The following endpoints allow you to manage your lists. Groups (or segments) can be used to manage your contacts so the right message is being sent to the right people."
+      "description": "The following endpoints allow you to manage your lists. Groups can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
       "name": "Custom Fields",
@@ -854,8 +854,8 @@
         "tags": [
           "Contact groups"
         ],
-        "summary": "Fetch Groups (Lists & Segments)",
-        "description": "Fetch all groups & segments from the SimpleTexting system.",
+        "summary": "Fetch Groups",
+        "description": "Fetch all groups from the SimpleTexting system.",
         "operationId": "getGroups",
         "parameters": [
           {
