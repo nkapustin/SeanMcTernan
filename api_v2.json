@@ -748,7 +748,7 @@
           {
             "name": "upsert",
             "in": "query",
-            "description": "If contact exists for phone number from dto: true - update, false - fail",
+            "description": "If a contact exists with the phone number in your request body, the contact will be updated with the information within the request when set to true.",
             "required": false,
             "schema": {
               "type": "boolean",
