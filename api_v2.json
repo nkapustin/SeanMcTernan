@@ -187,6 +187,13 @@
         "responses": {
           "204": {
             "description": "Success, Contact updated"
+          },
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactUpdateResult"
+              }
+            }
           }
         }
       },
@@ -211,7 +218,14 @@
         ],
         "responses": {
           "204": {
-            "description": "Success, Contact deleted"
+            "description": "Success, Contact deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactDeleteResult"
+                }
+              }
+            }
           }
         }
       }
@@ -1379,8 +1393,8 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size.",
-            "type": "page",
+            "description": "Page content, number of elements is restricted by page size",
+            "type": "array",
             "items": {
               "$ref": "#/components/schemas/MediaFile"
             }
