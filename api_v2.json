@@ -1219,7 +1219,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "Group name containing less than 42 characters. \n\nExample: My new list",
+            "description": "Group name containing less than 42 characters. \n\n**Example:** `My new list`",
             "type": "string"
           }
         }
