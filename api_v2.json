@@ -1451,26 +1451,17 @@
           "contactPhone": {
             "title": "Unique contact phone",
             "type": "string",
-            "example": "1234567890",
-            "enum": [
-              "range[10, 10]"
-            ]
+            "example": "1234567890"
           },
           "firstName": {
             "title": "Contact first name",
             "type": "string",
-            "example": "John",
-            "enum": [
-              "range[1, 100]"
-            ]
+            "example": "John"
           },
           "lastName": {
             "title": "Contact last name",
             "type": "string",
-            "example": "Doe",
-            "enum": [
-              "range[1, 100]"
-            ]
+            "example": "Doe"
           },
           "email": {
             "title": "Contact email",
@@ -1480,10 +1471,7 @@
           "birthday": {
             "title": "Birth date in ISO format: yyyy-mm-dd",
             "type": "string",
-            "example": "1985-05-05",
-            "enum": [
-              "range[10, 10]"
-            ]
+            "example": "1985-05-05"
           },
           "customFields": {
             "title": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags",
@@ -1500,10 +1488,7 @@
           "comment": {
             "title": "Comment attached to contact",
             "type": "string",
-            "example": "VIP client",
-            "enum": [
-              "range[1, 1000]"
-            ]
+            "example": "VIP client"
           },
           "groupIds": {
             "title": "List of contact group IDs or names to replace or add",
@@ -1918,18 +1903,12 @@
           "firstName": {
             "description": "Contact first name",
             "type": "string",
-            "example": "John",
-            "enum": [
-              "range[1, 100]"
-            ]
+            "example": "John"
           },
           "lastName": {
             "description": "Contact last name",
             "type": "string",
-            "example": "Doe",
-            "enum": [
-              "range[1, 100]"
-            ]
+            "example": "Doe"
           },
           "email": {
             "description": "Contact email - Required: Valid Email",
@@ -1974,10 +1953,7 @@
           "comment": {
             "description": "Comment attached to contact",
             "type": "string",
-            "example": "VIP client",
-            "enum": [
-              "range[1, 1000]"
-            ]
+            "example": "VIP client"
           },
           "subscriptionStatus": {
             "description": "Contact subscription status",
