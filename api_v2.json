@@ -717,7 +717,11 @@
               "type": "string",
               "default": "desc"
             },
-            "example": "desc"
+            "example": "desc",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
           }
         ],
         "responses": {
