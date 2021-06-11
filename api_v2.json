@@ -1185,9 +1185,8 @@
             "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
-              "title": "\n\n Example: \n\n{\"zipcode\":\"12345\"}",
               "type": "string",
-              "example": "{\"zipcode\":\"12345\"}"
+              "example": "{\"zipcode\":\"11345\"}"
             },
             "example": {
               "zipcode": "12345"
