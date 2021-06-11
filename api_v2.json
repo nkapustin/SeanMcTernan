@@ -1379,7 +1379,7 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content, number of elements is restricted by page size.",
             "type": "page",
             "items": {
               "$ref": "#/components/schemas/MediaFile"
