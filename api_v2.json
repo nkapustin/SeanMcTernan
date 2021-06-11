@@ -1499,12 +1499,7 @@
             "example": [
               "507f191e810c19729de860ea",
               "My First List"
-            ],
-            "items": {
-              "title": "List of contact group IDs or names to replace or add",
-              "type": "string",
-              "example": "[\"507f191e810c19729de860ea\",\"My First List\"]"
-            }
+            ]
           }
         }
       },
