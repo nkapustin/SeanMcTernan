@@ -1201,7 +1201,7 @@
           "groupIds": {
             "description": "List of contact group IDs or names to replace or add \n\nExample: [\"507f191e810c19729de860ea\", \"My First List\"]",
             "type": "array",
-            "example": "[507f191e810c19729de860ea, My First List]"
+            "example": "[\n\"507f191e810c19729de860ea\", \n\"My First List\"\n]"
           }
         }
       },
