@@ -46,6 +46,129 @@
     }
   ],
   "paths": {
+    "/api/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Fetch all Contacts",
+        "description": "Fetch all contacts from the SimpleTexting system.",
+        "operationId": "fetchContacts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 1
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "List contacts updated since a specified date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "Specifies the sort order for results. Results are sorted by 'updated' field",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "desc",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            },
+            "example": "desc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, Returns an array of contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactPageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Create a contact",
+        "description": "Create a brand new contact, and specifiy the group they should live in.",
+        "operationId": "createContact",
+        "parameters": [
+          {
+            "name": "upsert",
+            "in": "query",
+            "description": "If a contact exists with the phone number in your request body, the contact will be updated with the information within the request when set to true.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": false
+          },
+          {
+            "name": "groupsReplacement",
+            "in": "query",
+            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success, Contact created"
+          }
+        }
+      }
+    },
     "/api/webhooks/{webhookId}": {
       "put": {
         "tags": [
@@ -750,129 +873,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/api/contacts": {
-      "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Fetch all Contacts",
-        "description": "Fetch all contacts from the SimpleTexting system.",
-        "operationId": "fetchContacts",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The page number to load",
-            "required": false,
-            "schema": {
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            },
-            "example": 0
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "description": "The size of the page",
-            "required": false,
-            "schema": {
-              "maximum": 500,
-              "type": "integer",
-              "format": "int32",
-              "default": 50
-            },
-            "example": 50
-          },
-          {
-            "name": "since",
-            "in": "query",
-            "description": "List contacts updated since a specified date",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "example": "2020-03-30T12:47:40.123-05:00"
-          },
-          {
-            "name": "direction",
-            "in": "query",
-            "description": "Specifies the sort order for results. Results are sorted by 'updated' field",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "desc",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
-            },
-            "example": "desc"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success, Returns an array of contacts",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactPageView"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Create a contact",
-        "description": "Create a brand new contact, and specifiy the group they should live in.",
-        "operationId": "createContact",
-        "parameters": [
-          {
-            "name": "upsert",
-            "in": "query",
-            "description": "If a contact exists with the phone number in your request body, the contact will be updated with the information within the request when set to true.",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            },
-            "example": false
-          },
-          {
-            "name": "groupsReplacement",
-            "in": "query",
-            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            },
-            "example": true
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContactUpdate"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Success, Contact created"
           }
         }
       }
@@ -1830,7 +1830,7 @@
             "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Contact"
+              "$ref": "#/components/schemas/ContactFetchResponse"
             }
           },
           "totalPages": {
@@ -1904,6 +1904,116 @@
           "firstName",
           "lastName"
         ],
+        "type": "object",
+        "properties": {
+          "contactId": {
+            "description": "Existing contact id in hexadecimal format",
+            "type": "string",
+            "example": "607f0558a7c898629dd47d7a"
+          },
+          "contactPhone": {
+            "description": "Unique contact phone",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "firstName": {
+            "description": "Contact first name",
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "description": "Contact last name",
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "description": "Contact email",
+            "type": "string",
+            "example": "john.doe@simpletext.org"
+          },
+          "birthday": {
+            "description": "Birth date - Required: ISO format: yyyy-mm-dd",
+            "type": "string",
+            "format": "date",
+            "example": "1985-05-05",
+            "enum": [
+              null
+            ]
+          },
+          "groups": {
+            "description": "List of groups, where contact is included",
+            "type": "array",
+            "example": [
+              {
+                "id": "5f6c760379f4e93135aac72b",
+                "name": "My First List"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Contact group"
+            }
+          },
+          "customFields": {
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "type": "object",
+            "additionalProperties": {
+              "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+              "type": "string",
+              "example": "{\"zipcode\":\"12345\",\"position\":\"manager\"}"
+            },
+            "example": {
+              "zipcode": "12345",
+              "position": "manager"
+            }
+          },
+          "comment": {
+            "description": "Comment attached to contact",
+            "type": "string",
+            "example": "VIP client"
+          },
+          "subscriptionStatus": {
+            "description": "Contact subscription status",
+            "type": "string",
+            "example": "OPT_IN",
+            "enum": [
+              "OPT_IN",
+              "OPT_OUT",
+              "WAIT_SMS_CONFIRMATION",
+              "REJECT_CONFIRMATION"
+            ]
+          },
+          "created": {
+            "description": "Created timestamp - Required: ISO format",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "updated": {
+            "description": "Updated timestamp - Required: ISO format",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-05-28T20:20:08.489Z"
+          },
+          "updateSource": {
+            "description": "The source from which the contact was updated",
+            "type": "string",
+            "enum": [
+              "IMPORTED_FROM_FILE",
+              "PUBLIC_API",
+              "MAILCHIMP_SYNC",
+              "KEYWORD",
+              "WEB_FORM",
+              "MANUAL",
+              "REMINDER",
+              "ZAPIER",
+              "WORKATO",
+              "CONFIRMATION",
+              "INCOMING_MESSAGE"
+            ]
+          }
+        }
+      },
+      "ContactFetchResponse": {
         "type": "object",
         "properties": {
           "contactId": {
