@@ -1996,7 +1996,6 @@
         }
       },
       "Contact group": {
-        "title": "List of groups, where contact should be included",
         "type": "object",
         "properties": {
           "id": {
