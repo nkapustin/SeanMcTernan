@@ -1912,33 +1912,46 @@
             "example": "607f0558a7c898629dd47d7a"
           },
           "contactPhone": {
-            "description": "Unique contact phone",
+            "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "description": "Contact first name",
+            "description": "Contact first name \n\n**Example:** `John`",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "description": "Contact last name",
+            "description": "Contact last name \n\n**Example:** `Doe`",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "description": "Contact email",
+            "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "description": "Birth date - Required: ISO format: yyyy-mm-dd",
+            "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
             "type": "string",
-            "format": "date",
-            "example": "1985-05-05",
-            "enum": [
-              null
-            ]
+            "example": "1985-05-05"
+          },
+          "customFields": {
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "type": "object",
+            "additionalProperties": {
+              "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
+              "type": "string",
+              "example": "{\"zipcode\":\"12345\"}"
+            },
+            "example": {
+              "zipcode": "12345"
+            }
+          },
+          "comment": {
+            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
+            "type": "string",
+            "example": "VIP client"
           },
           "groups": {
             "description": "List of groups, where contact is included",
@@ -1952,24 +1965,6 @@
             "items": {
               "$ref": "#/components/schemas/Contact group"
             }
-          },
-          "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-            "type": "object",
-            "additionalProperties": {
-              "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-              "type": "string",
-              "example": "{\"zipcode\":\"12345\",\"position\":\"manager\"}"
-            },
-            "example": {
-              "zipcode": "12345",
-              "position": "manager"
-            }
-          },
-          "comment": {
-            "description": "Comment attached to contact",
-            "type": "string",
-            "example": "VIP client"
           },
           "subscriptionStatus": {
             "description": "Contact subscription status",
