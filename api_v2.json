@@ -1923,7 +1923,7 @@
             ]
           },
           "groups": {
-            "description": "List of groups, where contact should be included",
+            "description": "List of groups, where contact is included",
             "type": "array",
             "example": [
               {
