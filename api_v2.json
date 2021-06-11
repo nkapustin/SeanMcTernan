@@ -3,7 +3,7 @@
   "info": {
     "title": "Integration WS API Documentation",
     "version": "2.0.0",
-    "description" : "# Introduction  \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.",
+    "description" : "# Introduction  \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the token generated on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API.\n\n<SecurityDefinitions />\n",
     "termsOfService": "https://simpletexting.com/terms/",
     "contact": {
       "name": "SimpleTexting",
@@ -2101,7 +2101,6 @@
       }
     },
     "securitySchemes": {
-      "title":"Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
       "bearerAuth" : {
         "type": "http",
         "scheme": "bearer",
