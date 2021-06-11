@@ -711,7 +711,7 @@
           {
             "name": "direction",
             "in": "query",
-            "description": "Specifies the sort order for results. Results are sorted by 'since' field",
+            "description": "Specifies the sort order for results. Results are sorted by 'updated' field",
             "required": false,
             "schema": {
               "type": "string",
