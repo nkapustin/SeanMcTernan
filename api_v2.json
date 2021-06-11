@@ -121,9 +121,9 @@
         "operationId": "getContact",
         "parameters": [
           {
-            "name": "contactIdOrNumber",
+            "name": "phoneNumberOrContactId",
             "in": "path",
-            "description": "Contact id in hexadecimal format or phone number",
+            "description": "Phone number (preferred) or Contact id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -135,7 +135,7 @@
           "200": {
             "description": "Successful. Fetched contact.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Contact"
                 }
@@ -240,7 +240,7 @@
           "200": {
             "description": "Successful. Fetched list.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Group"
                 }
@@ -350,7 +350,7 @@
           "200": {
             "description": "Successful. Returns page of webhooks.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WebhooksPageView"
                 }
@@ -481,7 +481,7 @@
           "200": {
             "description": "Successful. Returns page of messages.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessagePageView"
                 }
@@ -491,7 +491,7 @@
           "429": {
             "description": "Too many requests",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessagePageView"
                 }
@@ -549,7 +549,7 @@
           "201": {
             "description": "Successful. Evaluation result.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageInfo"
                 }
@@ -559,7 +559,7 @@
           "400": {
             "description": "Error. Message is too long.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MessageInfo"
                 }
@@ -609,7 +609,7 @@
           "200": {
             "description": "Successful. Uploaded media.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StFileDto"
                 }
@@ -652,7 +652,7 @@
           "200": {
             "description": "Successful. Uploaded media.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StFileDto"
                 }
@@ -724,7 +724,7 @@
           "200": {
             "description": "Successful. Returns an array of contacts.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContactPageView"
                 }
@@ -803,7 +803,7 @@
           "201": {
             "description": "Successful. Contact batch update was processed",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContactsBatchUpdateResult"
                 }
@@ -835,7 +835,7 @@
           "201": {
             "description": "Successful. Contact batch delete was processed",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContactsBatchDeleteResult"
                 }
@@ -885,7 +885,7 @@
           "200": {
             "description": "Successful. Returns an array of groups.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GroupPageView"
                 }
@@ -942,7 +942,7 @@
           "200": {
             "description": "Successful. Fetched message information.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Message"
                 }
@@ -952,7 +952,7 @@
           "404": {
             "description": "Error. Message not found.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Message"
                 }
@@ -962,7 +962,7 @@
           "429": {
             "description": "Too many requests",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Message"
                 }
@@ -1012,7 +1012,7 @@
           "200": {
             "description": "Successful. Returns a page of media items.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MediaItemsPageView"
                 }
@@ -1062,7 +1062,7 @@
           "200": {
             "description": "Successful. Returns an array of custom fields.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CustomFieldPageView"
                 }
