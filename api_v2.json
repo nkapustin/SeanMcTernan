@@ -759,7 +759,7 @@
           {
             "name": "groupsReplacement",
             "in": "query",
-            "description": "For upsert mode: set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
+            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -1514,7 +1514,7 @@
         "type": "object",
         "properties": {
           "groupsReplacement": {
-            "title": "Groups update mode: replace (default) or add",
+            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
             "type": "boolean"
           },
           "updates": {
