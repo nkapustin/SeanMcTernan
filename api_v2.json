@@ -889,7 +889,7 @@
         "tags": [
           "Contacts Batch"
         ],
-        "summary": "Process Contacts batch update.",
+        "summary": "Process Contacts batch update",
         "description": "Update multiple fields at ones for a batch of contacts. You can update first name, last name, emails, groups and much more.",
         "operationId": "processBatchUpdate",
         "requestBody": {
@@ -1481,7 +1481,8 @@
         "properties": {
           "groupsReplacement": {
             "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
-            "type": "boolean"
+            "type": "boolean",
+            "example": true
           },
           "updates": {
             "description": "List of updates for contacts",
