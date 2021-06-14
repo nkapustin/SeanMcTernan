@@ -1429,7 +1429,7 @@
         "type": "object",
         "properties": {
           "link": {
-            "description": "Link to be used for Upload",
+            "description": "Link to be used for Upload \n\n**Example:** `https://img.gazeta.ru/files3/941/10500941/cat-pic905-895x505-29911.jpg`",
             "type": "string",
             "example": "https://img.gazeta.ru/files3/941/10500941/cat-pic905-895x505-29911.jpg"
           }
