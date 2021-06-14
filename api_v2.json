@@ -1828,22 +1828,22 @@
         "type": "object",
         "properties": {
           "label": {
-            "description": "Label Given to Custom Field Type",
+            "description": "Label Given to Custom Field Type \n\n**Example:** `My Custom Field`",
             "type": "string",
             "example": "My Custom Field" 
           },
           "type": {
-            "description": "Custom Field Type",
+            "description": "Custom Field Type \n\n**Example:** `text`",
             "type": "string",
             "example": "text"
           },
           "mergeTag": {
-            "description": "Merge tag to be added to message",
+            "description": "Merge tag to be added to message \n\n**Example:** `my_custom_field`",
             "type": "string",
             "example": "my_custom_field" 
           },
           "defaultMaxLength": {
-            "description": "Max length of the custom field",
+            "description": "Max length of the custom field \n\n**Example:** `15`",
             "type": "integer",
             "format": "int32",
             "example": 15
@@ -2036,25 +2036,25 @@
             "description": "Total contacts count \n\n**Example:** `50`",
             "type": "integer",
             "format": "int32",
-            "example": "50"
+            "example": 50
           },
           "activeContactsCount": {
             "description": "Active contacts count  \n\n**Example:** `40`",
             "type": "integer",
             "format": "int32",
-            "example": "40"
+            "example": 40
           },
           "invalidContactsCount": {
             "description": "Invalid contacts count \n\n**Example:** `1`",
             "type": "integer",
             "format": "int32",
-            "example": "1"
+            "example": 1
           },
           "unsubscribedContactsCount": {
             "description": "Unsubscribed contacts count  \n\n**Example:** `2`",
             "type": "integer",
             "format": "int32",
-            "example": "2"
+            "example": 2
           },
           "keywords": {
             "description": "Keywords that bound to the group  \n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
