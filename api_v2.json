@@ -1260,12 +1260,12 @@
             ]
           },
           "subject": {
-            "description": "MMS Subject (available for MMS) \n\n**Example:** New In Store",
+            "description": "MMS Subject (available for MMS) \n\n**Example:** `New In Store`",
             "type": "string",
             "example": "Some message from SimpleTexting"
           },
           "text": {
-            "description": "Text Body \n\n**Example:** Hello! How are you?",
+            "description": "Text Body \n\n**Example:** `Hello! How are you?`",
             "type": "string",
             "example": "Hello! How are you?"
           },
