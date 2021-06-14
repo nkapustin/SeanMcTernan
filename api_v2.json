@@ -1830,7 +1830,7 @@
             "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ContactFetchResponse"
+              "$ref": "#/components/schemas/Contact"
             }
           },
           "totalPages": {
@@ -2000,111 +2000,6 @@
               "INCOMING_MESSAGE"
             ],
             "example": "IMPORTED_FROM_FILE"
-          }
-        }
-      },
-      "ContactFetchResponse": {
-        "type": "object",
-        "properties": {
-          "contactId": {
-            "description": "Existing contact id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
-            "type": "string",
-            "example": "607f0558a7c898629dd47d7a"
-          },
-          "contactPhone": {
-            "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
-            "type": "string",
-            "example": "1234567890"
-          },
-          "firstName": {
-            "description": "Contact first name \n\n**Example:** `John`",
-            "type": "string",
-            "example": "John"
-          },
-          "lastName": {
-            "description": "Contact last name \n\n**Example:** `Doe`",
-            "type": "string",
-            "example": "Doe"
-          },
-          "email": {
-            "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
-            "type": "string",
-            "example": "john.doe@simpletext.org"
-          },
-          "birthday": {
-            "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
-            "type": "string",
-            "example": "1985-05-05"
-          },
-          "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-            "type": "object",
-            "additionalProperties": {
-              "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
-              "type": "string",
-              "example": "{\"zipcode\":\"12345\"}"
-            },
-            "example": {
-              "zipcode": "12345"
-            }
-          },
-          "comment": {
-            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
-            "type": "string",
-            "example": "VIP client"
-          },
-          "groups": {
-            "description": "List of groups, where contact is included",
-            "type": "array",
-            "example": [
-              {
-                "id": "5f6c760379f4e93135aac72b",
-                "name": "My First List"
-              }
-            ],
-            "items": {
-              "$ref": "#/components/schemas/Contact group"
-            }
-          },
-          "subscriptionStatus": {
-            "description": "Contact subscription status",
-            "type": "string",
-            "example": "OPT_IN",
-            "enum": [
-              "OPT_IN",
-              "OPT_OUT",
-              "WAIT_SMS_CONFIRMATION",
-              "REJECT_CONFIRMATION"
-            ]
-          },
-          "created": {
-            "description": "Created timestamp - Required: ISO format",
-            "type": "string",
-            "format": "date-time",
-            "example": "2021-04-28T23:20:08.489Z"
-          },
-          "updated": {
-            "description": "Updated timestamp - Required: ISO format",
-            "type": "string",
-            "format": "date-time",
-            "example": "2021-05-28T20:20:08.489Z"
-          },
-          "updateSource": {
-            "description": "The source from which the contact was updated",
-            "type": "string",
-            "enum": [
-              "IMPORTED_FROM_FILE",
-              "PUBLIC_API",
-              "MAILCHIMP_SYNC",
-              "KEYWORD",
-              "WEB_FORM",
-              "MANUAL",
-              "REMINDER",
-              "ZAPIER",
-              "WORKATO",
-              "CONFIRMATION",
-              "INCOMING_MESSAGE"
-            ]
           }
         }
       },
