@@ -1967,7 +1967,7 @@
             }
           },
           "subscriptionStatus": {
-            "description": "Contact subscription status",
+            "description": "Contact subscription status \n\n**Example:** `OPT_IN`",
             "type": "string",
             "example": "OPT_IN",
             "enum": [
@@ -1978,19 +1978,19 @@
             ]
           },
           "created": {
-            "description": "Created timestamp - Required: ISO format",
+            "description": "Created timestamp - Required: ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "description": "Updated timestamp - Required: ISO format",
+            "description": "Updated timestamp - Required: ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-05-28T20:20:08.489Z"
           },
           "updateSource": {
-            "description": "The source from which the contact was updated",
+            "description": "The source from which the contact was updated \n\n**Example:** `IMPORTED_FROM_FILE`",
             "type": "string",
             "enum": [
               "IMPORTED_FROM_FILE",
@@ -2004,7 +2004,8 @@
               "WORKATO",
               "CONFIRMATION",
               "INCOMING_MESSAGE"
-            ]
+            ],
+            "example": "IMPORTED_FROM_FILE"
           }
         }
       },
