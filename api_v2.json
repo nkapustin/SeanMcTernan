@@ -1138,12 +1138,12 @@
         "type": "object",
         "properties": {
           "url": {
-            "description": "URL for handling POST request",
+            "description": "URL for handling POST request\n\n**Example:** `https://example.com`",
             "type": "string",
             "example": "https://example.com"
           },
           "triggers": {
-            "description": "Trigger a webhook on specific platform events",
+            "description": "Trigger a webhook on specific platform events\n\n**Example:** `INCOMING_MESSAGE`",
             "type": "array",
             "example": [
               "INCOMING_MESSAGE"
@@ -1162,19 +1162,19 @@
             }
           },
           "requestPerSecLimit": {
-            "description": "The maximum number of requests that can be sent within one second",
+            "description": "The maximum number of requests that can be sent within one second\n\n**Example:** `25`",
             "maximum": 25,
             "type": "integer",
             "format": "int32",
             "example": 25
           },
           "tenantPhone": {
-            "description": "Optional: requests will come exclusively for the specified tenant phone number",
+            "description": "Optional: requests will come exclusively for the specified tenant phone number\n\n**Example:** `8881234567`",
             "type": "string",
-            "example": "8889928418"
+            "example": "8881234567"
           },
           "contactPhone": {
-            "description": "Optional: requests will come exclusively for the specified contact phone number",
+            "description": "Optional: requests will come exclusively for the specified contact phone number\n\n**Example:** `3051234567`",
             "type": "string",
             "example": "3051234567"
           }
