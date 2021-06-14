@@ -309,7 +309,14 @@
         },
         "responses": {
           "204": {
-            "description": "Success. Contact updated"
+            "description": "Success. Contact updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactUpdateResult"
+                }
+              }
+            }
           },
           "content": {
             "application/json": {
