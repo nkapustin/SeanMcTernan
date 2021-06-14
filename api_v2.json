@@ -301,7 +301,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SingleContactUpdate"
+                "$ref": "#/components/schemas/ContactUpdate"
               }
             }
           },
@@ -1171,61 +1171,6 @@
           }
         }
       },
-      "SingleContactUpdate": {
-        "type": "object",
-        "properties": {
-          "contactPhone": {
-            "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
-            "type": "string",
-            "example": "1234567890"
-          },
-          "firstName": {
-            "description": "Contact first name \n\n**Example:** `John`",
-            "type": "string",
-            "example": "John"
-          },
-          "lastName": {
-            "description": "Contact last name \n\n**Example:** `Doe`",
-            "type": "string",
-            "example": "Doe"
-          },
-          "email": {
-            "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
-            "type": "string",
-            "example": "john.doe@simpletext.org"
-          },
-          "birthday": {
-            "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
-            "type": "string",
-            "example": "1985-05-05"
-          },
-          "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-            "type": "object",
-            "additionalProperties": {
-              "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
-              "type": "string",
-              "example": "{\"zipcode\":\"12345\"}"
-            },
-            "example": {
-              "zipcode": "12345"
-            }
-          },
-          "comment": {
-            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
-            "type": "string",
-            "example": "VIP client"
-          },
-          "groupIds": {
-            "description": "List of contact group IDs or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
-            "type": "array",
-            "example": [
-              "507f191e810c19729de860ea",
-              "My First List"
-            ]
-          }
-        }
-      },
       "Group Dto": {
         "required": [
           "name"
@@ -1548,22 +1493,22 @@
         "type": "object",
         "properties": {
           "done": {
-            "description": "If operation was successful",
+            "description": "If operation was successful \n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
           "contactPhone": {
-            "description": "Contact phone from update request",
+            "description": "Contact phone from update request \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "contactId": {
-            "description": "Contact id if contact exists",
+            "description": "Contact id if contact exists \n\n**Example:** `507f1f77bcf86cd799439011`",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
           "errorCode": {
-            "description": "Operation error code, if operation has failed",
+            "description": "Operation error code, if operation has failed \n\n**Example:** `CONTACT_CREATE_FAILED`",
             "type": "string",
             "example": "CONTACT_CREATE_FAILED",
             "enum": [
@@ -1575,7 +1520,7 @@
             ]
           },
           "errorMessage": {
-            "description": "Additional error message if operation has failed",
+            "description": "Additional error message if operation has failed \n\n**Example:** `Contacts limit is reached`",
             "type": "string",
             "example": "Contacts limit is reached"
           }
@@ -1906,7 +1851,7 @@
             "example": "607f0558a7c898629dd47d7a"
           },
           "contactPhone": {
-            "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
+            "description": "Unique contact phone \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
