@@ -1573,22 +1573,22 @@
         "type": "object",
         "properties": {
           "done": {
-            "description": "If operation was successful",
+            "description": "If operation was successful \n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
           "contactPhone": {
-            "description": "Contact phone from delete request",
+            "description": "Contact phone from delete request \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "contactId": {
-            "description": "Contact id if contact was found or null",
+            "description": "Contact id if contact was found or null \n\n**Example:** `507f1f77bcf86cd799439011`",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
           "errorCode": {
-            "description": "Operation error code, if operation has failed",
+            "description": "Operation error code, if operation has failed \n\n**Example:** `UNKNOWN_CONTACT_PHONE`",
             "type": "string",
             "example": "UNKNOWN_CONTACT_PHONE",
             "enum": [
@@ -1597,7 +1597,7 @@
             ]
           },
           "errorMessage": {
-            "description": "Additional error message if operation has failed",
+            "description": "Additional error message if operation has failed \n\n**Example:** `Contact with provided phone number is missing`",
             "type": "string",
             "example": "Contact with provided phone number is missing"
           }
