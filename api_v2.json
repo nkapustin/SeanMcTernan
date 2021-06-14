@@ -1735,27 +1735,27 @@
         "type": "object",
         "properties": {
           "subject": {
-            "description": "Subject (available for MMS)",
+            "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
             "type": "string",
             "example": "Some message from SimpleTexting"
           },
           "text": {
-            "description": "Text",
+            "description": "Text \n\n**Example:** `Hello! How are you?`",
             "type": "string",
             "example": "Hello! How are you?"
           },
           "contactPhone": {
-            "description": "Contact phone",
+            "description": "Contact phone \n\n**Example:** `8001234567`",
             "type": "string",
             "example": "8001234567"
           },
           "accountPhone": {
-            "description": "Account phone (primary or secondary)",
+            "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
             "type": "string",
             "example": "555888"
           },
           "directionType": {
-            "description": "MT/MO (Mobile-Terminated / Mobile-Originated)",
+            "description": "MT/MO (Mobile-Terminated / Mobile-Originated)\n\n**Example:** `MO`",
             "type": "string",
             "example": "MO",
             "enum": [
@@ -1764,18 +1764,18 @@
             ]
           },
           "timestamp": {
-            "description": "Date of sending, ISO 8601",
+            "description": "Date of sending - ISO Format \n\n**Example:** `2020-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2020-04-28T23:20:08.489Z"
           },
           "referenceType": {
-            "description": "Reference type (available only for MT messages)",
+            "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
             "type": "string",
             "example": "API"
           },
           "category": {
-            "description": "Message category",
+            "description": "Message category \n\n**Example:** `SMS`",
             "type": "string",
             "example": "SMS",
             "enum": [
@@ -1785,7 +1785,7 @@
             ]
           },
           "mediaItems": {
-            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
             "type": "array",
             "example": [
               "507f1f77bcf86cd799439011",
