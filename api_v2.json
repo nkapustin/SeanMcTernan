@@ -1226,6 +1226,51 @@
           }
         }
       },
+      "Webhook": {
+        "description": "Page content, number of elements is restricted by page size",
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "webhookId": {
+            "type": "string"
+          },
+          "url": {
+            "description": "URL for handling POST request",
+            "type": "string"
+          },
+          "triggers": {
+            "description": "Trigger webhook on event types",
+            "type": "array",
+            "items": {
+              "description": "Trigger webhook on event types",
+              "type": "string",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "description": "The maximum number of requests that can be sent within one second",
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantPhone": {
+            "description": "Optional: requests will come exclusively for the specified tenant phone number",
+            "type": "string"
+          },
+          "contactPhone": {
+            "description": "Optional: requests will come exclusively for the specified contact phone number",
+            "type": "string"
+          }
+        }
+      },
       "Group Dto": {
         "required": [
           "name"
@@ -1233,7 +1278,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "Group name containing less than 42 characters. \n\n**Example:** `My new list`",
+            "description": "Group name containing less than 42 characters\n\n**Example:** `My new list`",
             "type": "string",
             "example": "My First List"
           }
@@ -1248,7 +1293,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1709,51 +1754,6 @@
           }
         },
         "description": "Page representation for search/fetch result"
-      },
-      "Webhook": {
-        "description": "Page content, number of elements is restricted by page size",
-        "required": [
-          "triggers",
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "webhookId": {
-            "type": "string"
-          },
-          "url": {
-            "description": "URL for handling POST request",
-            "type": "string"
-          },
-          "triggers": {
-            "description": "Trigger webhook on event types",
-            "type": "array",
-            "items": {
-              "description": "Trigger webhook on event types",
-              "type": "string",
-              "enum": [
-                "INCOMING_MESSAGE",
-                "OUTGOING_MESSAGE",
-                "DELIVERY_REPORT",
-                "NON_DELIVERED_REPORT",
-                "UNSUBSCRIBE_REPORT"
-              ]
-            }
-          },
-          "requestPerSecLimit": {
-            "description": "The maximum number of requests that can be sent within one second",
-            "type": "integer",
-            "format": "int32"
-          },
-          "tenantPhone": {
-            "description": "Optional: requests will come exclusively for the specified tenant phone number",
-            "type": "string"
-          },
-          "contactPhone": {
-            "description": "Optional: requests will come exclusively for the specified contact phone number",
-            "type": "string"
-          }
-        }
       },
       "MessagePageView": {
         "type": "object",
