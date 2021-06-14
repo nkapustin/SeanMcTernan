@@ -1332,7 +1332,7 @@
             "items": {
               "description": "List of warning messages if present",
               "type": "string",
-              "example": ["Text is blank"]
+              "example": "Text is blank"
             }
           },
           "errors": {
@@ -1341,7 +1341,7 @@
             "items": {
               "description": "List of error messages if present",
               "type": "string",
-              "example": ["Invalid phone number"]
+              "example": "Invalid phone number"
             }
           }
         }
