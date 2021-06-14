@@ -1896,14 +1896,8 @@
           }
         }
       },
-      "ContactDTO": {
+      "Contact": {
         "description": "Page content, number of elements is restricted by page size",
-        "required": [
-          "contactId",
-          "contactPhone",
-          "firstName",
-          "lastName"
-        ],
         "type": "object",
         "properties": {
           "contactId": {
