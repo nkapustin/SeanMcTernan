@@ -1480,7 +1480,7 @@
         "type": "object",
         "properties": {
           "groupsReplacement": {
-            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
+            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group \n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
@@ -1553,7 +1553,7 @@
         "type": "object",
         "properties": {
           "contactPhones": {
-            "description": "List of contact phones for deletion",
+            "description": "List of contact phones for deletion \n\n**Example:** `[\"1234567890\",\"1234567891\"]`",
             "maxItems": 500,
             "minItems": 0,
             "type": "array",
