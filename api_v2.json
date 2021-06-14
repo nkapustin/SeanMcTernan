@@ -1896,7 +1896,7 @@
           }
         }
       },
-      "Contact": {
+      "ContactDTO": {
         "description": "Page content, number of elements is restricted by page size",
         "required": [
           "contactId",
