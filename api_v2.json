@@ -1288,7 +1288,7 @@
         "type": "object",
         "properties": {
           "detectedCategory": {
-            "description": "Autodetected category of message",
+            "description": "Autodetected category of message \n\n**Example:** `SMS`",
             "type": "string",
             "example": "SMS",
             "enum": [
@@ -1298,48 +1298,50 @@
             ]
           },
           "length": {
-            "description": "Message length in chars",
+            "description": "Message length in chars \n\n**Example:** `134`",
             "type": "integer",
             "format": "int32",
             "example": 134
           },
           "remains": {
-            "description": "Remaining characters",
+            "description": "Remaining characters \n\n**Example:** `23`",
             "type": "integer",
             "format": "int32",
             "example": 23
           },
           "maxLength": {
-            "description": "Message max length in chars with current type and encoding",
+            "description": "Message max length in chars with current type and encoding n\n**Example:** `300`",
             "type": "integer",
             "format": "int32",
             "example": 300
           },
           "containsUtfChars": {
-            "description": "Is UTF encoding used?",
+            "description": "Is UTF encoding used? \n\n**Example:** `false`",
             "type": "boolean",
             "example": false
           },
           "sumOfCredits": {
-            "description": "How much credits message will cost",
+            "description": "How much credits message will cost \n\n**Example:** `1`",
             "type": "integer",
             "format": "int32",
             "example": 1
           },
           "warnings": {
-            "description": "List of warning messages if present",
+            "description": "List of warning messages if present \n\n**Example:** `[\"Text is blank\"]`",
             "type": "array",
             "items": {
               "description": "List of warning messages if present",
-              "type": "string"
+              "type": "string",
+              "example": ["Text is blank"]
             }
           },
           "errors": {
-            "description": "List of error messages if present",
+            "description": "List of error messages if present  \n\n**Example:** `[\"Invalid phone number\"]`",
             "type": "array",
             "items": {
               "description": "List of error messages if present",
-              "type": "string"
+              "type": "string",
+              "example": ["Invalid phone number"]
             }
           }
         }
