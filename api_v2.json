@@ -1250,7 +1250,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message,\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content, \n\n**SMS_STRICTLY -** will send only single sms or return  an Error. \n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Configures how to present your message\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content\n\n**SMS_STRICTLY -** will send only single sms or return  an error\n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
