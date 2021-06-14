@@ -46,6 +46,71 @@
     }
   ],
   "paths": {
+    "/api/webhooks/{webhookId}": {
+      "put": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Update a webhook",
+        "description": "Update an exsisting webhook by its unique id",
+        "operationId": "updateWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "Webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success. Webhook was updated"
+          },
+          "404": {
+            "description": "Error. Webhook not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Delete a webhook",
+        "description": "Delete an exsisting webhook by its unique id",
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "Webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success. Webhook was deleted"
+          }
+        }
+      }
+    },
     "/api/contacts": {
       "get": {
         "tags": [
@@ -138,12 +203,12 @@
               "type": "boolean",
               "default": true
             },
-            "example": false
+            "example": true
           },
           {
             "name": "groupsReplacement",
             "in": "query",
-            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
+            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group.",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -165,71 +230,6 @@
         "responses": {
           "201": {
             "description": "Success. Contact created"
-          }
-        }
-      }
-    },
-    "/api/webhooks/{webhookId}": {
-      "put": {
-        "tags": [
-          "Webhooks"
-        ],
-        "summary": "Update a webhook",
-        "description": "Update an exsisting webhook by its unique id",
-        "operationId": "updateWebhook",
-        "parameters": [
-          {
-            "name": "webhookId",
-            "in": "path",
-            "description": "Webhook id in hexadecimal format",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "507f1f77bcf86cd799439011"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebhookRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "Success. Webhook was updated"
-          },
-          "404": {
-            "description": "Error. Webhook not found"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Webhooks"
-        ],
-        "summary": "Delete a webhook",
-        "description": "Delete an exsisting webhook by its unique id",
-        "operationId": "deleteWebhook",
-        "parameters": [
-          {
-            "name": "webhookId",
-            "in": "path",
-            "description": "Webhook id in hexadecimal format",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "507f1f77bcf86cd799439011"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success. Webhook was deleted"
           }
         }
       }
