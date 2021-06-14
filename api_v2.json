@@ -3,7 +3,7 @@
   "info": {
     "title": "Integration WS API Documentation",
     "version": "2.0",
-    "description" : "# Introduction  \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API.\n\n<SecurityDefinitions />\n",
+    "description" : "# Introduction \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API.\n\n<SecurityDefinitions />\n",
     "termsOfService": "https://simpletexting.com/terms/",
     "contact": {
       "name": "SimpleTexting",
@@ -2005,54 +2005,63 @@
         "type": "object",
         "properties": {
           "groupId": {
-            "description": "Group id in hexadecimal format",
+            "description": "Group id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "description": "Group name",
-            "type": "string"
+            "description": "Group name \n\n**Example:** `My First List`" ,
+            "type": "string",
+            "example": "My First List"
           },
           "created": {
-            "description": "Created timestamp",
+            "description": "Created timestamp \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2020-03-30T12:47:40.123-05:00"
           },
           "updated": {
-            "description": "Updated timestamp",
+            "description": "Updated timestamp \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2020-03-30T12:47:40.123-05:00"
           },
           "description": {
-            "description": "Description",
-            "type": "string"
+            "description": "Description. Title is present when group is created automatically by a keyword via the dashboard, otherwise defaults to null \n\n**Example:** `Group for 'MYFIRSTKEYWORD' keyword`",
+            "type": "string",
+            "example": "Group for 'SALE' keyword"
           },
           "totalContactsCount": {
-            "description": "Total contacts count",
+            "description": "Total contacts count \n\n**Example:** `50`",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": "50"
           },
           "activeContactsCount": {
-            "description": "Active contacts count",
+            "description": "Active contacts count  \n\n**Example:** `40`",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": "40"
           },
           "invalidContactsCount": {
-            "description": "Invalid contacts count",
+            "description": "Invalid contacts count \n\n**Example:** `1`",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": "1"
           },
           "unsubscribedContactsCount": {
-            "description": "Unsubscribed contacts count",
+            "description": "Unsubscribed contacts count  \n\n**Example:** `2`",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": "2"
           },
           "keywords": {
-            "description": "Keywords that bound to the group",
+            "description": "Keywords that bound to the group  \n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
             "type": "array",
             "items": {
               "description": "Keywords that bound to the group",
-              "type": "string"
+              "type": "string",
+              "example": "MYFIRSTKEYWORD"
             }
           }
         }
