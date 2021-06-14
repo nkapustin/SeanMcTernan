@@ -1186,7 +1186,8 @@
         "properties": {
           "name": {
             "description": "Group name containing less than 42 characters. \n\n**Example:** `My new list`",
-            "type": "string"
+            "type": "string",
+            "example": "My First List"
           }
         }
       },
