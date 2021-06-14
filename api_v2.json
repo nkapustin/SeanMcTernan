@@ -110,7 +110,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Returns an array of contacts",
+            "description": "Success. Returns a page of contacts",
             "content": {
               "application/json": {
                 "schema": {
@@ -164,7 +164,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success, Contact created"
+            "description": "Success. Contact created"
           }
         }
       }
@@ -201,10 +201,10 @@
         },
         "responses": {
           "204": {
-            "description": "Success, Webhook was updated"
+            "description": "Success. Webhook was updated"
           },
           "404": {
-            "description": "Error, Webhook not found"
+            "description": "Error. Webhook not found"
           }
         }
       },
@@ -229,7 +229,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success, Webhook was deleted"
+            "description": "Success. Webhook was deleted"
           }
         }
       }
@@ -256,7 +256,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Fetched contact",
+            "description": "Success. Fetched contact",
             "content": {
               "application/json": {
                 "schema": {
@@ -309,7 +309,7 @@
         },
         "responses": {
           "204": {
-            "description": "Success, Contact updated"
+            "description": "Success. Contact updated"
           },
           "content": {
             "application/json": {
@@ -341,7 +341,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success, Contact deleted",
+            "description": "Success. Contact deleted",
             "content": {
               "application/json": {
                 "schema": {
@@ -375,7 +375,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Fetched list",
+            "description": "Success. Fetched list",
             "content": {
               "application/json": {
                 "schema": {
@@ -417,7 +417,7 @@
         },
         "responses": {
           "204": {
-            "description": "Success, Group updated"
+            "description": "Success. Group updated"
           }
         }
       },
@@ -442,7 +442,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success, Group was deleted"
+            "description": "Success. Group was deleted"
           }
         }
       }
@@ -485,7 +485,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Returns page of webhooks",
+            "description": "Success. Returns page of webhooks",
             "content": {
               "application/json": {
                 "schema": {
@@ -515,10 +515,10 @@
         },
         "responses": {
           "201": {
-            "description": "Success, Webhook was created"
+            "description": "Success. Webhook was created"
           },
           "400": {
-            "description": "Error, Invalid phone format"
+            "description": "Error. Invalid phone format"
           }
         }
       }
@@ -616,7 +616,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Returns page of messages",
+            "description": "Success. Returns page of messages",
             "content": {
               "application/json": {
                 "schema": {
@@ -626,7 +626,7 @@
             }
           },
           "429": {
-            "description": "Error, Too many requests",
+            "description": "Error. Too many requests",
             "content": {
               "application/json": {
                 "schema": {
@@ -656,10 +656,10 @@
         },
         "responses": {
           "201": {
-            "description": "Success, Message was created"
+            "description": "Success. Message was created"
           },
           "400": {
-            "description": "Error, Message cannot be sent as single sms"
+            "description": "Error. Message cannot be sent as single sms"
           }
         }
       }
@@ -684,7 +684,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success, Evaluation result",
+            "description": "Success. Evaluation result",
             "content": {
               "application/json": {
                 "schema": {
@@ -694,7 +694,7 @@
             }
           },
           "400": {
-            "description": "Error, Message is too long",
+            "description": "Error. Message is too long",
             "content": {
               "application/json": {
                 "schema": {
@@ -744,7 +744,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Returns a page of media items",
+            "description": "Success. Returns a page of media items",
             "content": {
               "application/json": {
                 "schema": {
@@ -787,7 +787,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success, Uploaded media",
+            "description": "Success. Uploaded media",
             "content": {
               "application/json": {
                 "schema": {
@@ -820,7 +820,7 @@
           }
         ],
         "responses": {
-          "description": "Success, Media was deleted",
+          "description": "Success. Media was deleted",
           "204": {
             "description": "Media is deleted"
           }
@@ -865,7 +865,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success, Uploaded media",
+            "description": "Success. Uploaded media",
             "content": {
               "application/json": {
                 "schema": {
@@ -897,7 +897,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success, Contact batch update was processed",
+            "description": "Success. Contact batch update was processed",
             "content": {
               "application/json": {
                 "schema": {
@@ -929,7 +929,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success, Contact batch delete was processed",
+            "description": "Success. Contact batch delete was processed",
             "content": {
               "application/json": {
                 "schema": {
@@ -979,7 +979,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Returns an array of groups.",
+            "description": "Success. Returns an array of groups.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1009,7 +1009,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success, Group was created"
+            "description": "Success. Group was created"
           }
         }
       }
@@ -1036,7 +1036,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Fetched message information",
+            "description": "Success. Fetched message information",
             "content": {
               "application/json": {
                 "schema": {
@@ -1046,7 +1046,7 @@
             }
           },
           "404": {
-            "description": "Error, Message not found",
+            "description": "Error. Message not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -1106,7 +1106,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, Returns an array of custom fields",
+            "description": "Success. Returns an array of custom fields",
             "content": {
               "application/json": {
                 "schema": {
@@ -1295,7 +1295,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message,\n\nAUTO - means that SimpleTexting will find more relative type for your message content, \n\nSMS_STRICTLY will send only single sms or return  an error, \n\nMMS will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Configures how to present your message,\n\nAUTO - means that SimpleTexting will find more relative type for your message content, \n\nSMS_STRICTLY will send only single sms or return  an Error. \n\nMMS will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
