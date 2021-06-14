@@ -1369,36 +1369,56 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "description": "Existing media id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "type": "string",
+            "example": "607f0558a7c898629dd47d7a"
           },
           "createdDate": {
+            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
           },
           "name": {
-            "type": "string"
+            "description": "File name \n\n**Example:** `test.jpg`",
+            "type": "string",
+            "example": "myfile.jpg"
           },
           "gallery": {
-            "type": "string"
+            "description": "Gallery \n\n**Example:** `mms`",
+            "type": "string",
+            "example": "mms"
           },
           "size": {
+            "description": "File size \n\n**Example:** `10`",
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "example": 10
           },
           "status": {
-            "type": "string"
+            "description": "Status of the file \n\n**Example:** `PROCESSED`",
+            "type": "string",
+            "example": "PROCESSED"
           },
           "link": {
-            "type": "string"
+            "description": "Location of file \n\n**Example:** `https://app2.simpletexting.com/content/public-files/607f0558a7c898629dd47d7a`",
+            "type": "string",
+            "example": "https://app2.simpletexting.com/content/public-files/607f0558a7c898629dd47d7a"
           },
           "contentType": {
-            "type": "string"
+            "description": "File media type \n\n**Example:** `image/png`",
+            "type": "string",
+            "example": "image/png"
           },
           "ext": {
-            "type": "string"
+            "description": "File extension \n\n**Example:** `png`",
+            "type": "string",
+            "example": "png"
           },
           "canDelete": {
-            "type": "boolean"
+            "description": "Ability to delete file \n\n**Example:** `true`",
+            "type": "boolean",
+            "example": true
           }
         }
       },
@@ -1926,13 +1946,13 @@
             ]
           },
           "created": {
-            "description": "Created timestamp - Required: ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "description": "Updated timestamp - Required: ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Updated timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-05-28T20:20:08.489Z"
