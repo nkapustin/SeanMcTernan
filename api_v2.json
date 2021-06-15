@@ -25,8 +25,8 @@
       "description": "An endpoint to assist in batch operations on your contacts. Using the operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
-      "name": "Contact groups",
-      "description": "The following endpoints allow you to manage your lists. Groups can be used to manage your contacts so the right message is being sent to the right people."
+      "name": "Contact lists",
+      "description": "The following endpoints allow you to manage your lists. Lists can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
       "name": "Custom Fields",
@@ -191,7 +191,7 @@
           "Contacts"
         ],
         "summary": "Create a contact",
-        "description": "Create a brand new contact, and specifiy the group they should live in.",
+        "description": "Create a brand new contact, and specifiy the list they should live in.",
         "operationId": "createContact",
         "parameters": [
           {
@@ -206,9 +206,9 @@
             "example": true
           },
           {
-            "name": "groupsReplacement",
+            "name": "listsReplacement",
             "in": "query",
-            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group.",
+            "description": "Set to true to remove from existing list. Set to false to add contact to new list, while also keeping contact in original list.",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -278,7 +278,7 @@
           {
             "name": "contactIdOrNumber",
             "in": "path",
-            "description": "Contact ID in hexadecimal format or phone number",
+            "description": "Contact id in hexadecimal format or phone number",
             "required": true,
             "schema": {
               "type": "string"
@@ -286,9 +286,9 @@
             "example": "507f1f77bcf86cd799439011"
           },
           {
-            "name": "groupsReplacement",
+            "name": "listsReplacement",
             "in": "query",
-            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
+            "description": "Set to true to remove from existing list. Set to false to add contact to new list, while also keeping contact in original list",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -338,7 +338,7 @@
           {
             "name": "contactIdOrNumber",
             "in": "path",
-            "description": "Contact ID in hexadecimal format or phone number",
+            "description": "Contact id in hexadecimal format or phone number",
             "required": true,
             "schema": {
               "type": "string"
@@ -360,19 +360,19 @@
         }
       }
     },
-    "/api/contact-groups/{groupId}": {
+    "/api/contact-lists/{listId}": {
       "get": {
         "tags": [
-          "Contact groups"
+          "Contact lists"
         ],
-        "summary": "Get group",
-        "description": "Retrieve a group of contacts that you have uploaded to the SimpleTexting system.",
-        "operationId": "getGroup",
+        "summary": "Get list",
+        "description": "Retrieve a list of contacts that you have uploaded to the SimpleTexting system.",
+        "operationId": "getList",
         "parameters": [
           {
-            "name": "groupId",
+            "name": "listId",
             "in": "path",
-            "description": "Group id in hexadecimal format",
+            "description": "List id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -386,7 +386,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Group"
+                  "$ref": "#/components/schemas/List"
                 }
               }
             }
@@ -395,16 +395,16 @@
       },
       "put": {
         "tags": [
-          "Contact groups"
+          "Contact lists"
         ],
-        "summary": "Update group",
-        "description": "Update the name of an extisting group.",
-        "operationId": "updateGroup",
+        "summary": "Update list",
+        "description": "Update the name of an extisting list.",
+        "operationId": "updateList",
         "parameters": [
           {
-            "name": "groupId",
+            "name": "listId",
             "in": "path",
-            "description": "Group id in hexadecimal format",
+            "description": "List id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -416,7 +416,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Group Dto"
+                "$ref": "#/components/schemas/List Dto"
               }
             }
           },
@@ -424,22 +424,22 @@
         },
         "responses": {
           "204": {
-            "description": "Success. Group updated"
+            "description": "Success. List updated"
           }
         }
       },
       "delete": {
         "tags": [
-          "Contact groups"
+          "Contact lists"
         ],
-        "summary": "Delete group",
-        "description": "Delete and existing group using the group id.",
-        "operationId": "deleteGroup",
+        "summary": "Delete list",
+        "description": "Delete and existing list using the list id.",
+        "operationId": "deleteList",
         "parameters": [
           {
-            "name": "groupId",
+            "name": "listId",
             "in": "path",
-            "description": "Group id in hexadecimal format",
+            "description": "List id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -449,7 +449,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success. Group was deleted"
+            "description": "Success. List was deleted"
           }
         }
       }
@@ -892,7 +892,7 @@
           "Contacts Batch"
         ],
         "summary": "Process Contacts batch update",
-        "description": "Update multiple fields at ones for a batch of contacts. You can update first name, last name, emails, groups and much more.",
+        "description": "Update multiple fields at ones for a batch of contacts. You can update first name, last name, emails, lists and much more.",
         "operationId": "processBatchUpdate",
         "requestBody": {
           "content": {
@@ -950,14 +950,14 @@
         }
       }
     },
-    "/api/contact-groups": {
+    "/api/contact-lists": {
       "get": {
         "tags": [
-          "Contact groups"
+          "Contact lists"
         ],
-        "summary": "Fetch Groups",
-        "description": "Fetch all groups from the SimpleTexting system.",
-        "operationId": "getGroups",
+        "summary": "Fetch Lists",
+        "description": "Fetch all lists from the SimpleTexting system.",
+        "operationId": "getLists",
         "parameters": [
           {
             "name": "page",
@@ -988,11 +988,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns an array of groups.",
+            "description": "Success. Returns an array of lists.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GroupPageView"
+                  "$ref": "#/components/schemas/ListPageView"
                 }
               }
             }
@@ -1001,16 +1001,16 @@
       },
       "post": {
         "tags": [
-          "Contact groups"
+          "Contact lists"
         ],
-        "summary": "Create group",
-        "description": "Create a new group on the SimpleTexting system.",
-        "operationId": "createGroup",
+        "summary": "Create list",
+        "description": "Create a new list on the SimpleTexting system.",
+        "operationId": "createList",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Group Dto"
+                "$ref": "#/components/schemas/List Dto"
               }
             }
           },
@@ -1018,7 +1018,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Group was created"
+            "description": "Success. List was created"
           }
         }
       }
@@ -1271,14 +1271,14 @@
           }
         }
       },
-      "Group Dto": {
+      "List Dto": {
         "required": [
           "name"
         ],
         "type": "object",
         "properties": {
           "name": {
-            "description": "Group name containing less than 42 characters\n\n**Example:** `My new list`",
+            "description": "List name containing less than 42 characters\n\n**Example:** `My new list`",
             "type": "string",
             "example": "My First List"
           }
@@ -1579,8 +1579,8 @@
             "type": "string",
             "example": "VIP client"
           },
-          "groupIds": {
-            "description": "List of contact group IDs or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+          "listIds": {
+            "description": "List of contact list id's or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -1595,8 +1595,8 @@
         ],
         "type": "object",
         "properties": {
-          "groupsReplacement": {
-            "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group \n\n**Example:** `true`",
+          "listsReplacement": {
+            "description": "Set to true to remove from existing list. Set to false to add contact to new list, while also keeping contact in original list \n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
@@ -1971,8 +1971,8 @@
             "type": "string",
             "example": "VIP client"
           },
-          "groups": {
-            "description": "List of groups, where contact is included",
+          "lists": {
+            "description": "List of lists, where contact is included",
             "type": "array",
             "example": [
               {
@@ -1981,7 +1981,7 @@
               }
             ],
             "items": {
-              "$ref": "#/components/schemas/Contact group"
+              "$ref": "#/components/schemas/Contact list"
             }
           },
           "subscriptionStatus": {
@@ -2027,16 +2027,16 @@
           }
         }
       },
-      "Contact group": {
+      "Contact list": {
         "type": "object",
         "properties": {
           "id": {
-            "description": "Existing group id",
+            "description": "Existing list id",
             "type": "string",
             "example": "5f6c760379f4e93135aac72a"
           },
           "name": {
-            "description": "Existing group name",
+            "description": "Existing list name",
             "type": "string",
             "example": "My First List"
           }
@@ -2048,14 +2048,14 @@
           }
         ]
       },
-      "GroupPageView": {
+      "ListPageView": {
         "type": "object",
         "properties": {
           "content": {
             "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Group"
+              "$ref": "#/components/schemas/List"
             }
           },
           "totalPages": {
@@ -2071,17 +2071,17 @@
         },
         "description": "Page representation for search/fetch result"
       },
-      "Group": {
+      "List": {
         "description": "Page content, number of elements is restricted by page size",
         "type": "object",
         "properties": {
-          "groupId": {
-            "description": "Group id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+          "listId": {
+            "description": "List id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "description": "Group name \n\n**Example:** `My First List`" ,
+            "description": "List name \n\n**Example:** `My First List`" ,
             "type": "string",
             "example": "My First List"
           },
@@ -2098,9 +2098,9 @@
             "example": "2020-03-30T12:47:40.123-05:00"
           },
           "description": {
-            "description": "Description. Title is present when group is created automatically by a keyword via the dashboard, otherwise defaults to null \n\n**Example:** `Group for 'MYFIRSTKEYWORD' keyword`",
+            "description": "Description. Title is present when list is created automatically by a keyword via the dashboard, otherwise defaults to null \n\n**Example:** `List for 'MYFIRSTKEYWORD' keyword`",
             "type": "string",
-            "example": "Group for 'SALE' keyword"
+            "example": "List for 'SALE' keyword"
           },
           "totalContactsCount": {
             "description": "Total contacts count \n\n**Example:** `50`",
@@ -2127,10 +2127,10 @@
             "example": 2
           },
           "keywords": {
-            "description": "Keywords that bound to the group  \n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
+            "description": "Keywords that bound to the list  \n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
             "type": "array",
             "items": {
-              "description": "Keywords that bound to the group",
+              "description": "Keywords that bound to the list",
               "type": "string",
               "example": "MYFIRSTKEYWORD"
             }
