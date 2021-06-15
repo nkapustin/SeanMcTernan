@@ -1604,7 +1604,7 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
+            "description": "Unique contact phone\n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
