@@ -25,7 +25,7 @@
       "description": "An endpoint to assist in batch operations on your contacts. Using the operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
-      "name": "Contact lists",
+      "name": "Contact Lists",
       "description": "The following endpoints allow you to manage your lists. Lists can be used to manage your contacts so the right message is being sent to the right people."
     },
     {
@@ -116,7 +116,7 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Fetch all Contacts",
+        "summary": "Fetch all contacts",
         "description": "Fetch all contacts from the SimpleTexting system.",
         "operationId": "fetchContacts",
         "parameters": [
@@ -363,7 +363,7 @@
     "/api/contact-lists/{listId}": {
       "get": {
         "tags": [
-          "Contact lists"
+          "Contact Lists"
         ],
         "summary": "Get list",
         "description": "Retrieve a list of contacts that you have uploaded to the SimpleTexting system.",
@@ -395,7 +395,7 @@
       },
       "put": {
         "tags": [
-          "Contact lists"
+          "Contact Lists"
         ],
         "summary": "Update list",
         "description": "Update the name of an extisting list.",
@@ -430,7 +430,7 @@
       },
       "delete": {
         "tags": [
-          "Contact lists"
+          "Contact Lists"
         ],
         "summary": "Delete list",
         "description": "Delete and existing list using the list id.",
@@ -891,7 +891,7 @@
         "tags": [
           "Contacts Batch"
         ],
-        "summary": "Process Contacts batch update",
+        "summary": "Process contacts batch update",
         "description": "Update multiple fields at ones for a batch of contacts. You can update first name, last name, emails, lists and much more.",
         "operationId": "processBatchUpdate",
         "requestBody": {
@@ -923,7 +923,7 @@
         "tags": [
           "Contacts Batch"
         ],
-        "summary": "Process Contacts batch delete by contact phone",
+        "summary": "Process contacts batch delete by contact phone",
         "description": "Delete an array of contacts from the SimpleTexting System via their phone numbers.",
         "operationId": "processBatchDelete",
         "requestBody": {
@@ -953,9 +953,9 @@
     "/api/contact-lists": {
       "get": {
         "tags": [
-          "Contact lists"
+          "Contact Lists"
         ],
-        "summary": "Fetch Lists",
+        "summary": "Fetch lists",
         "description": "Fetch all lists from the SimpleTexting system.",
         "operationId": "getLists",
         "parameters": [
@@ -1001,7 +1001,7 @@
       },
       "post": {
         "tags": [
-          "Contact lists"
+          "Contact Lists"
         ],
         "summary": "Create list",
         "description": "Create a new list on the SimpleTexting system.",
