@@ -283,12 +283,23 @@
             "schema": {
               "type": "string"
             },
-            "example": "507f1f77bcf86cd799439011"
+            "example": "3051234567 / 507f1f77bcf86cd799439011"
           },
           {
             "name": "listsReplacement",
             "in": "query",
             "description": "Set to true to remove from existing list. Set to false to add contact to new list, while also keeping contact in original list",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": true
+          },
+          {
+            "name": "upsert",
+            "in": "query",
+            "description": "If a contact exists with the phone number in your path parameters, the contact will be updated with the information within the request when set to true.",
             "required": false,
             "schema": {
               "type": "boolean",
