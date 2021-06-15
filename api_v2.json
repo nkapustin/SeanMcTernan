@@ -299,7 +299,7 @@
           {
             "name": "upsert",
             "in": "query",
-            "description": "If a contact exists with the phone number in your path parameters, the contact will be updated with the information within the request when set to true.",
+            "description": "If a contact exists with the phone number in your path parameters, the contact will be updated with the information within the request when set to true",
             "required": false,
             "schema": {
               "type": "boolean",
