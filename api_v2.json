@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://api-app2.simpletexting.com/v2"
+      "url": "https://app2.simpletexting.com/v2"
     }
   ],
   "tags": [
@@ -159,8 +159,15 @@
           "required": true
         },
         "responses": {
-          "201": {
-            "description": "Success. Contact created"
+          "200": {
+            "description": "Success. Contact created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateContactResult"
+                }
+              }
+            }
           }
         }
       }
@@ -1391,6 +1398,17 @@
           }
         },
         "description": "Add new contacts or update existing, based on unique contact phone. One contact per object in the array"
+      },
+      "CreateContactResult": {
+        "description": "Create Contact Result",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Id of newly created contact in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          }
+        }
       },
       "ContactUpdateResult": {
         "description": "List of update results",
