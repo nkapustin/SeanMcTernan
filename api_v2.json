@@ -1529,7 +1529,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "Message id in hexadecimal forma \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
