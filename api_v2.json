@@ -309,6 +309,79 @@
         }
       }
     },
+    "/api/contact-lists": {
+      "get": {
+        "tags": [
+          "Contact Lists"
+        ],
+        "summary": "Fetch lists",
+        "description": "Fetch all lists from the SimpleTexting system.",
+        "operationId": "getLists",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns an array of lists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListPageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contact Lists"
+        ],
+        "summary": "Create list",
+        "description": "Create a new list on the SimpleTexting system.",
+        "operationId": "createList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/List Dto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success. List was created"
+          }
+        }
+      }
+    },
     "/api/contact-lists/{listId}": {
       "get": {
         "tags": [
@@ -540,6 +613,60 @@
           },
           "400": {
             "description": "Error. Message cannot be sent as single sms"
+          }
+        }
+      }
+    },
+    "/api/messages/{messageId}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Get message",
+        "description": "Retrieve a specific message from the system via its message id.",
+        "operationId": "getMessage",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "description": "Message id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Fetched message information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error. Message not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
           }
         }
       }
@@ -816,133 +943,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContactsBatchDeleteResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/contact-lists": {
-      "get": {
-        "tags": [
-          "Contact Lists"
-        ],
-        "summary": "Fetch lists",
-        "description": "Fetch all lists from the SimpleTexting system.",
-        "operationId": "getLists",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The page number to load",
-            "required": false,
-            "schema": {
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            },
-            "example": 0
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "description": "The size of the page",
-            "required": false,
-            "schema": {
-              "maximum": 500,
-              "type": "integer",
-              "format": "int32",
-              "default": 50
-            },
-            "example": 50
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success. Returns an array of lists.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListPageView"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Contact Lists"
-        ],
-        "summary": "Create list",
-        "description": "Create a new list on the SimpleTexting system.",
-        "operationId": "createList",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/List Dto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Success. List was created"
-          }
-        }
-      }
-    },
-    "/api/messages/{messageId}": {
-      "get": {
-        "tags": [
-          "Messages"
-        ],
-        "summary": "Get message",
-        "description": "Retrieve a specific message from the system via its message id.",
-        "operationId": "getMessage",
-        "parameters": [
-          {
-            "name": "messageId",
-            "in": "path",
-            "description": "Message id in hexadecimal format",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "507f1f77bcf86cd799439011"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success. Fetched message information",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error. Message not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Too many requests",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
                 }
               }
             }
