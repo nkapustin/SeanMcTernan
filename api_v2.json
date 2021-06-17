@@ -378,6 +378,13 @@
         "responses": {
           "201": {
             "description": "Success. List was created"
+          },
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseID"
+              }
+            }
           }
         }
       }
@@ -445,8 +452,15 @@
           "required": true
         },
         "responses": {
-          "204": {
+          "201": {
             "description": "Success. List updated"
+          },
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseID"
+              }
+            }
           }
         }
       },
