@@ -219,7 +219,7 @@
           {
             "name": "listsReplacement",
             "in": "query",
-            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list",
+            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list.",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -1376,7 +1376,7 @@
         "type": "object",
         "properties": {
           "listsReplacement": {
-            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list \n\n**Example:** `true`",
+            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list. \n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
