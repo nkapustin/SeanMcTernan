@@ -452,7 +452,7 @@
           "required": true
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Success. List updated"
           },
           "content": {
