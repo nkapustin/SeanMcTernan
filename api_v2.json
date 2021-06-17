@@ -591,16 +591,6 @@
                 }
               }
             }
-          },
-          "429": {
-            "description": "Error. Too many requests",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessagePageView"
-                }
-              }
-            }
           }
         }
       },
@@ -624,9 +614,6 @@
         "responses": {
           "201": {
             "description": "Success. Message was created"
-          },
-          "400": {
-            "description": "Error. Message cannot be sent as single sms"
           }
         }
       }
@@ -661,26 +648,6 @@
                 }
               }
             }
-          },
-          "404": {
-            "description": "Error. Message not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Too many requests",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
-              }
-            }
           }
         }
       }
@@ -706,16 +673,6 @@
         "responses": {
           "201": {
             "description": "Success. Evaluation result",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MessageInfo"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Error. Message is too long",
             "content": {
               "application/json": {
                 "schema": {
