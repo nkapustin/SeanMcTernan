@@ -1528,6 +1528,11 @@
         "description": "Page content, number of elements is restricted by page size",
         "type": "object",
         "properties": {
+          "id": {
+            "description": "Message id in hexadecimal forma \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
           "subject": {
             "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
             "type": "string",
