@@ -377,12 +377,12 @@
         },
         "responses": {
           "201": {
-            "description": "Success. List was created"
-          },
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResponseID"
+            "description": "Success. List created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseID"
+                }
               }
             }
           }
@@ -453,12 +453,12 @@
         },
         "responses": {
           "200": {
-            "description": "Success. List updated"
-          },
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResponseID"
+            "description": "Success. List updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseID"
+                }
               }
             }
           }
