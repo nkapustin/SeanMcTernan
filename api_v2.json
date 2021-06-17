@@ -22,7 +22,7 @@
     },
     {
       "name": "Contacts Batch",
-      "description": "An endpoint to assist in batch operations on your contacts. Using the operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
+      "description": "An endpoint to assist in batch operations on your contacts. Using these operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
       "name": "Contact Lists",
@@ -139,7 +139,7 @@
           {
             "name": "listsReplacement",
             "in": "query",
-            "description": "Set to true to remove from existing list. Set to false to add contact to new list, while also keeping contact in original list.",
+            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list.",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -203,7 +203,7 @@
           "Contacts"
         ],
         "summary": "Update a contact",
-        "description": "Update a contact's information via their unique id.",
+        "description": "Update a contact's information via their unique id. Unspecified keys in a request will not be changed in the contact.",
         "operationId": "updateContact",
         "parameters": [
           {
@@ -219,7 +219,7 @@
           {
             "name": "listsReplacement",
             "in": "query",
-            "description": "Set to true to remove from existing list. Set to false to add contact to new list, while also keeping contact in original list",
+            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -758,7 +758,7 @@
           "Contacts Batch"
         ],
         "summary": "Process contacts batch update",
-        "description": "Update multiple fields at ones for a batch of contacts. You can update first name, last name, emails, lists and much more.",
+        "description": "Update multiple fields at once for a batch of contacts. You can update their first name, last name, emails, lists and much more.",
         "operationId": "processBatchUpdate",
         "requestBody": {
           "content": {
@@ -1260,7 +1260,7 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
+            "description": "Unique contact phone: This field should be specified if you wish to update the contact’s phone number \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
