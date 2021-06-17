@@ -164,7 +164,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateContactResult"
+                  "$ref": "#/components/schemas/ResponseID"
                 }
               }
             }
@@ -257,12 +257,12 @@
           "required": true
         },
         "responses": {
-          "204": {
+          "201": {
             "description": "Success. Contact updated",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContactUpdateResult"
+                  "$ref": "#/components/schemas/ResponseID"
                 }
               }
             }
@@ -1399,7 +1399,7 @@
         },
         "description": "Add new contacts or update existing, based on unique contact phone. One contact per object in the array"
       },
-      "CreateContactResult": {
+      "ResponseID": {
         "description": "Create Contact Result",
         "type": "object",
         "properties": {
