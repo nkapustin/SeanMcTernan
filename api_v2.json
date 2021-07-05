@@ -3,7 +3,7 @@
   "info": {
     "title": "Integration WS API Documentation",
     "version": "2.0",
-    "description" : "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n",
+    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n",
     "termsOfService": "https://simpletexting.com/terms/",
     "contact": {
       "name": "SimpleTexting",
@@ -39,6 +39,9 @@
     {
       "name": "Messages",
       "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
+    },
+    {
+      "name": "Webhook report"
     }
   ],
   "paths": {
@@ -490,6 +493,25 @@
         }
       }
     },
+    "/report/incomming": {
+      "post": {
+        "tags": [
+          "Webhook report"
+        ],
+        "summary": "message report",
+        "operationId": "incommingMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncommingMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/api/messages": {
       "get": {
         "tags": [
@@ -690,7 +712,7 @@
           "Media Items"
         ],
         "summary": "Fetch media items",
-        "description" : "Retrieve items that you have previously uploaded to the SimpleTexting system.",
+        "description": "Retrieve items that you have previously uploaded to the SimpleTexting system.",
         "operationId": "getMediaItems",
         "parameters": [
           {
@@ -740,7 +762,7 @@
           "Media Items"
         ],
         "summary": "Upload media by link",
-        "description" : "Upload media via a link. The file can then be sent along with your message to a contact.",
+        "description": "Upload media via a link. The file can then be sent along with your message to a contact.",
         "operationId": "uploadByLink",
         "parameters": [
           {
@@ -784,7 +806,7 @@
           "Media Items"
         ],
         "summary": "Delete media",
-        "description" : "Remove items that you have previously uploaded to the SimpleTexting system.",
+        "description": "Remove items that you have previously uploaded to the SimpleTexting system.",
         "operationId": "delete",
         "parameters": [
           {
@@ -799,10 +821,10 @@
           }
         ],
         "responses": {
-          "description": "Success. Media was deleted",
           "204": {
             "description": "Media is deleted"
-          }
+          },
+          "description": "Success. Media was deleted"
         }
       }
     },
@@ -812,7 +834,7 @@
           "Media Items"
         ],
         "summary": "Upload media",
-        "description" : "Upload media directly that can be sent along with your message to a contact.",
+        "description": "Upload media directly that can be sent along with your message to a contact.",
         "operationId": "upload",
         "parameters": [
           {
@@ -1525,6 +1547,98 @@
         },
         "description": "Page representation for search/fetch result"
       },
+      "IncommingMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "webhook event type",
+            "type": "string",
+            "example": "[\"INCOMING_MESSAGE\"]",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "subject": {
+                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "type": "string",
+                "example": "Some message from SimpleTexting"
+              },
+              "mediaItems": {
+                "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+                "type": "array",
+                "example": [
+                  "507f1f77bcf86cd799439011",
+                  "507f1f77bcf86cd799439333"
+                ],
+                "items": {
+                  "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+                  "type": "string",
+                  "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
+                }
+              },
+              "text": {
+                "description": "Text \n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "Hello! How are you?"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "timestamp": {
+                "description": "Date of sending - ISO Format \n\n**Example:** `2020-04-28T23:20:08.489Z`",
+                "type": "string",
+                "format": "date-time",
+                "example": "2020-04-28T23:20:08.489Z"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              }
+            }
+          }
+        }
+      },
       "Message": {
         "description": "Page content, number of elements is restricted by page size",
         "type": "object",
@@ -1652,7 +1766,7 @@
           "label": {
             "description": "Label Given to Custom Field Type \n\n**Example:** `My Custom Field`",
             "type": "string",
-            "example": "My Custom Field" 
+            "example": "My Custom Field"
           },
           "type": {
             "description": "Custom Field Type \n\n**Example:** `text`",
@@ -1662,7 +1776,7 @@
           "mergeTag": {
             "description": "Merge tag to be added to message \n\n**Example:** `my_custom_field`",
             "type": "string",
-            "example": "my_custom_field" 
+            "example": "my_custom_field"
           },
           "defaultMaxLength": {
             "description": "Max length of the custom field \n\n**Example:** `15`",
@@ -1833,7 +1947,7 @@
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "description": "List name \n\n**Example:** `My First List`" ,
+            "description": "List name \n\n**Example:** `My First List`",
             "type": "string",
             "example": "My First List"
           },
@@ -1891,10 +2005,10 @@
       }
     },
     "securitySchemes": {
-      "bearerAuth" : {
+      "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
-        "description":"Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
+        "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
         "name": "Authorization",
         "in": "header"
       }
