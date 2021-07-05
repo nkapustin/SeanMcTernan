@@ -494,7 +494,11 @@
         }
       }
     },
-    "/incomming.php": {
+    "/incomming": {
+      "servers": {
+        "url": "http://www.yourdomain.com",
+        "description": "your URL that configured for webhook"
+      },
       "post": {
         "tags": [
           "Webhook report"
@@ -514,7 +518,11 @@
         }
       }
     },
-    "/delivery.php": {
+    "/delivery": {
+      "servers": {
+        "url": "http://www.yourdomain.com",
+        "description": "your URL that configured for webhook"
+      },
       "post": {
         "tags": [
           "Webhook report"
@@ -534,7 +542,11 @@
         }
       }
     },
-    "/unsubscribe.php": {
+    "/unsubscribe": {
+      "servers": {
+        "url": "http://www.yourdomain.com",
+        "description": "your URL that configured for webhook"
+      },
       "post": {
         "tags": [
           "Webhook report"
