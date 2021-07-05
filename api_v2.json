@@ -495,10 +495,6 @@
       }
     },
     "/incomming": {
-      "servers": {
-        "url": "http://www.yourdomain.com",
-        "description": "your URL that configured for webhook"
-      },
       "post": {
         "tags": [
           "Webhook report"
@@ -519,10 +515,6 @@
       }
     },
     "/delivery": {
-      "servers": {
-        "url": "http://www.yourdomain.com",
-        "description": "your URL that configured for webhook"
-      },
       "post": {
         "tags": [
           "Webhook report"
@@ -543,10 +535,6 @@
       }
     },
     "/unsubscribe": {
-      "servers": {
-        "url": "http://www.yourdomain.com",
-        "description": "your URL that configured for webhook"
-      },
       "post": {
         "tags": [
           "Webhook report"
