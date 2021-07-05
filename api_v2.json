@@ -41,7 +41,8 @@
       "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
     },
     {
-      "name": "Webhook report"
+      "name": "Webhook report",
+      "description": "Use webhooks to communicate between the SimpleTexting platform and your server. Webhooks can be used to forward messages as well as provide info about unsubscribes and message delivery. \n\nSimpleTexting can trigger webhooks for new incoming messages, delivery reports and unsubscribes. Now you can build scripts that interpret and respond to events that occur in your SimpleTexting account!"
     }
   ],
   "paths": {
@@ -498,13 +499,54 @@
         "tags": [
           "Webhook report"
         ],
-        "summary": "message report",
+        "summary": "Incomming/Outgoing message report",
+        "desription": "Triggers when an outgoing message or incomming message is handeled",
         "operationId": "incommingMessageReport",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/IncommingMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/delivery": {
+      "post": {
+        "tags": [
+          "Webhook report"
+        ],
+        "summary": "Delivery/Non delivered message report",
+        "desription": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.",
+        "operationId": "deliveryMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/unsubscribe": {
+      "post": {
+        "tags": [
+          "Webhook report"
+        ],
+        "summary": "Unsubscribe report",
+        "desription": "Triggers when client send STOP to your number",
+        "operationId": "unsubscribeMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeReport"
               }
             }
           },
@@ -1547,6 +1589,117 @@
         },
         "description": "Page representation for search/fetch result"
       },
+      "UnsubscribeReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "UNSUBSCRIBE_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "description": "Contact id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "phone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              }
+            }
+          }
+        }
+      },
+      "DeliveryMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "DELIVERY_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "carrier": {
+                "description": "Name of carrier \n\n**Example:** `Verizon`",
+                "type": "string",
+                "example": "Verizon"
+              }
+            }
+          }
+        }
+      },
       "IncommingMessageReport": {
         "type": "object",
         "properties": {
@@ -1561,9 +1714,9 @@
             "example": "507f191e810c19729de860ea"
           },
           "type": {
-            "description": "webhook event type",
+            "description": "Webhook report content type",
             "type": "string",
-            "example": "[\"INCOMING_MESSAGE\"]",
+            "example": "INCOMING_MESSAGE",
             "enum": [
               "INCOMING_MESSAGE",
               "OUTGOING_MESSAGE",
