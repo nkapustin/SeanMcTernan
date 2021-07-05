@@ -34,11 +34,11 @@
     },
     {
       "name": "Media Items",
-      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
+      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
     },
     {
       "name": "Messages",
-      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
+      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
     },
     {
       "name": "Webhook report",
@@ -494,7 +494,7 @@
         }
       }
     },
-    "/incomming": {
+    "/report/incomming": {
       "post": {
         "tags": [
           "Webhook report"
@@ -514,7 +514,7 @@
         }
       }
     },
-    "/delivery": {
+    "/report/delivery": {
       "post": {
         "tags": [
           "Webhook report"
@@ -534,7 +534,7 @@
         }
       }
     },
-    "/unsubscribe": {
+    "/report/unsubscribe": {
       "post": {
         "tags": [
           "Webhook report"
@@ -1060,7 +1060,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1108,7 +1108,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content\n\n**SMS_STRICTLY -** will send only single sms or return  an error\n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Configures how to present your message\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content\n\n**SMS_STRICTLY -** will send only single sms or return  an error\n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1327,7 +1327,7 @@
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -1385,7 +1385,7 @@
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -1913,7 +1913,7 @@
         "description": "Page representation for search/fetch result"
       },
       "CustomField": {
-        "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+        "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
         "type": "object",
         "properties": {
           "label": {
@@ -1974,7 +1974,7 @@
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
