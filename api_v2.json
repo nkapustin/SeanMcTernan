@@ -46,6 +46,71 @@
     }
   ],
   "paths": {
+    "/api/webhooks/{webhookId}": {
+      "put": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Update a webhook",
+        "description": "Update an exsisting webhook by its unique id",
+        "operationId": "updateWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "Webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success. Webhook was updated"
+          },
+          "404": {
+            "description": "Error. Webhook not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Delete a webhook",
+        "description": "Delete an exsisting webhook by its unique id",
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "Webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success. Webhook was deleted"
+          }
+        }
+      }
+    },
     "/api/contacts": {
       "get": {
         "tags": [
@@ -1038,6 +1103,147 @@
   },
   "components": {
     "schemas": {
+      "FetchedWebhook": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "URL for handling POST request\n\n**Example:** `https://example.com`",
+            "type": "string",
+            "example": "https://example.com"
+          },
+          "triggers": {
+            "description": "Trigger a webhook on specific platform events\n\n**Example:** `INCOMING_MESSAGE`",
+            "type": "array",
+            "example": [
+              "INCOMING_MESSAGE"
+            ],
+            "items": {
+              "description": "Trigger a webhook on specific platform events",
+              "type": "string",
+              "example": "[\"INCOMING_MESSAGE\"]",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "description": "The maximum number of requests that can be sent within one second\n\n**Example:** `25`",
+            "maximum": 25,
+            "type": "integer",
+            "format": "int32",
+            "example": 25
+          },
+          "tenantPhone": {
+            "description": "Optional: requests will come exclusively for the specified tenant phone number\n\n**Example:** `8881234567`",
+            "type": "string",
+            "example": "8881234567"
+          },
+          "contactPhone": {
+            "description": "Optional: requests will come exclusively for the specified contact phone number\n\n**Example:** `3051234567`",
+            "type": "string",
+            "example": "3051234567"
+          }
+        }
+      },
+      "WebhookRequest": {
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "URL for handling POST request\n\n**Example:** `https://example.com`",
+            "type": "string",
+            "example": "https://example.com"
+          },
+          "triggers": {
+            "description": "Trigger a webhook on specific platform events\n\n**Example:** `INCOMING_MESSAGE`",
+            "type": "array",
+            "example": [
+              "INCOMING_MESSAGE"
+            ],
+            "items": {
+              "description": "Trigger a webhook on specific platform events",
+              "type": "string",
+              "example": "[\"INCOMING_MESSAGE\"]",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "description": "The maximum number of requests that can be sent within one second\n\n**Example:** `25`",
+            "maximum": 25,
+            "type": "integer",
+            "format": "int32",
+            "example": 25
+          },
+          "tenantPhone": {
+            "description": "Optional: requests will come exclusively for the specified tenant phone number\n\n**Example:** `8881234567`",
+            "type": "string",
+            "example": "8881234567"
+          },
+          "contactPhone": {
+            "description": "Optional: requests will come exclusively for the specified contact phone number\n\n**Example:** `3051234567`",
+            "type": "string",
+            "example": "3051234567"
+          }
+        }
+      },
+      "Webhook": {
+        "description": "Page content, number of elements is restricted by page size",
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "webhookId": {
+            "type": "string"
+          },
+          "url": {
+            "description": "URL for handling POST request",
+            "type": "string"
+          },
+          "triggers": {
+            "description": "Trigger webhook on event types",
+            "type": "array",
+            "items": {
+              "description": "Trigger webhook on event types",
+              "type": "string",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "description": "The maximum number of requests that can be sent within one second",
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantPhone": {
+            "description": "Optional: requests will come exclusively for the specified tenant phone number",
+            "type": "string"
+          },
+          "contactPhone": {
+            "description": "Optional: requests will come exclusively for the specified contact phone number",
+            "type": "string"
+          }
+        }
+      },
       "List Dto": {
         "required": [
           "name"
@@ -1565,6 +1771,29 @@
             }
           }
         }
+      },
+      "WebhooksPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "description": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FetchedWebhook"
+            }
+          },
+          "totalPages": {
+            "description": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "description": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
       },
       "MessagePageView": {
         "type": "object",
