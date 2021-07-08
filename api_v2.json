@@ -1248,7 +1248,6 @@
       "EvaluateMessage": {
         "required": [
           "contactPhone",
-          "mode",
           "text"
         ],
         "type": "object",
