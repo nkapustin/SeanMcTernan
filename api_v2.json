@@ -1490,7 +1490,7 @@
             "example": "VIP client"
           },
           "listIds": {
-            "description": "List of contact list id's or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+            "description": "List of contact id's or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
