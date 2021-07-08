@@ -39,6 +39,10 @@
     {
       "name": "Messages",
       "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
+    },
+    {
+      "name": "Webhooks",
+      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
     }
   ],
   "paths": {
