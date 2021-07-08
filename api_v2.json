@@ -723,7 +723,7 @@
           "Messages"
         ],
         "summary": "Evaluate message",
-        "description": "Evaluate the body of your message before sending it to your contact(s).\n\n**Note:** Media items within your request are not validated or downloaded to Simpletexting",
+        "description": "Evaluate the body of your message before sending it to your contact(s).\n\n**Note:** Media items within your request are not validated or downloaded to SimpleTexting.",
         "operationId": "evaluateMessage",
         "requestBody": {
           "content": {
