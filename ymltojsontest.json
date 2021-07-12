@@ -1,1102 +1,941 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-      "description": "Integration WS API Documentation",
-      "version": "2.0",
-      "description" : "# Introduction  \n\nUsing our integrations API, businesses can enjoy even more functionality with the SimpleTexting API. With this extended functionality, developers can enhance the features already available in version 1.0.0.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API.\n\n<SecurityDefinitions />\n",
-      "termsOfService": "https://simpletexting.com/terms/",
-      "contact": {
-        "name": "SimpleTexting",
-        "url": "https://simpletexting.com/contact-us/"
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "//petstore.swagger.io/v2",
+      "description": "Default server"
+    },
+    {
+      "url": "//petstore.swagger.io/sandbox",
+      "description": "Sandbox server"
+    }
+  ],
+  "info": {
+    "description": "This is a sample server Petstore server.\nYou can find out more about Swagger at\n[http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).\nFor this sample, you can use the api key `special-key` to test the authorization filters.\n\n# Introduction\nThis API is documented in **OpenAPI format** and is based on\n[Petstore sample](http://petstore.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThis API is documented in **OpenAPI format** and is based on\n[Petstore sample](http://petstore.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).\nAnd that allows cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n# Authentication\n\nPetstore offers two forms of authentication:\n  - API Key\n  - OAuth2\nOAuth2 - an open protocol to allow secure authorization in a simple\nand standard method from web, mobile and desktop applications.\n\n<SecurityDefinitions />\n",
+    "version": "1.0.0",
+    "title": "Swagger Petstore",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "API Support",
+      "email": "apiteam@swagger.io",
+      "url": "https://github.com/Redocly/redoc"
+    },
+    "x-logo": {
+      "url": "https://redocly.github.io/redoc/petstore-logo.png",
+      "altText": "Petstore logo"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "externalDocs": {
+    "description": "Find out how to create Github repo for your OpenAPI spec.",
+    "url": "https://github.com/Rebilly/generator-openapi-repo"
+  },
+  "tags": [
+    {
+      "name": "pet",
+      "description": "Everything about your Pets"
+    },
+    {
+      "name": "store",
+      "description": "Access to Petstore orders"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user"
+    },
+    {
+      "name": "pet_model",
+      "x-displayName": "The Pet Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/Pet\" />\n"
+    },
+    {
+      "name": "store_model",
+      "x-displayName": "The Order Model",
+      "description": "<SchemaDefinition schemaRef=\"#/components/schemas/Order\" exampleRef=\"#/components/examples/Order\" showReadOnly={true} showWriteOnly={true} />\n"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "General",
+      "tags": [
+        "pet",
+        "store"
+      ]
+    },
+    {
+      "name": "User Management",
+      "tags": [
+        "user"
+      ]
+    },
+    {
+      "name": "Models",
+      "tags": [
+        "pet_model",
+        "store_model"
+      ]
+    }
+  ],
+  "paths": {
+    "/pet": {
+      "parameters": [
+        {
+          "name": "Accept-Language",
+          "in": "header",
+          "description": "The language you prefer for messages. Supported values are en-AU, en-CA, en-GB, en-US",
+          "example": "en-US",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": "en-AU"
+          }
+        },
+        {
+          "name": "cookieParam",
+          "in": "cookie",
+          "description": "Some cookie",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Add a new pet to the store",
+        "description": "Add new pet to the store inventory.",
+        "operationId": "addPet",
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "C#",
+            "source": "PetStore.v1.Pet pet = new PetStore.v1.Pet();\npet.setApiKey(\"your api key\");\npet.petType = PetStore.v1.Pet.TYPE_DOG;\npet.name = \"Rex\";\n// set other fields\nPetStoreResponse response = pet.create();\nif (response.statusCode == HttpStatusCode.Created)\n{\n  // Successfully created\n}\nelse\n{\n  // Something wrong -- check response for errors\n  Console.WriteLine(response.getRawResponse());\n}\n"
+          },
+          {
+            "lang": "PHP",
+            "source": "$form = new \\PetStore\\Entities\\Pet();\n$form->setPetType(\"Dog\");\n$form->setName(\"Rex\");\n// set other fields\ntry {\n    $pet = $client->pets()->create($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Pet"
+        }
+      },
+      "put": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Update an existing pet",
+        "description": "",
+        "operationId": "updatePet",
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "PHP",
+            "source": "$form = new \\PetStore\\Entities\\Pet();\n$form->setPetId(1);\n$form->setPetType(\"Dog\");\n$form->setName(\"Rex\");\n// set other fields\ntry {\n    $pet = $client->pets()->update($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Pet"
+        }
       }
     },
-    "servers": [
-      {
-        "url": "https://api-app2.simpletexting.com/v2"
+    "/pet/{petId}": {
+      "get": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Find pet by ID",
+        "description": "Returns a single pet",
+        "operationId": "getPetById",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet to return",
+            "required": true,
+            "deprecated": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Updates a pet in the store with form data",
+        "description": "",
+        "operationId": "updatePetWithForm",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet that needs to be updated",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "Updated name of the pet",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "Updated status of the pet",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Deletes a pet",
+        "description": "",
+        "operationId": "deletePet",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer <TOKEN>"
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "Pet id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid pet value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
       }
-    ],
-    "tags": [
-      {
-        "name": "Contacts",
-        "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
-      },
-      {
-        "name": "Contacts Batch",
-        "description": "An endpoint to assist in batch operations on your contacts. Using the operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
-      },
-      {
-        "name": "Contact groups",
-        "description": "The following endpoints allow you to manage your lists. Groups can be used to manage your contacts so the right message is being sent to the right people."
-      },
-      {
-        "name": "Custom Fields",
-        "description": "SimpleTexting's Custom Fields feature plays a key role in managing your customer data. Not only does it give you enormous flexibility when it comes to [collecting](https://help.simpletexting.com/using-simpletexting/apps-and-features/collecting-subscriber-data) or [importing](https://help.simpletexting.com/using-simpletexting/lists-and-contacts/importing-contacts) data, it also lets you quickly and easily personalize each message in a [mass text](https://simpletexting.com/mass-texting/) campaign."
-      },
-      {
-        "name": "Media Items",
-        "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
-      },
-      {
-        "name": "Messages",
-        "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoint that allow you to get the most out of the message sending features of SimpleTexting."
-      },
-      {
-        "name": "Webhooks",
-        "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
-      }
-    ],
-    "paths": {
-      "/api/webhooks/{webhookId}": {
-        "put": {
-          "tags": [
-            "Webhooks"
-          ],
-          "summary": "Update a webhook",
-          "description": "Update an exsisting webhook by its unique id",
-          "operationId": "updateWebhook",
-          "parameters": [
-            {
-              "name": "webhookId",
-              "in": "path",
-              "description": "Webhook id in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
+    },
+    "/pet/{petId}/uploadImage": {
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "uploads an image",
+        "description": "",
+        "operationId": "uploadFile",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
-          ],
-          "requestBody": {
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WebhookRequest"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "204": {
-              "description": "Success, Webhook was updated"
-            },
-            "404": {
-              "description": "Error, Webhook not found"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "Webhooks"
-          ],
-          "summary": "Delete a webhook",
-          "description": "Delete an exsisting webhook by its unique id",
-          "operationId": "deleteWebhook",
-          "parameters": [
-            {
-              "name": "webhookId",
-              "in": "path",
-              "description": "Webhook id in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Success, Webhook was deleted"
-            }
-          }
-        }
-      },
-      "/api/contacts/{contactIdOrNumber}": {
-        "get": {
-          "tags": [
-            "Contacts"
-          ],
-          "summary": "Fetch a contact",
-          "description": "Fetch a contact via their unique id, or their phone number. The phone number is the preferred parameter for this call.",
-          "operationId": "getContact",
-          "parameters": [
-            {
-              "name": "phoneNumberOrContactId",
-              "in": "path",
-              "description": "Phone number (preferred) or Contact id in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011 / 3051234567"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Fetched contact",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Contact"
-                  }
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
             }
           }
         },
-        "put": {
-          "tags": [
-            "Contacts"
-          ],
-          "summary": "Update a contact",
-          "description": "Update a contact's information via their unique id.",
-          "operationId": "updateContact",
-          "parameters": [
-            {
-              "name": "contactIdOrNumber",
-              "in": "path",
-              "description": "Contact ID in hexadecimal format or phone number",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            },
-            {
-              "name": "groupsReplacement",
-              "in": "query",
-              "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
-              "required": false,
-              "schema": {
-                "type": "boolean",
-                "default": true
-              },
-              "example": true
-            }
-          ],
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SingleContactUpdate"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "204": {
-              "description": "Success, Contact updated"
-            }
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
           }
-        },
-        "delete": {
-          "tags": [
-            "Contacts"
-          ],
-          "summary": "Delete a contact",
-          "description": "Delete a contact via their unique id.",
-          "operationId": "deleteContact",
-          "parameters": [
-            {
-              "name": "contactIdOrNumber",
-              "in": "path",
-              "description": "Contact ID in hexadecimal format or phone number",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Success, Contact deleted"
-            }
-          }
-        }
-      },
-      "/api/contact-groups/{groupId}": {
-        "get": {
-          "tags": [
-            "Contact groups"
-          ],
-          "summary": "Get group",
-          "description": "Retrieve a group of contacts that you have uploaded to the SimpleTexting system.",
-          "operationId": "getGroup",
-          "parameters": [
-            {
-              "name": "groupId",
-              "in": "path",
-              "description": "Group id in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Fetched list",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Group"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "put": {
-          "tags": [
-            "Contact groups"
-          ],
-          "summary": "Update group",
-          "description": "Update the name of an extisting group.",
-          "operationId": "updateGroup",
-          "parameters": [
-            {
-              "name": "groupId",
-              "in": "path",
-              "description": "Group id in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            }
-          ],
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Group Dto"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "204": {
-              "description": "Success, Group updated"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "Contact groups"
-          ],
-          "summary": "Delete group",
-          "description": "Delete and existing group using the group id.",
-          "operationId": "deleteGroup",
-          "parameters": [
-            {
-              "name": "groupId",
-              "in": "path",
-              "description": "Group id in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Success, Group was deleted"
-            }
-          }
-        }
-      },
-      "/api/webhooks": {
-        "get": {
-          "tags": [
-            "Webhooks"
-          ],
-          "summary": "Fetch webhooks",
-          "description": "Fetch all webhooks that you have created",
-          "operationId": "getWebhooks",
-          "parameters": [
-            {
-              "name": "page",
-              "in": "query",
-              "description": "The page number to load",
-              "required": false,
-              "schema": {
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32",
-                "default": 0
-              },
-              "example": 0
-            },
-            {
-              "name": "size",
-              "in": "query",
-              "description": "The size of the page",
-              "required": false,
-              "schema": {
-                "maximum": 500,
-                "type": "integer",
-                "format": "int32",
-                "default": 50
-              },
-              "example": 50
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Returns page of webhooks",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/WebhooksPageView"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "tags": [
-            "Webhooks"
-          ],
-          "summary": "Create a webhook",
-          "description": "Create a new webhook from scratch",
-          "operationId": "createWebhook",
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WebhookRequest"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "201": {
-              "description": "Success, Webhook was created"
-            },
-            "400": {
-              "description": "Error, Invalid phone format"
-            }
-          }
-        }
-      },
-      "/api/messages": {
-        "get": {
-          "tags": [
-            "Messages"
-          ],
-          "summary": "Fetch messages",
-          "description": "Fetch all messages sent to a specific phone number from a specified line on your account.",
-          "operationId": "getMessages",
-          "parameters": [
-            {
-              "name": "page",
-              "in": "query",
-              "description": "The page number to load",
-              "required": false,
-              "schema": {
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32",
-                "default": 0
-              },
-              "example": 0
-            },
-            {
-              "name": "size",
-              "in": "query",
-              "description": "The size of the page",
-              "required": false,
-              "schema": {
-                "maximum": 500,
-                "type": "integer",
-                "format": "int32",
-                "default": 50
-              },
-              "example": 50
-            },
-            {
-              "name": "accountPhone",
-              "in": "query",
-              "description": "Account phone number",
-              "required": false,
-              "schema": {
-                "type": "string"
-              },
-              "example": 555888
-            },
-            {
-              "name": "since",
-              "in": "query",
-              "description": "First sent/received timestamp",
-              "required": false,
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
               "schema": {
                 "type": "string",
-                "format": "date-time"
-              },
-              "example": "2020-03-30T12:47:40.123-05:00"
-            },
-            {
-              "name": "contactPhone",
-              "in": "query",
-              "description": "Account phone number",
-              "required": false,
-              "schema": {
-                "type": "string"
-              },
-              "example": 8001234567
-            },
-            {
-              "name": "category",
-              "in": "query",
-              "description": "Category - available only for MT (Mobile Terminating) messages",
-              "required": false,
-              "schema": {
-                "type": "string"
-              },
-              "example": "API"
-            },
-            {
-              "name": "directionType",
-              "in": "query",
-              "description": "MT/MO (Mobile-Terminated / Mobile-Originated)",
-              "required": false,
-              "schema": {
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pet/findByStatus": {
+      "get": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Finds Pets by status",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "findPetsByStatus",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "items": {
                 "type": "string",
                 "enum": [
-                  "MT",
-                  "MO"
-                ]
-              },
-              "example": "MO"
+                  "available",
+                  "pending",
+                  "sold"
+                ],
+                "default": "available"
+              }
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Returns page of messages",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MessagePageView"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
                   }
                 }
               }
-            },
-            "429": {
-              "description": "Error, Too many requests",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MessagePageView"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/pet/findByTags": {
+      "get": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "Finds Pets by tags",
+        "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+        "operationId": "findPetsByTags",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid tag value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/store/inventory": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Returns pet inventories by status",
+        "description": "Returns a map of status codes to quantities",
+        "operationId": "getInventory",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "format": "int32"
                   }
                 }
               }
             }
           }
         },
-        "post": {
-          "tags": [
-            "Messages"
-          ],
-          "summary": "Send message",
-          "description": "Send either an MMS, or SMS message to a contact. Use this programmatically to send to an array of contacts.",
-          "operationId": "createMessage",
-          "requestBody": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/store/order": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "placeOrder",
+        "responses": {
+          "200": {
+            "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageRequest"
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
                 }
               }
-            },
-            "required": true
-          },
-          "responses": {
-            "201": {
-              "description": "Success, Message was created"
-            },
-            "400": {
-              "description": "Error, Message cannot be sent as single sms"
             }
-          }
-        }
-      },
-      "/api/messages/evaluate": {
-        "post": {
-          "tags": [
-            "Messages"
-          ],
-          "summary": "Evaluate message",
-          "description": "Evaluate the body of your message before sending it to your contact(s).",
-          "operationId": "evaluateMessage",
-          "requestBody": {
+          },
+          "400": {
+            "description": "Invalid Order",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EvaluateMessage"
+                "example": {
+                  "status": 400,
+                  "message": "Invalid Order"
                 }
               }
-            },
-            "required": true
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
           },
-          "responses": {
-            "201": {
-              "description": "Success, Evaluation result",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MessageInfo"
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Error, Message is too long",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MessageInfo"
-                  }
-                }
-              }
-            }
-          }
+          "description": "order placed for purchasing the pet",
+          "required": true
         }
-      },
-      "/api/mediaitems": {
-        "get": {
-          "tags": [
-            "Media Items"
-          ],
-          "summary": "Fetch media items",
-          "description" : "Retrieve items that you have previously uploaded to the SimpleTexting system.",
-          "operationId": "getMediaItems",
-          "parameters": [
-            {
-              "name": "page",
-              "in": "query",
-              "description": "Number of pages",
-              "required": false,
-              "schema": {
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32",
-                "default": 0
-              },
-              "example": 0
-            },
-            {
-              "name": "size",
-              "in": "query",
-              "description": "Page size",
-              "required": false,
-              "schema": {
-                "maximum": 500,
-                "type": "integer",
-                "format": "int32",
-                "default": 50
-              },
-              "example": 50
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Returns a page of media items",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MediaItemsPageView"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/api/mediaitems/loadByLink": {
-        "post": {
-          "tags": [
-            "Media Items"
-          ],
-          "summary": "Upload media by link",
-          "description" : "Upload media via a link. The file can then be sent along with your message to a contact.",
-          "operationId": "uploadByLink",
-          "parameters": [
-            {
-              "name": "shared",
-              "in": "query",
-              "description": "State whether media is shared between teammates",
-              "schema": {
-                "type": "boolean",
-                "default": true
-              }
-            }
-          ],
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UploadByLink"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "Success, Uploaded media",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MediaFile"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/api/mediaitems/{mediaItemId}": {
-        "delete": {
-          "tags": [
-            "Media Items"
-          ],
-          "summary": "Delete media",
-          "description" : "Remove items that you have previously uploaded to the SimpleTexting system.",
-          "operationId": "delete",
-          "parameters": [
-            {
-              "name": "mediaItemId",
-              "in": "path",
-              "description": "The mediaItemId in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            }
-          ],
-          "responses": {
-            "description": "Success, Media was deleted",
-            "204": {
-              "description": "Media is deleted"
-            }
-          }
-        }
-      },
-      "/api/mediaitems/upload": {
-        "post": {
-          "tags": [
-            "Media Items"
-          ],
-          "summary": "Upload media",
-          "description" : "Upload media directly that can be sent along with your message to a contact.",
-          "operationId": "upload",
-          "parameters": [
-            {
-              "name": "shared",
-              "in": "query",
-              "description": "State whether media is shared between teammates",
-              "schema": {
-                "type": "boolean",
-                "default": true
-              }
-            }
-          ],
-          "requestBody": {
+      }
+    },
+    "/store/order/{orderId}": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Find purchase order by ID",
+        "description": "For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions",
+        "operationId": "getOrderById",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of pet that needs to be fetched",
             "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
             "content": {
-              "multipart/form-data": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Delete purchase order by ID",
+        "description": "For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors",
+        "operationId": "deleteOrder",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of the order that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    },
+    "/store/subscribe": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Subscribe to the Store events",
+        "description": "Add subscription for a store events",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "callbackUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "This URL will be called by the server when the desired event will occur",
+                    "example": "https://myserver.com/send/callback/here"
+                  },
+                  "eventName": {
+                    "type": "string",
+                    "description": "Event name for the subscription",
+                    "enum": [
+                      "orderInProgress",
+                      "orderShipped",
+                      "orderDelivered"
+                    ],
+                    "example": "orderInProgress"
+                  }
+                },
+                "required": [
+                  "callbackUrl",
+                  "eventName"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Subscription added",
+            "content": {
+              "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "file": {
+                    "subscriptionId": {
                       "type": "string",
-                      "description": "Media file to be uploaded",
-                      "format": "binary"
+                      "example": "AAA-123-BBB-456"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "callbacks": {
+          "orderInProgress": {
+            "{$request.body#/callbackUrl}?event={$request.body#/eventName}": {
+              "servers": [
+                {
+                  "url": "//callback-url.path-level/v1",
+                  "description": "Path level server 1"
+                },
+                {
+                  "url": "//callback-url.path-level/v2",
+                  "description": "Path level server 2"
+                }
+              ],
+              "post": {
+                "summary": "Order in Progress (Summary)",
+                "description": "A callback triggered every time an Order is updated status to \"inProgress\" (Description)",
+                "externalDocs": {
+                  "description": "Find out more",
+                  "url": "https://more-details.com/demo"
+                },
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "orderId": {
+                            "type": "string",
+                            "example": "123"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-10-19T16:46:45Z"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "inProgress"
+                          }
+                        }
+                      }
+                    },
+                    "application/xml": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "orderId": {
+                            "type": "string",
+                            "example": "123"
+                          }
+                        }
+                      },
+                      "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<root>\n  <orderId>123</orderId>\n  <status>inProgress</status>\n  <timestamp>2018-10-19T16:46:45Z</timestamp>\n</root>\n"
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Callback successfully processed and no retries will be performed",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "someProp": {
+                              "type": "string",
+                              "example": "123"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "299": {
+                    "description": "Response for cancelling subscription"
+                  },
+                  "500": {
+                    "description": "Callback processing failed and retries will be performed"
+                  }
+                },
+                "x-codeSamples": [
+                  {
+                    "lang": "C#",
+                    "source": "PetStore.v1.Pet pet = new PetStore.v1.Pet();\npet.setApiKey(\"your api key\");\npet.petType = PetStore.v1.Pet.TYPE_DOG;\npet.name = \"Rex\";\n// set other fields\nPetStoreResponse response = pet.create();\nif (response.statusCode == HttpStatusCode.Created)\n{\n  // Successfully created\n}\nelse\n{\n  // Something wrong -- check response for errors\n  Console.WriteLine(response.getRawResponse());\n}\n"
+                  },
+                  {
+                    "lang": "PHP",
+                    "source": "$form = new \\PetStore\\Entities\\Pet();\n$form->setPetType(\"Dog\");\n$form->setName(\"Rex\");\n// set other fields\ntry {\n    $pet = $client->pets()->create($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n"
+                  }
+                ]
+              },
+              "put": {
+                "description": "Order in Progress (Only Description)",
+                "servers": [
+                  {
+                    "url": "//callback-url.operation-level/v1",
+                    "description": "Operation level server 1 (Operation override)"
+                  },
+                  {
+                    "url": "//callback-url.operation-level/v2",
+                    "description": "Operation level server 2 (Operation override)"
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "orderId": {
+                            "type": "string",
+                            "example": "123"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-10-19T16:46:45Z"
+                          },
+                          "status": {
+                            "type": "string",
+                            "example": "inProgress"
+                          }
+                        }
+                      }
+                    },
+                    "application/xml": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "orderId": {
+                            "type": "string",
+                            "example": "123"
+                          }
+                        }
+                      },
+                      "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<root>\n  <orderId>123</orderId>\n  <status>inProgress</status>\n  <timestamp>2018-10-19T16:46:45Z</timestamp>\n</root>\n"
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Callback successfully processed and no retries will be performed",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "someProp": {
+                              "type": "string",
+                              "example": "123"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Success, Uploaded media",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/MediaFile"
+          "orderShipped": {
+            "{$request.body#/callbackUrl}?event={$request.body#/eventName}": {
+              "post": {
+                "description": "Very long description\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.\n",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "orderId": {
+                            "type": "string",
+                            "example": "123"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-10-19T16:46:45Z"
+                          },
+                          "estimatedDeliveryDate": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-11-11T16:00:00Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Callback successfully processed and no retries will be performed"
                   }
                 }
               }
             }
-          }
-        }
-      },
-      "/api/contacts": {
-        "get": {
-          "tags": [
-            "Contacts"
-          ],
-          "summary": "Fetch all Contacts",
-          "description": "Fetch all contacts from the SimpleTexting system.",
-          "operationId": "fetchContacts",
-          "parameters": [
-            {
-              "name": "page",
-              "in": "query",
-              "description": "The page number to load",
-              "required": false,
-              "schema": {
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32",
-                "default": 0
-              },
-              "example": 0
-            },
-            {
-              "name": "size",
-              "in": "query",
-              "description": "The size of the page",
-              "required": false,
-              "schema": {
-                "maximum": 500,
-                "type": "integer",
-                "format": "int32",
-                "default": 50
-              },
-              "example": 50
-            },
-            {
-              "name": "since",
-              "in": "query",
-              "description": "List contacts updated since a specified date",
-              "required": false,
-              "schema": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "example": "2020-03-30T12:47:40.123-05:00"
-            },
-            {
-              "name": "direction",
-              "in": "query",
-              "description": "Specifies the sort order for results. Results are sorted by 'updated' field",
-              "required": false,
-              "schema": {
-                "type": "string",
-                "default": "desc",
-                "enum": [
-                  "ASC",
-                  "DESC"
-                ]
-              },
-              "example": "desc"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Returns an array of contacts",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ContactPageView"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "tags": [
-            "Contacts"
-          ],
-          "summary": "Create a contact",
-          "description": "Create a brand new contact, and specifiy the group they should live in.",
-          "operationId": "createContact",
-          "parameters": [
-            {
-              "name": "upsert",
-              "in": "query",
-              "description": "If a contact exists with the phone number in your request body, the contact will be updated with the information within the request when set to true.",
-              "required": false,
-              "schema": {
-                "type": "boolean",
-                "default": true
-              },
-              "example": false
-            },
-            {
-              "name": "groupsReplacement",
-              "in": "query",
-              "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
-              "required": false,
-              "schema": {
-                "type": "boolean",
-                "default": true
-              },
-              "example": true
-            }
-          ],
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactUpdate"
-                }
-              }
-            },
-            "required": true
           },
-          "responses": {
-            "201": {
-              "description": "Success, Contact created"
-            }
-          }
-        }
-      },
-      "/api/contacts-batch/batch-update": {
-        "post": {
-          "tags": [
-            "Contacts Batch"
-          ],
-          "summary": "Process Contacts batch update.",
-          "description": "Update multiple fields at ones for a batch of contacts. You can update first name, last name, emails, groups and much more.",
-          "operationId": "processBatchUpdate",
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactsBatchUpdate"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "201": {
-              "description": "Success, Contact batch update was processed",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ContactsBatchUpdateResult"
+          "orderDelivered": {
+            "http://notificationServer.com?url={$request.body#/callbackUrl}&event={$request.body#/eventName}": {
+              "post": {
+                "deprecated": true,
+                "summary": "Order delivered",
+                "description": "A callback triggered every time an Order is delivered to the recipient",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "orderId": {
+                            "type": "string",
+                            "example": "123"
+                          },
+                          "timestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-10-19T16:46:45Z"
+                          }
+                        }
+                      }
+                    }
                   }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/api/contacts-batch/batch-delete": {
-        "post": {
-          "tags": [
-            "Contacts Batch"
-          ],
-          "summary": "Process Contacts batch delete by contact phone",
-          "description": "Delete an array of contacts from the SimpleTexting System via their phone numbers.",
-          "operationId": "processBatchDelete",
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactsBatchDelete"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "201": {
-              "description": "Success, Contact batch delete was processed",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ContactsBatchDeleteResult"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/api/contact-groups": {
-        "get": {
-          "tags": [
-            "Contact groups"
-          ],
-          "summary": "Fetch Groups",
-          "description": "Fetch all groups from the SimpleTexting system.",
-          "operationId": "getGroups",
-          "parameters": [
-            {
-              "name": "page",
-              "in": "query",
-              "description": "The page number to load",
-              "required": false,
-              "schema": {
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32",
-                "default": 0
-              },
-              "example": 0
-            },
-            {
-              "name": "size",
-              "in": "query",
-              "description": "The size of the page",
-              "required": false,
-              "schema": {
-                "maximum": 500,
-                "type": "integer",
-                "format": "int32",
-                "default": 50
-              },
-              "example": 50
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Returns an array of groups.",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/GroupPageView"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "tags": [
-            "Contact groups"
-          ],
-          "summary": "Create group",
-          "description": "Create a new group on the SimpleTexting system.",
-          "operationId": "createGroup",
-          "requestBody": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Group Dto"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "201": {
-              "description": "Success, Group was created"
-            }
-          }
-        }
-      },
-      "/api/messages/{messageId}": {
-        "get": {
-          "tags": [
-            "Messages"
-          ],
-          "summary": "Get message",
-          "description": "Retrieve a specific message from the system via its message id.",
-          "operationId": "getMessage",
-          "parameters": [
-            {
-              "name": "messageId",
-              "in": "path",
-              "description": "Message id in hexadecimal format",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "example": "507f1f77bcf86cd799439011"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Fetched message information",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Message"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Error, Message not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Message"
-                  }
-                }
-              }
-            },
-            "429": {
-              "description": "Too many requests",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Message"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/api/custom-fields": {
-        "get": {
-          "tags": [
-            "Custom Fields"
-          ],
-          "summary": "Fetch custom fields",
-          "description": "Fetch all custom fields you've created on the SimpleTexting system.",
-          "operationId": "getCustomFields",
-          "parameters": [
-            {
-              "name": "page",
-              "in": "query",
-              "description": "The page number to load",
-              "required": false,
-              "schema": {
-                "minimum": 0,
-                "type": "integer",
-                "format": "int32",
-                "default": 0
-              },
-              "example": 0
-            },
-            {
-              "name": "size",
-              "in": "query",
-              "description": "The size of the page",
-              "required": false,
-              "schema": {
-                "maximum": 500,
-                "type": "integer",
-                "format": "int32",
-                "default": 50
-              },
-              "example": 50
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success, Returns an array of custom fields",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/CustomFieldPageView"
+                },
+                "responses": {
+                  "200": {
+                    "description": "Callback successfully processed and no retries will be performed"
                   }
                 }
               }
@@ -1105,1010 +944,735 @@
         }
       }
     },
-    "components": {
-      "schemas": {
-        "WebhookRequest": {
-          "required": [
-            "triggers",
-            "url"
-          ],
-          "type": "object",
-          "properties": {
-            "url": {
-              "description": "URL for handling POST request",
-              "type": "string",
-              "example": "https://example.com"
-            },
-            "triggers": {
-              "description": "Trigger a webhook on specific platform events",
-              "type": "array",
-              "example": [
-                "INCOMING_MESSAGE"
-              ],
-              "items": {
-                "description": "Trigger a webhook on specific platform events",
-                "type": "string",
-                "example": "[\"INCOMING_MESSAGE\"]",
-                "enum": [
-                  "INCOMING_MESSAGE",
-                  "OUTGOING_MESSAGE",
-                  "DELIVERY_REPORT",
-                  "NON_DELIVERED_REPORT",
-                  "UNSUBSCRIBE_REPORT"
-                ]
-              }
-            },
-            "requestPerSecLimit": {
-              "description": "The maximum number of requests that can be sent within one second",
-              "maximum": 25,
-              "type": "integer",
-              "format": "int32",
-              "example": 25
-            },
-            "tenantPhone": {
-              "description": "Optional: requests will come exclusively for the specified tenant phone number",
-              "type": "string",
-              "example": "8889928418"
-            },
-            "contactPhone": {
-              "description": "Optional: requests will come exclusively for the specified contact phone number",
-              "type": "string",
-              "example": "3051234567"
-            }
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "responses": {
+          "default": {
+            "description": "successful operation"
           }
         },
-        "SingleContactUpdate": {
-          "type": "object",
-          "properties": {
-            "contactPhone": {
-              "description": "Unique contact phone - This field should be specified if you wish to update the contacts phone number \n\n**Example:** `1234567890`",
-              "type": "string",
-              "example": "1234567890"
-            },
-            "firstName": {
-              "description": "Contact first name \n\n**Example:** `John`",
-              "type": "string",
-              "example": "John"
-            },
-            "lastName": {
-              "description": "Contact last name \n\n**Example:** `Doe`",
-              "type": "string",
-              "example": "Doe"
-            },
-            "email": {
-              "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
-              "type": "string",
-              "example": "john.doe@simpletext.org"
-            },
-            "birthday": {
-              "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
-              "type": "string",
-              "example": "1985-05-05"
-            },
-            "customFields": {
-              "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-              "type": "object",
-              "additionalProperties": {
-                "description": "\n\n Example: \n\n{\"zipcode\":\"12345\"}",
-                "type": "string",
-                "example": "{\"zipcode\":\"12345\"}"
-              },
-              "example": {
-                "zipcode": "12345"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
               }
-            },
-            "comment": {
-              "description": "Comment attached to contact \n\n**Example:** `VIP client`",
-              "type": "string",
-              "example": "VIP client"
-            },
-            "groupIds": {
-              "description": "List of contact group IDs or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
-              "type": "array",
-              "example": [
-                "507f191e810c19729de860ea",
-                "My First List"
-              ]
             }
-          }
-        },
-        "Group Dto": {
-          "required": [
-            "name"
-          ],
-          "type": "object",
-          "properties": {
-            "name": {
-              "description": "Group name containing less than 42 characters. \n\n**Example:** `My new list`",
+          },
+          "description": "Created user object",
+          "required": true
+        }
+      }
+    },
+    "/user/{username}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user by user name",
+        "description": "",
+        "operationId": "getUserByName",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "required": true,
+            "schema": {
               "type": "string"
             }
           }
-        },
-        "MessageRequest": {
-          "required": [
-            "contactPhone",
-            "mode",
-            "text"
-          ],
-          "type": "object",
-          "properties": {
-            "mode": {
-              "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\n**Example:** `SINGLE_SMS_STRICTLY`",
-              "type": "string",
-              "example": "MMS_STRICTLY",
-              "enum": [
-                "AUTO",
-                "SINGLE_SMS_STRICTLY",
-                "MMS_STRICTLY"
-              ]
-            },
-            "subject": {
-              "description": "MMS Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
-              "type": "string",
-              "example": "Some message from SimpleTexting"
-            },
-            "text": {
-              "description": "Text Body \n\n**Example:** `Hello! How are you?`",
-              "type": "string",
-              "example": "Hello! How are you?"
-            },
-            "contactPhone": {
-              "description": "Contact phone \n\n**Example:** `1234567890`",
-              "type": "string",
-              "example": "1234567890"
-            },
-            "fallbackText": {
-              "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
-              "type": "string",
-              "example": "[url=%%fallback_link%%]"
-            },
-            "mediaItems": {
-              "description": "List of mms media urls for temporal storing or media items ids \n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
-              "type": "array",
-              "example": [
-                "https://txt.so/img.jpg",
-                "507f1f77bcf86cd799439011"
-              ]
-            }
-          }
-        },
-        "EvaluateMessage": {
-          "required": [
-            "contactPhone",
-            "mode",
-            "text"
-          ],
-          "type": "object",
-          "properties": {
-            "mode": {
-              "description": "Configures how to present your message,\n\nAUTO - means that SimpleTexting will find more relative type for your message content, \n\nSMS_STRICTLY will send only single sms or return  an error, \n\nMMS will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier. \n\n**Example:** `SINGLE_SMS_STRICTLY`",
-              "type": "string",
-              "example": "MMS_STRICTLY",
-              "enum": [
-                "AUTO",
-                "SINGLE_SMS_STRICTLY",
-                "MMS_STRICTLY"
-              ]
-            },
-            "subject": {
-              "description": "MMS Subject (available for MMS) \n\n**Example:** New In Store",
-              "type": "string",
-              "example": "Some message from SimpleTexting"
-            },
-            "text": {
-              "description": "Text Body \n\n**Example:** Hello! How are you?",
-              "type": "string",
-              "example": "Hello! How are you?"
-            },
-            "fallbackText": {
-              "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
-              "type": "string",
-              "example": "[url=%%fallback_link%%]"
-            },
-            "mediaItems": {
-              "description": "List of mms media urls for temporal storing or media items ids \n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
-              "type": "array",
-              "example": [
-                "https://txt.so/img.jpg",
-                "507f1f77bcf86cd799439011"
-              ]
-            }
-          }
-        },
-        "MessageInfo": {
-          "type": "object",
-          "properties": {
-            "detectedCategory": {
-              "description": "Autodetected category of message",
-              "type": "string",
-              "example": "SMS",
-              "enum": [
-                "SMS",
-                "MMS",
-                "EXTENDED_SMS"
-              ]
-            },
-            "length": {
-              "description": "Message length in chars",
-              "type": "integer",
-              "format": "int32",
-              "example": 134
-            },
-            "remains": {
-              "description": "Remaining characters",
-              "type": "integer",
-              "format": "int32",
-              "example": 23
-            },
-            "maxLength": {
-              "description": "Message max length in chars with current type and encoding",
-              "type": "integer",
-              "format": "int32",
-              "example": 300
-            },
-            "containsUtfChars": {
-              "description": "Is UTF encoding used?",
-              "type": "boolean",
-              "example": false
-            },
-            "sumOfCredits": {
-              "description": "How much credits message will cost",
-              "type": "integer",
-              "format": "int32",
-              "example": 1
-            },
-            "warnings": {
-              "description": "List of warning messages if present",
-              "type": "array",
-              "items": {
-                "description": "List of warning messages if present",
-                "type": "string"
-              }
-            },
-            "errors": {
-              "description": "List of error messages if present",
-              "type": "array",
-              "items": {
-                "description": "List of error messages if present",
-                "type": "string"
-              }
-            }
-          }
-        },
-        "MediaItemsPageView": {
-          "type": "object",
-          "properties": {
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
             "content": {
-              "description": "Page content, number of elements is restricted by page size",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/MediaFile"
-              }
-            },
-            "totalPages": {
-              "description": "Total number of pages, which is number of elements divided by page size",
-              "type": "integer",
-              "format": "int32"
-            },
-            "totalElements": {
-              "description": "Total number of elements",
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "description": "Page representation for search/fetch result"
-        },
-        "MediaFile": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string"
-            },
-            "createdDate": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "name": {
-              "type": "string"
-            },
-            "gallery": {
-              "type": "string"
-            },
-            "size": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "status": {
-              "type": "string"
-            },
-            "link": {
-              "type": "string"
-            },
-            "contentType": {
-              "type": "string"
-            },
-            "ext": {
-              "type": "string"
-            },
-            "canDelete": {
-              "type": "boolean"
-            }
-          }
-        },
-        "UploadByLink": {
-          "required": [
-            "link"
-          ],
-          "type": "object",
-          "properties": {
-            "link": {
-              "description": "Link to be used for Upload",
-              "type": "string",
-              "example": "https://img.gazeta.ru/files3/941/10500941/cat-pic905-895x505-29911.jpg"
-            }
-          },
-          "description": "UploadByLink Request"
-        },
-        "ContactUpdate": {
-          "required": [
-            "contactPhone"
-          ],
-          "type": "object",
-          "properties": {
-            "contactPhone": {
-              "description": "Unique contact phone",
-              "type": "string",
-              "example": "1234567890"
-            },
-            "firstName": {
-              "description": "Contact first name",
-              "type": "string",
-              "example": "John"
-            },
-            "lastName": {
-              "description": "Contact last name",
-              "type": "string",
-              "example": "Doe"
-            },
-            "email": {
-              "description": "Contact email",
-              "type": "string",
-              "example": "john.doe@simpletext.org"
-            },
-            "birthday": {
-              "description": "Birth date in ISO format: yyyy-mm-dd",
-              "type": "string",
-              "example": "1985-05-05"
-            },
-            "customFields": {
-              "description": "Custom fields to replace or add. Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-              "type": "object",
-              "additionalProperties": {
-                "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-                "type": "string",
-                "example": "{\"zipcode\":\"12345\"}"
-              },
-              "example": {
-                "zipcode": "12345"
-              }
-            },
-            "comment": {
-              "description": "Comment attached to contact",
-              "type": "string",
-              "example": "VIP client"
-            },
-            "groupIds": {
-              "description": "List of contact group IDs or names to replace or add",
-              "type": "array",
-              "example": [
-                "507f191e810c19729de860ea",
-                "My First List"
-              ]
-            }
-          }
-        },
-        "ContactsBatchUpdate": {
-          "required": [
-            "updates"
-          ],
-          "type": "object",
-          "properties": {
-            "groupsReplacement": {
-              "description": "Set to true to remove from existing group. Set to false to add contact to new group, while also keeping contact in original group",
-              "type": "boolean"
-            },
-            "updates": {
-              "description": "List of updates for contacts",
-              "maxItems": 500,
-              "minItems": 0,
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/ContactUpdate"
-              }
-            }
-          },
-          "description": "Add new contacts or update existing, based on unique contact phone. One contact per object in the array"
-        },
-        "ContactUpdateResult": {
-          "description": "List of update results",
-          "type": "object",
-          "properties": {
-            "done": {
-              "description": "If operation was successful",
-              "type": "boolean",
-              "example": true
-            },
-            "contactPhone": {
-              "description": "Contact phone from update request",
-              "type": "string",
-              "example": "1234567890"
-            },
-            "contactId": {
-              "description": "Contact id if contact exists",
-              "type": "string",
-              "example": "507f1f77bcf86cd799439011"
-            },
-            "errorCode": {
-              "description": "Operation error code, if operation has failed",
-              "type": "string",
-              "example": "CONTACT_CREATE_FAILED",
-              "enum": [
-                "CONTACT_CREATE_INTERNAL_ERROR",
-                "CONTACT_UPDATE_INTERNAL_ERROR",
-                "CONTACT_IMPORT_LIMIT_IS_REACHED",
-                "CONTACT_CREATE_FAILED",
-                "CONTACT_UPDATE_FAILED"
-              ]
-            },
-            "errorMessage": {
-              "description": "Additional error message if operation has failed",
-              "type": "string",
-              "example": "Contacts limit is reached"
-            }
-          }
-        },
-        "ContactsBatchUpdateResult": {
-          "type": "object",
-          "properties": {
-            "results": {
-              "description": "List of update results",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/ContactUpdateResult"
-              }
-            }
-          }
-        },
-        "ContactsBatchDelete": {
-          "required": [
-            "contactPhones"
-          ],
-          "type": "object",
-          "properties": {
-            "contactPhones": {
-              "description": "List of contact phones for deletion",
-              "maxItems": 500,
-              "minItems": 0,
-              "type": "array",
-              "example": [
-                "1234567890"
-              ],
-              "items": {
-                "description": "List of contact phones for deletion",
-                "type": "string",
-                "example": "[\"1234567890\"]"
-              }
-            }
-          },
-          "description": "ContactsBatchDelete"
-        },
-        "ContactDeleteResult": {
-          "description": "List of deletion results",
-          "type": "object",
-          "properties": {
-            "done": {
-              "description": "If operation was successful",
-              "type": "boolean",
-              "example": true
-            },
-            "contactPhone": {
-              "description": "Contact phone from delete request",
-              "type": "string",
-              "example": "1234567890"
-            },
-            "contactId": {
-              "description": "Contact id if contact was found or null",
-              "type": "string",
-              "example": "507f1f77bcf86cd799439011"
-            },
-            "errorCode": {
-              "description": "Operation error code, if operation has failed",
-              "type": "string",
-              "example": "UNKNOWN_CONTACT_PHONE",
-              "enum": [
-                "UNKNOWN_CONTACT_PHONE",
-                "CONTACT_DELETE_INTERNAL_ERROR"
-              ]
-            },
-            "errorMessage": {
-              "description": "Additional error message if operation has failed",
-              "type": "string",
-              "example": "Contact with provided phone number is missing"
-            }
-          }
-        },
-        "ContactsBatchDeleteResult": {
-          "type": "object",
-          "properties": {
-            "results": {
-              "description": "List of deletion results",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/ContactDeleteResult"
-              }
-            }
-          }
-        },
-        "WebhooksPageView": {
-          "type": "object",
-          "properties": {
-            "content": {
-              "description": "Page content, number of elements is restricted by page size",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Webhook"
-              }
-            },
-            "totalPages": {
-              "description": "Total number of pages, which is number of elements divided by page size",
-              "type": "integer",
-              "format": "int32"
-            },
-            "totalElements": {
-              "description": "Total number of elements",
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "description": "Page representation for search/fetch result"
-        },
-        "Webhook": {
-          "description": "Page content, number of elements is restricted by page size",
-          "required": [
-            "triggers",
-            "url"
-          ],
-          "type": "object",
-          "properties": {
-            "webhookId": {
-              "type": "string"
-            },
-            "url": {
-              "description": "URL for handling POST request",
-              "type": "string"
-            },
-            "triggers": {
-              "description": "Trigger webhook on event types",
-              "type": "array",
-              "items": {
-                "description": "Trigger webhook on event types",
-                "type": "string",
-                "enum": [
-                  "INCOMING_MESSAGE",
-                  "OUTGOING_MESSAGE",
-                  "DELIVERY_REPORT",
-                  "NON_DELIVERED_REPORT",
-                  "UNSUBSCRIBE_REPORT"
-                ]
-              }
-            },
-            "requestPerSecLimit": {
-              "description": "The maximum number of requests that can be sent within one second",
-              "type": "integer",
-              "format": "int32"
-            },
-            "tenantPhone": {
-              "description": "Optional: requests will come exclusively for the specified tenant phone number",
-              "type": "string"
-            },
-            "contactPhone": {
-              "description": "Optional: requests will come exclusively for the specified contact phone number",
-              "type": "string"
-            }
-          }
-        },
-        "MessagePageView": {
-          "type": "object",
-          "properties": {
-            "content": {
-              "description": "Page content, number of elements is restricted by page size",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Message"
-              }
-            },
-            "totalPages": {
-              "description": "Total number of pages, which is number of elements divided by page size",
-              "type": "integer",
-              "format": "int32"
-            },
-            "totalElements": {
-              "description": "Total number of elements",
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "description": "Page representation for search/fetch result"
-        },
-        "Message": {
-          "description": "Page content, number of elements is restricted by page size",
-          "type": "object",
-          "properties": {
-            "subject": {
-              "description": "Subject (available for MMS)",
-              "type": "string",
-              "example": "Some message from SimpleTexting"
-            },
-            "text": {
-              "description": "Text",
-              "type": "string",
-              "example": "Hello! How are you?"
-            },
-            "contactPhone": {
-              "description": "Contact phone",
-              "type": "string",
-              "example": "8001234567"
-            },
-            "accountPhone": {
-              "description": "Account phone (primary or secondary)",
-              "type": "string",
-              "example": "555888"
-            },
-            "directionType": {
-              "description": "MT/MO (Mobile-Terminated / Mobile-Originated)",
-              "type": "string",
-              "example": "MO",
-              "enum": [
-                "MT",
-                "MO"
-              ]
-            },
-            "timestamp": {
-              "description": "Date of sending, ISO 8601",
-              "type": "string",
-              "format": "date-time",
-              "example": "2020-04-28T23:20:08.489Z"
-            },
-            "referenceType": {
-              "description": "Reference type (available only for MT messages)",
-              "type": "string",
-              "example": "API"
-            },
-            "category": {
-              "description": "Message category",
-              "type": "string",
-              "example": "SMS",
-              "enum": [
-                "SMS",
-                "MMS",
-                "EXTENDED_SMS"
-              ]
-            },
-            "mediaItems": {
-              "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
-              "type": "array",
-              "example": [
-                "507f1f77bcf86cd799439011",
-                "507f1f77bcf86cd799439333"
-              ],
-              "items": {
-                "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
-                "type": "string",
-                "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
-              }
-            }
-          }
-        },
-        "ContactPageView": {
-          "type": "object",
-          "properties": {
-            "content": {
-              "description": "Page content, number of elements is restricted by page size",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Contact"
-              }
-            },
-            "totalPages": {
-              "description": "Total number of pages, which is number of elements divided by page size",
-              "type": "integer",
-              "format": "int32"
-            },
-            "totalElements": {
-              "description": "Total number of elements",
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "description": "Page representation for search/fetch result"
-        },
-        "CustomFieldPageView": {
-          "type": "object",
-          "properties": {
-            "content": {
-              "description": "Page content, number of elements is restricted by page size",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/CustomField"
-              }
-            },
-            "totalPages": {
-              "description": "Total number of pages, which is number of elements divided by page size",
-              "type": "integer",
-              "format": "int32"
-            },
-            "totalElements": {
-              "description": "Total number of elements",
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "description": "Page representation for search/fetch result"
-        },
-        "CustomField": {
-          "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-          "type": "object",
-          "properties": {
-            "label": {
-              "description": "Label Given to Custom Field Type",
-              "type": "string",
-              "example": "My Custom Field" 
-            },
-            "type": {
-              "description": "Custom Field Type",
-              "type": "string",
-              "example": "text"
-            },
-            "mergeTag": {
-              "description": "Merge tag to be added to message",
-              "type": "string",
-              "example": "my_custom_field" 
-            },
-            "defaultMaxLength": {
-              "description": "Max length of the custom field",
-              "type": "integer",
-              "format": "int32",
-              "example": 15
-            }
-          }
-        },
-        "Contact": {
-          "description": "Page content, number of elements is restricted by page size",
-          "required": [
-            "contactId",
-            "contactPhone",
-            "firstName",
-            "lastName"
-          ],
-          "type": "object",
-          "properties": {
-            "contactId": {
-              "description": "Existing contact id in hexadecimal format",
-              "type": "string",
-              "example": "607f0558a7c898629dd47d7a"
-            },
-            "contactPhone": {
-              "description": "Unique contact phone",
-              "type": "string",
-              "example": "1234567890"
-            },
-            "firstName": {
-              "description": "Contact first name",
-              "type": "string",
-              "example": "John"
-            },
-            "lastName": {
-              "description": "Contact last name",
-              "type": "string",
-              "example": "Doe"
-            },
-            "email": {
-              "description": "Contact email",
-              "type": "string",
-              "example": "john.doe@simpletext.org"
-            },
-            "birthday": {
-              "description": "Birth date - Required: ISO format: yyyy-mm-dd",
-              "type": "string",
-              "format": "date",
-              "example": "1985-05-05",
-              "enum": [
-                null
-              ]
-            },
-            "groups": {
-              "description": "List of groups, where contact is included",
-              "type": "array",
-              "example": [
-                {
-                  "id": "5f6c760379f4e93135aac72b",
-                  "name": "My First List"
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
-              ],
-              "items": {
-                "$ref": "#/components/schemas/Contact group"
-              }
-            },
-            "customFields": {
-              "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-              "type": "object",
-              "additionalProperties": {
-                "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-                "type": "string",
-                "example": "{\"zipcode\":\"12345\",\"position\":\"manager\"}"
               },
-              "example": {
-                "zipcode": "12345",
-                "position": "manager"
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Updated user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "description": "Updated user object",
+          "required": true
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/user/createWithArray": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Creates list of users with given input array",
+        "description": "",
+        "operationId": "createUsersWithArrayInput",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserArray"
+        }
+      }
+    },
+    "/user/createWithList": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Creates list of users with given input array",
+        "description": "",
+        "operationId": "createUsersWithListInput",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserArray"
+        }
+      }
+    },
+    "/user/login": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "X-Rate-Limit": {
+                "description": "calls per hour allowed by the user",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "X-Expires-After": {
+                "description": "date in UTC when token expires",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
               }
             },
-            "comment": {
-              "description": "Comment attached to contact",
-              "type": "string",
-              "example": "VIP client"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "response": {
+                    "value": "OK"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "response": {
+                    "value": "<Message> OK </Message>"
+                  }
+                }
+              },
+              "text/plain": {
+                "examples": {
+                  "response": {
+                    "value": "OK"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Cat": {
+        "description": "A representation of a cat",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "huntingSkill": {
+                "type": "string",
+                "description": "The measured skill for hunting",
+                "default": "lazy",
+                "example": "adventurous",
+                "enum": [
+                  "clueless",
+                  "lazy",
+                  "adventurous",
+                  "aggressive"
+                ]
+              }
             },
-            "subscriptionStatus": {
-              "description": "Contact subscription status",
-              "type": "string",
-              "example": "OPT_IN",
-              "enum": [
-                "OPT_IN",
-                "OPT_OUT",
-                "WAIT_SMS_CONFIRMATION",
-                "REJECT_CONFIRMATION"
-              ]
-            },
-            "created": {
-              "description": "Created timestamp - Required: ISO format",
-              "type": "string",
-              "format": "date-time",
-              "example": "2021-04-28T23:20:08.489Z"
-            },
-            "updated": {
-              "description": "Updated timestamp - Required: ISO format",
-              "type": "string",
-              "format": "date-time",
-              "example": "2021-05-28T20:20:08.489Z"
-            },
-            "updateSource": {
-              "description": "The source from which the contact was updated",
-              "type": "string",
-              "enum": [
-                "IMPORTED_FROM_FILE",
-                "PUBLIC_API",
-                "MAILCHIMP_SYNC",
-                "KEYWORD",
-                "WEB_FORM",
-                "MANUAL",
-                "REMINDER",
-                "ZAPIER",
-                "WORKATO",
-                "CONFIRMATION",
-                "INCOMING_MESSAGE"
-              ]
+            "required": [
+              "huntingSkill"
+            ]
+          }
+        ]
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Category ID",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              }
+            ]
+          },
+          "name": {
+            "description": "Category name",
+            "type": "string",
+            "minLength": 1
+          },
+          "sub": {
+            "description": "Test Sub Category",
+            "type": "object",
+            "properties": {
+              "prop1": {
+                "type": "string",
+                "description": "Dumb Property"
+              }
             }
           }
         },
-        "Contact group": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "description": "Existing group id",
-              "type": "string",
-              "example": "5f6c760379f4e93135aac72a"
-            },
-            "name": {
-              "description": "Existing group name",
-              "type": "string",
-              "example": "My First List"
-            }
+        "xml": {
+          "name": "Category"
+        }
+      },
+      "Dog": {
+        "description": "A representation of a dog",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
           },
-          "example": [
-            {
-              "id": "5f6c760379f4e93135aac72b",
-              "name": "My First List"
-            }
-          ]
-        },
-        "GroupPageView": {
-          "type": "object",
-          "properties": {
-            "content": {
-              "description": "Page content, number of elements is restricted by page size",
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Group"
+          {
+            "type": "object",
+            "properties": {
+              "packSize": {
+                "type": "integer",
+                "format": "int32",
+                "description": "The size of the pack the dog is from",
+                "default": 1,
+                "minimum": 1
               }
             },
-            "totalPages": {
-              "description": "Total number of pages, which is number of elements divided by page size",
-              "type": "integer",
-              "format": "int32"
+            "required": [
+              "packSize"
+            ]
+          }
+        ]
+      },
+      "HoneyBee": {
+        "description": "A representation of a honey bee",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "honeyPerDay": {
+                "type": "number",
+                "description": "Average amount of honey produced per day in ounces",
+                "example": 3.14,
+                "multipleOf": 0.01
+              }
             },
-            "totalElements": {
-              "description": "Total number of elements",
-              "type": "integer",
-              "format": "int64"
+            "required": [
+              "honeyPerDay"
+            ]
+          }
+        ]
+      },
+      "Id": {
+        "type": "integer",
+        "format": "int64",
+        "readOnly": true
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Order ID",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              }
+            ]
+          },
+          "petId": {
+            "description": "Pet ID",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              }
+            ]
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "default": 1
+          },
+          "shipDate": {
+            "description": "Estimated ship date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "description": "Order Status",
+            "enum": [
+              "placed",
+              "approved",
+              "delivered"
+            ]
+          },
+          "complete": {
+            "description": "Indicates whenever order was completed or not",
+            "type": "boolean",
+            "default": false,
+            "readOnly": true
+          },
+          "requestId": {
+            "description": "Unique Request Id",
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "xml": {
+          "name": "Order"
+        }
+      },
+      "Pet": {
+        "type": "object",
+        "required": [
+          "name",
+          "photoUrls"
+        ],
+        "discriminator": {
+          "propertyName": "petType",
+          "mapping": {
+            "cat": "#/components/schemas/Cat",
+            "dog": "#/components/schemas/Dog",
+            "bee": "#/components/schemas/HoneyBee"
+          }
+        },
+        "properties": {
+          "id": {
+            "externalDocs": {
+              "description": "Find more info here",
+              "url": "https://example.com"
+            },
+            "description": "Pet ID",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              }
+            ]
+          },
+          "category": {
+            "description": "Categories this pet belongs to",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Category"
+              }
+            ]
+          },
+          "name": {
+            "description": "The name given to a pet",
+            "type": "string",
+            "example": "Guru"
+          },
+          "photoUrls": {
+            "description": "The list of URL to a cute photos featuring pet",
+            "type": "array",
+            "maxItems": 20,
+            "xml": {
+              "name": "photoUrl",
+              "wrapped": true
+            },
+            "items": {
+              "type": "string",
+              "format": "url"
             }
           },
-          "description": "Page representation for search/fetch result"
+          "friend": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Pet"
+              }
+            ]
+          },
+          "tags": {
+            "description": "Tags attached to the pet",
+            "type": "array",
+            "minItems": 1,
+            "xml": {
+              "name": "tag",
+              "wrapped": true
+            },
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Pet status in the store",
+            "enum": [
+              "available",
+              "pending",
+              "sold"
+            ]
+          },
+          "petType": {
+            "description": "Type of a pet",
+            "type": "string"
+          }
         },
-        "Group": {
-          "description": "Page content, number of elements is restricted by page size",
-          "type": "object",
-          "properties": {
-            "groupId": {
-              "description": "Group id in hexadecimal format",
-              "type": "string",
-              "example": "507f191e810c19729de860ea"
-            },
-            "name": {
-              "description": "Group name",
-              "type": "string"
-            },
-            "created": {
-              "description": "Created timestamp",
-              "type": "string",
-              "format": "date-time"
-            },
-            "updated": {
-              "description": "Updated timestamp",
-              "type": "string",
-              "format": "date-time"
-            },
-            "description": {
-              "description": "Description",
-              "type": "string"
-            },
-            "totalContactsCount": {
-              "description": "Total contacts count",
-              "type": "integer",
-              "format": "int32"
-            },
-            "activeContactsCount": {
-              "description": "Active contacts count",
-              "type": "integer",
-              "format": "int32"
-            },
-            "invalidContactsCount": {
-              "description": "Invalid contacts count",
-              "type": "integer",
-              "format": "int32"
-            },
-            "unsubscribedContactsCount": {
-              "description": "Unsubscribed contacts count",
-              "type": "integer",
-              "format": "int32"
-            },
-            "keywords": {
-              "description": "Keywords that bound to the group",
+        "xml": {
+          "name": "Pet"
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Tag ID",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              }
+            ]
+          },
+          "name": {
+            "description": "Tag name",
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "xml": {
+          "name": "Tag"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "pet": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Pet"
+              },
+              {
+                "$ref": "#/components/schemas/Tag"
+              }
+            ]
+          },
+          "username": {
+            "description": "User supplied username",
+            "type": "string",
+            "minLength": 4,
+            "example": "John78"
+          },
+          "firstName": {
+            "description": "User first name",
+            "type": "string",
+            "minLength": 1,
+            "example": "John"
+          },
+          "lastName": {
+            "description": "User last name",
+            "type": "string",
+            "minLength": 1,
+            "example": "Smith"
+          },
+          "email": {
+            "description": "User email address",
+            "type": "string",
+            "format": "email",
+            "example": "john.smith@example.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password, MUST contain a mix of upper and lower case letters, as well as digits",
+            "format": "password",
+            "minLength": 8,
+            "pattern": "/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/",
+            "example": "drowssaP123"
+          },
+          "phone": {
+            "description": "User phone number in international format",
+            "type": "string",
+            "pattern": "/^\\+(?:[0-9]-?){6,14}[0-9]$/",
+            "example": "+1-202-555-0192"
+          },
+          "userStatus": {
+            "description": "User status",
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      }
+    },
+    "requestBodies": {
+      "Pet": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "description": "My Pet",
+                  "title": "Pettie"
+                },
+                {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              ]
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "hooray"
+                }
+              }
+            }
+          }
+        },
+        "description": "Pet object that needs to be added to the store",
+        "required": true
+      },
+      "UserArray": {
+        "content": {
+          "application/json": {
+            "schema": {
               "type": "array",
               "items": {
-                "description": "Keywords that bound to the group",
-                "type": "string"
+                "$ref": "#/components/schemas/User"
               }
+            }
+          }
+        },
+        "description": "List of user object",
+        "required": true
+      }
+    },
+    "securitySchemes": {
+      "petstore_auth": {
+        "description": "Get access to data while protecting your account credentials.\nOAuth2 is also a safer and more secure way to give you access.\n",
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://petstore.swagger.io/api/oauth/dialog",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
             }
           }
         }
       },
-      "securitySchemes": {
-        "bearerAuth" : {
-          "type": "http",
-          "scheme": "bearer",
-          "description":"Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
-          "name": "Authorization",
-          "in": "header"
+      "api_key": {
+        "description": "For this sample, you can use the api key `special-key` to test the authorization filters.\n",
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    "examples": {
+      "Order": {
+        "value": {
+          "quantity": 1,
+          "shipDate": "2018-10-19T16:46:45Z",
+          "status": "placed",
+          "complete": false
+        }
+      }
+    }
+  },
+  "x-webhooks": {
+    "newPet": {
+      "post": {
+        "summary": "New pet",
+        "description": "Information about a new pet in the systems",
+        "operationId": "newPet",
+        "tags": [
+          "pet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return a 200 status to indicate that the data was received successfully"
+          }
         }
       }
     }
   }
+}
