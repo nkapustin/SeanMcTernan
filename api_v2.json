@@ -46,6 +46,82 @@
     }
   ],
   "paths": {
+    "/api/webhooks": {
+      "get": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Fetch webhooks",
+        "description": "Fetch all webhooks that you have created",
+        "operationId": "getWebhooks",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns page of webhooks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhooksPageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Create a webhook",
+        "description": "Create a new webhook from scratch",
+        "operationId": "createWebhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success. Webhook was created"
+          },
+          "400": {
+            "description": "Error. Invalid phone format"
+          }
+        }
+      }
+    },
     "/api/webhooks/{webhookId}": {
       "put": {
         "tags": [
