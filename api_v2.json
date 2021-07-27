@@ -44,6 +44,11 @@
       "name": "Webhooks",
       "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
     }
+    ,
+    {
+      "name": "Campaigns",
+      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or ID, or list all of your SimpleTexting campaigns."
+    }
   ],
   "paths": {
     "/api/webhooks": {
