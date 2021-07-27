@@ -460,9 +460,9 @@
         "tags": [
           "Campaigns"
         ],
-        "summary": "Fetch all contacts",
-        "description": "Fetch all contacts from the SimpleTexting system.",
-        "operationId": "fetchContacts",
+        "summary": "Fetch all campaigns",
+        "description": "Fetch all campaigns from the SimpleTexting system.",
+        "operationId": "fetchCampaigns",
         "parameters": [
           {
             "name": "page",
@@ -491,30 +491,11 @@
             "example": 50
           },
           {
-            "name": "since",
+            "name": "accountPhone",
             "in": "query",
-            "description": "List contacts updated since a specified date",
+            "description": "The phone number the campaign was sent from",
             "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "example": "2020-03-30T12:47:40.123-05:00"
-          },
-          {
-            "name": "direction",
-            "in": "query",
-            "description": "Specifies the sort order for results. Results are sorted by 'updated' field",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "desc",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
-            },
-            "example": "desc"
+            "example": 555888
           }
         ],
         "responses": {
