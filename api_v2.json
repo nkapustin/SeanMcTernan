@@ -2114,7 +2114,7 @@
             "description": "Page content, number of elements is restricted by page size",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Campaign"
+              "$ref": "#/components/schemas/FetchedCampaign"
             }
           },
           "totalPages": {
@@ -2203,7 +2203,7 @@
           }
         }
       },
-      "Campaign": {
+      "FetchedCampaign": {
         "description": "Page content, number of elements is restricted by page size",
         "type": "object",
         "properties": {
@@ -2267,76 +2267,79 @@
               "$ref": "#/components/schemas/Contact list"
             }
           },
-          "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
-            "type": "object",
-            "additionalProperties": {
-              "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
-              "type": "string",
-              "example": "{\"zipcode\":\"12345\"}"
-            },
-            "example": {
-              "zipcode": "12345"
-            }
-          },
-          "comment": {
-            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
-            "type": "string",
-            "example": "VIP client"
-          },
-          "lists": {
-            "description": "List of lists, where contact is included",
-            "type": "array",
-            "example": [
-              {
-                "id": "5f6c760379f4e93135aac72b",
-                "name": "My First List"
-              }
-            ],
-            "items": {
-              "$ref": "#/components/schemas/Contact list"
-            }
-          },
-          "subscriptionStatus": {
-            "description": "Contact subscription status \n\n**Example:** `OPT_IN`",
-            "type": "string",
-            "example": "OPT_IN",
-            "enum": [
-              "OPT_IN",
-              "OPT_OUT",
-              "WAIT_SMS_CONFIRMATION",
-              "REJECT_CONFIRMATION"
-            ]
-          },
           "created": {
             "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
-          "updated": {
-            "description": "Updated timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+          "modified": {
+            "description": "Modified timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
-            "example": "2021-05-28T20:20:08.489Z"
+            "example": "2021-04-28T23:20:08.489Z"
           },
-          "updateSource": {
-            "description": "The source from which the contact was updated \n\n**Example:** `IMPORTED_FROM_FILE`",
+          "started": {
+            "description": "Started timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "finished": {
+            "description": "Finished timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "messageTemplate": {
+            "description": "Existing campaign id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "type": "string",
+            "example": {
+              "$ref": "#/components/schemas/FetchedCampaignTemplate"
+            }
+          }
+      },
+      "FetchedCampaignTemplate": {
+        "description": "Page content, number of elements is restricted by page size",
+        "type": "object",
+        "properties": {
+          "category": {
+            "description": "Message category \n\n**Example:** `SMS`",
+            "type": "string",
+            "example": "SMS",
             "enum": [
-              "IMPORTED_FROM_FILE",
-              "PUBLIC_API",
-              "MAILCHIMP_SYNC",
-              "KEYWORD",
-              "WEB_FORM",
-              "MANUAL",
-              "REMINDER",
-              "ZAPIER",
-              "WORKATO",
-              "CONFIRMATION",
-              "INCOMING_MESSAGE"
+              "SMS",
+              "MMS",
+              "EXTENDED_SMS"
+            ]
+          },
+          "subject": {
+            "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+            "type": "string",
+            "example": "Some message from SimpleTexting"
+          },
+          "text": {
+            "description": "Text \n\n**Example:** `Hello! How are you?`",
+            "type": "string",
+            "example": "Hello! How are you?"
+          },
+          "fallbackText": {
+            "description": "Custom fallback text if mms cannot be received Should contain `[url=\"%%fallback_link%%\"]` placeholder that will be replaced with a link to the message \n\n**Example:** `Some text`",
+            "type": "string",
+            "example": "Some text"
+          },
+          "mediaItems": {
+            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+            "type": "array",
+            "example": [
+              "507f1f77bcf86cd799439011",
+              "507f1f77bcf86cd799439333"
             ],
-            "example": "IMPORTED_FROM_FILE"
+            "items": {
+              "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+              "type": "string",
+              "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
+            }
           }
         }
       },
