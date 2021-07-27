@@ -456,6 +456,170 @@
         }
       }
     },
+    "/api/campaigns": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Fetch all contacts",
+        "description": "Fetch all contacts from the SimpleTexting system.",
+        "operationId": "fetchContacts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 1
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "List contacts updated since a specified date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "Specifies the sort order for results. Results are sorted by 'updated' field",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "desc",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            },
+            "example": "desc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns a page of contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactPageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Create a contact",
+        "description": "Create a brand new contact, and specifiy the list they should live in.",
+        "operationId": "createContact",
+        "parameters": [
+          {
+            "name": "upsert",
+            "in": "query",
+            "description": "If a contact exists with the phone number in your request body, the contact will be updated with the information within the request when set to true.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": true
+          },
+          {
+            "name": "listsReplacement",
+            "in": "query",
+            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "example": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success. Contact created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseID"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/campaigns/{campaignIdOrName}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Fetch a contact",
+        "description": "Fetch a contact via their unique id, or their phone number. The phone number is the preferred parameter for this call.",
+        "operationId": "getContact",
+        "parameters": [
+          {
+            "name": "phoneNumberOrContactId",
+            "in": "path",
+            "description": "Phone number (preferred) or Contact id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "3051234567 or 507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Fetched contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/contact-lists": {
       "get": {
         "tags": [
