@@ -17,6 +17,10 @@
   ],
   "tags": [
     {
+      "name": "Campaigns",
+      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or ID, or list all of your SimpleTexting campaigns."
+    },
+    {
       "name": "Contacts",
       "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
     },
@@ -43,11 +47,6 @@
     {
       "name": "Webhooks",
       "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
-    }
-    ,
-    {
-      "name": "Campaigns",
-      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or ID, or list all of your SimpleTexting campaigns."
     }
   ],
   "paths": {
