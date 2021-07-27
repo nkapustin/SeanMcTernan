@@ -2298,6 +2298,7 @@
               "$ref": "#/components/schemas/FetchedCampaignTemplate"
             }
           }
+        }
       },
       "FetchedCampaignTemplate": {
         "description": "Page content, number of elements is restricted by page size",
