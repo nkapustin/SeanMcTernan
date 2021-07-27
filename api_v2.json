@@ -2294,9 +2294,7 @@
           "messageTemplate": {
             "description": "Message template \n\n**Example:** `607f0558a7c898629dd47d7a`",
             "type": "object",
-            "example": {
-              "$ref": "#/components/schemas/FetchedCampaignTemplate"
-            }
+            "example": "2021-04-28T23:20:08.489Z"
           }
         }
       },
