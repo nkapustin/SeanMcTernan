@@ -558,7 +558,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContactPageView"
+                  "$ref": "#/components/schemas/CampaignPageView"
                 }
               }
             }
@@ -2107,6 +2107,29 @@
           }
         }
       },
+      "CampaignPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "description": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Campaign"
+            }
+          },
+          "totalPages": {
+            "description": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "description": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
       "ContactPageView": {
         "type": "object",
         "properties": {
@@ -2177,6 +2200,143 @@
             "type": "integer",
             "format": "int32",
             "example": 15
+          }
+        }
+      },
+      "Campaign": {
+        "description": "Page content, number of elements is restricted by page size",
+        "type": "object",
+        "properties": {
+          "campaignId": {
+            "description": "Existing campaign id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "type": "string",
+            "example": "607f0558a7c898629dd47d7a"
+          },
+          "title": {
+            "description": "Campaign name \n\n**Example:** `My first campaign`",
+            "type": "string",
+            "example": "My first campaign"
+          },
+          "accountPhone": {
+            "description": "Number the campaign was sent from \n\n**Example:** `555888`",
+            "type": "string",
+            "example": "555888"
+          },
+          "customFieldsMaxLength": {
+            "description": "Custom fields length in current campaign",
+            "type": "object",
+            "additionalProperties": {
+              "description": "\n\n**Example:** `{\"firstname\":\"20\"}`",
+              "type": "string",
+              "example": "{\"firstname\":\"20\"}"
+            },
+            "example": {
+              "firstname": "20"
+            }
+          },
+          "state": {
+            "description": "The the current state of the campaign \n\n**Example:** `COMPLETED`",
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "SCHEDULED",
+              "READY_FOR_SEND",
+              "MONITORING",
+              "IN_PROGRESS", 
+              "QUEUED",
+              "COMPLETED",
+              "ERROR",
+              "PAUSED_ON_SCHEDULED",
+              "PAUSED_ON_IN_PROGRESS",
+              "PAUSED_ON_QUEUED",
+              "PAUSED_ON_RUN",
+              "PAUSED"
+            ],
+            "example": "COMPLETED"
+          },
+          "listsOrSegments": {
+            "description": "List of lists or segments campaign was sent to",
+            "type": "array",
+            "example": [
+              {
+                "id": "5f6c760379f4e93135aac72b",
+                "name": "My First List"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Contact list"
+            }
+          },
+          "customFields": {
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "type": "object",
+            "additionalProperties": {
+              "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
+              "type": "string",
+              "example": "{\"zipcode\":\"12345\"}"
+            },
+            "example": {
+              "zipcode": "12345"
+            }
+          },
+          "comment": {
+            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
+            "type": "string",
+            "example": "VIP client"
+          },
+          "lists": {
+            "description": "List of lists, where contact is included",
+            "type": "array",
+            "example": [
+              {
+                "id": "5f6c760379f4e93135aac72b",
+                "name": "My First List"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Contact list"
+            }
+          },
+          "subscriptionStatus": {
+            "description": "Contact subscription status \n\n**Example:** `OPT_IN`",
+            "type": "string",
+            "example": "OPT_IN",
+            "enum": [
+              "OPT_IN",
+              "OPT_OUT",
+              "WAIT_SMS_CONFIRMATION",
+              "REJECT_CONFIRMATION"
+            ]
+          },
+          "created": {
+            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "updated": {
+            "description": "Updated timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-05-28T20:20:08.489Z"
+          },
+          "updateSource": {
+            "description": "The source from which the contact was updated \n\n**Example:** `IMPORTED_FROM_FILE`",
+            "type": "string",
+            "enum": [
+              "IMPORTED_FROM_FILE",
+              "PUBLIC_API",
+              "MAILCHIMP_SYNC",
+              "KEYWORD",
+              "WEB_FORM",
+              "MANUAL",
+              "REMINDER",
+              "ZAPIER",
+              "WORKATO",
+              "CONFIRMATION",
+              "INCOMING_MESSAGE"
+            ],
+            "example": "IMPORTED_FROM_FILE"
           }
         }
       },
