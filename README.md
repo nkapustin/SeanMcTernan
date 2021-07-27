@@ -1,4 +1,4 @@
-  <img src="https://github.com/SeanMcTernan/SeanMcTernan/blob/master/ReadMe_Images/Laptop.gif?raw=true" alt="Sean Mc Ternan GitHub Motion Graphic">
+  <img src="https://github.com/SeanMcTernan/SeanMcTernan/blob/master/Site_logo.gif?raw=true" alt="Sean Mc Ternan GitHub Motion Graphic">
 
 # Hi I'm Seán 👋  <a href="https://github.com/SeanMcTernan" target="_blank"><img src="https://raw.githubusercontent.com/SeanMcTernan/SeanMcTernan/7c1dcc08830e2087866a9d06c1f37d7b431edf82/ReadMe_Images/ReadMe_Badge_Small.svg" alt="Site Badge By Sean Mc Ternan" width="120" align="right"/></a>
 
