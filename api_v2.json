@@ -495,12 +495,66 @@
             "in": "query",
             "description": "The phone number the campaign was sent from",
             "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
             "example": 555888
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "The the current state of the campaigns you wish to retrieve",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "SENT",
+              "enum": [
+                "DRAFT",
+                "PAUSED",
+                "SENT",
+                "SCHEDULED"
+              ]
+            },
+            "example": "SENT"
+          },
+          {
+            "name": "listNameOrId",
+            "in": "query",
+            "description": "The list name or list Id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "My First List"
+          },
+          {
+            "name": "startDateFrom",
+            "in": "query",
+            "description": "List campaigns starting from a certain date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
+          },
+          {
+            "name": "startDateTo",
+            "in": "query",
+            "description": "List campaigns up to a certain date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
           }
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns a page of contacts",
+            "description": "Success. Fetched list of campaigns",
             "content": {
               "application/json": {
                 "schema": {
