@@ -569,46 +569,22 @@
         "tags": [
           "Campaigns"
         ],
-        "summary": "Create a contact",
-        "description": "Create a brand new contact, and specifiy the list they should live in.",
-        "operationId": "createContact",
-        "parameters": [
-          {
-            "name": "upsert",
-            "in": "query",
-            "description": "If a contact exists with the phone number in your request body, the contact will be updated with the information within the request when set to true.",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            },
-            "example": true
-          },
-          {
-            "name": "listsReplacement",
-            "in": "query",
-            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list.",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": true
-            },
-            "example": true
-          }
-        ],
+        "summary": "Send a campaign",
+        "description": "Create and send a campaign",
+        "operationId": "createCampaign",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ContactUpdate"
+                "$ref": "#/components/schemas/CreateCampaignTemplate"
               }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "Success. Contact created",
+          "201": {
+            "description": "Success. Campaign was created",
             "content": {
               "application/json": {
                 "schema": {
@@ -2308,6 +2284,34 @@
             "https://txt.so/img.jpg",
             "507f1f77bcf86cd799439333"
           ]
+      },
+      "CreateCampaignTemplate": {
+        "required": [
+          "title",
+          "messageTemplate"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Campaign title \n\n**Example:** `My first campaign`",
+            "type": "string",
+            "example": "My first campaign"
+          },
+          "listsOrSegments": {
+            "description": "Lists or segments ids or names \n\n**Example:** `[\"507f191e810c19729de860ea\",\"My First List\"]`",
+            "type": "array",
+            "example": [
+              "507f191e810c19729de860ea",
+              "My First List"
+            ],
+            "items": {
+              "description": "Lists or segments ids or names",
+              "type": "string",
+              "example": "[\"507f191e810c19729de860ea\", \"My First List\"]"
+            }
+          },
+        "description": "CreateCampaignTemplate"
+        }
       },
       "Contact": {
         "description": "Page content, number of elements is restricted by page size",
