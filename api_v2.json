@@ -558,7 +558,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CampaignPageView"
+                  "$ref": "#/components/schemas/Webook"
                 }
               }
             }
