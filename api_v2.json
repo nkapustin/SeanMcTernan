@@ -2304,12 +2304,10 @@
           "subject": "Some message from SimpleTexting",
           "text": "Hello! How are you?",
           "fallbackText": "Some text",
-          "mediaItems":  [
-              "https://txt.so/img.jpg",
-              "507f1f77bcf86cd799439333"
-            ]
-          }
-        }
+          "mediaItems": [
+            "https://txt.so/img.jpg",
+            "507f1f77bcf86cd799439333"
+          ]
       },
       "Contact": {
         "description": "Page content, number of elements is restricted by page size",
