@@ -2290,13 +2290,13 @@
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
-          }
-        },
-        "messageTemplate": {
-          "description": "Template of message sent",
-          "type": "object",
-          "example": {
-            "$ref": "#/components/schemas/FetchedCampaignTemplate"
+          },
+          "messageTemplate": {
+            "description": "Template of message sent",
+            "type": "object",
+            "example": {
+              "$ref": "#/components/schemas/FetchedCampaignTemplate"
+            }
           }
         }
       },
