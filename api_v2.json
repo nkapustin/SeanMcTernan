@@ -2107,29 +2107,6 @@
           }
         }
       },
-      "CampaignPageView": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "description": "Page content, number of elements is restricted by page size",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FetchedCampaign"
-            }
-          },
-          "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalElements": {
-            "description": "Total number of elements",
-            "type": "integer",
-            "format": "int64"
-          }
-        },
-        "description": "Page representation for search/fetch result"
-      },
       "ContactPageView": {
         "type": "object",
         "properties": {
