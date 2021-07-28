@@ -558,7 +558,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FetchedWebhook"
+                  "$ref": "#/components/schemas/CampaignPageView"
                 }
               }
             }
@@ -2107,6 +2107,29 @@
           }
         }
       },
+      "CampaignPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "description": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FetchedCampaign"
+            }
+          },
+          "totalPages": {
+            "description": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "description": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
       "ContactPageView": {
         "type": "object",
         "properties": {
@@ -2177,6 +2200,140 @@
             "type": "integer",
             "format": "int32",
             "example": 15
+          }
+        }
+      },
+      "FetchedCampaign": {
+        "description": "Page content, number of elements is restricted by page size",
+        "type": "object",
+        "properties": {
+          "campaignId": {
+            "description": "Existing campaign id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "type": "string",
+            "example": "607f0558a7c898629dd47d7a"
+          },
+          "title": {
+            "description": "Campaign name \n\n**Example:** `My first campaign`",
+            "type": "string",
+            "example": "My first campaign"
+          },
+          "accountPhone": {
+            "description": "Number the campaign was sent from \n\n**Example:** `555888`",
+            "type": "string",
+            "example": "555888"
+          },
+          "customFieldsMaxLength": {
+            "description": "Custom fields length in current campaign",
+            "type": "object",
+            "additionalProperties": {
+              "description": "\n\n**Example:** `{\"firstname\":\"20\"}`",
+              "type": "string",
+              "example": "{\"firstname\":\"20\"}"
+            },
+            "example": {
+              "firstname": "20"
+            }
+          },
+          "state": {
+            "description": "The the current state of the campaign \n\n**Example:** `COMPLETED`",
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "SCHEDULED",
+              "READY_FOR_SEND",
+              "MONITORING",
+              "IN_PROGRESS", 
+              "QUEUED",
+              "COMPLETED",
+              "ERROR",
+              "PAUSED_ON_SCHEDULED",
+              "PAUSED_ON_IN_PROGRESS",
+              "PAUSED_ON_QUEUED",
+              "PAUSED_ON_RUN",
+              "PAUSED"
+            ],
+            "example": "COMPLETED"
+          },
+          "listsOrSegments": {
+            "description": "List of lists or segments campaign was sent to",
+            "type": "array",
+            "example": [
+              {
+                "id": "5f6c760379f4e93135aac72b",
+                "name": "My First List"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Contact list"
+            }
+          },
+          "created": {
+            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "modified": {
+            "description": "Modified timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "started": {
+            "description": "Started timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "finished": {
+            "description": "Finished timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          }
+        }
+      },
+      "FetchedCampaignTemplate": {
+        "description": "Page content, number of elements is restricted by page size",
+        "type": "object",
+        "properties": {
+          "category": {
+            "description": "Message category \n\n**Example:** `SMS`",
+            "type": "string",
+            "example": "SMS",
+            "enum": [
+              "SMS",
+              "MMS",
+              "EXTENDED_SMS"
+            ]
+          },
+          "subject": {
+            "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+            "type": "string",
+            "example": "Some message from SimpleTexting"
+          },
+          "text": {
+            "description": "Text \n\n**Example:** `Hello! How are you?`",
+            "type": "string",
+            "example": "Hello! How are you?"
+          },
+          "fallbackText": {
+            "description": "Custom fallback text if mms cannot be received Should contain `[url=\"%%fallback_link%%\"]` placeholder that will be replaced with a link to the message \n\n**Example:** `Some text`",
+            "type": "string",
+            "example": "Some text"
+          },
+          "mediaItems": {
+            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+            "type": "array",
+            "example": [
+              "507f1f77bcf86cd799439011",
+              "507f1f77bcf86cd799439333"
+            ],
+            "items": {
+              "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+              "type": "string",
+              "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
+            }
           }
         }
       },
