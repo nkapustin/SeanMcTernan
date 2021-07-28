@@ -2301,33 +2301,13 @@
         }
       },
       "FetchedCampaignTemplate": {
-          "subject": {
-            "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
-            "type": "string",
-            "example": "Some message from SimpleTexting"
-          },
-          "text": {
-            "description": "Text \n\n**Example:** `Hello! How are you?`",
-            "type": "string",
-            "example": "Hello! How are you?"
-          },
-          "fallbackText": {
-            "description": "Custom fallback text if mms cannot be received Should contain `[url=\"%%fallback_link%%\"]` placeholder that will be replaced with a link to the message \n\n**Example:** `Some text`",
-            "type": "string",
-            "example": "Some text"
-          },
-          "mediaItems": {
-            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
-            "type": "array",
-            "example": [
-              "507f1f77bcf86cd799439011",
+          "subject": "Some message from SimpleTexting",
+          "text": "Hello! How are you?",
+          "fallbackText": "Some text",
+          "mediaItems":  [
+              "https://txt.so/img.jpg",
               "507f1f77bcf86cd799439333"
-            ],
-            "items": {
-              "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
-              "type": "string",
-              "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
-            }
+            ]
           }
         }
       },
