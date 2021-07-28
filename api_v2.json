@@ -2301,19 +2301,6 @@
         }
       },
       "FetchedCampaignTemplate": {
-        "description": "Page content, number of elements is restricted by page size",
-        "type": "object",
-        "properties": {
-          "category": {
-            "description": "Message category \n\n**Example:** `SMS`",
-            "type": "string",
-            "example": "SMS",
-            "enum": [
-              "SMS",
-              "MMS",
-              "EXTENDED_SMS"
-            ]
-          },
           "subject": {
             "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
             "type": "string",
