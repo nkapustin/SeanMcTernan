@@ -2292,7 +2292,7 @@
             "example": "2021-04-28T23:20:08.489Z"
           },
           "messageTemplate": {
-            "description": "Template of message sent",
+            "description": "Template of message sent \n\n**Example:** `{\"subject\": \"Some message from SimpleTexting\",\"text\": \"Hello! How are you?\",\"fallbackText\": \"Some text\",\"mediaItems\": [\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]}`",
             "type": "object",
             "example": {
               "$ref": "#/components/schemas/FetchedCampaignTemplate"
