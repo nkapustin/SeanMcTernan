@@ -2310,7 +2310,18 @@
               "example": "[\"507f191e810c19729de860ea\", \"My First List\"]"
             }
           },
-        "description": "CreateCampaignTemplate"
+          "messageTemplate": {
+            "description": "Account phone, primary number is default \n\n**Example:** `555888`",
+            "type": "object",
+            "properties": {
+              "title": {
+                "description": "Campaign title \n\n**Example:** `My first campaign`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+            "example": "555888"
+          }
+        }
         }
       },
       "Contact": {
