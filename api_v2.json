@@ -2310,6 +2310,22 @@
               "example": "[\"507f191e810c19729de860ea\", \"My First List\"]"
             }
           },
+          "accountPhone": {
+            "description": "Account phone, primary number is default \n\n**Example:** `555888`",
+            "type": "string",
+            "example": "555888"
+          },
+          "customFieldsMaxLength": {
+            "description": "Custom fields length in current campaign, overwrite default settings. See /custom-fields  \n\n**Example:** `{\"firstname\":\"20\"}`",
+            "type": "object",
+            "properties": {
+              "firstname": {
+                "description": "Custom Field Name",
+                "type": "integer",
+                "example": 20
+              }
+          }
+        },
           "messageTemplate": {
             "description": "Campaign Template \n\n**Example:** `555888`",
             "type": "object",
@@ -2318,19 +2334,6 @@
                 "description": "Campaign title \n\n**Example:** `My first campaign`",
                 "type": "string",
                 "example": "My first campaign"
-              },
-              "listsOrSegments": {
-                "description": "Lists or segments ids or names \n\n**Example:** `[\"507f191e810c19729de860ea\",\"My First List\"]`",
-                "type": "array",
-                "example": [
-                  "507f191e810c19729de860ea",
-                  "My First List"
-                ],
-                "items": {
-                  "description": "Lists or segments ids or names",
-                  "type": "string",
-                  "example": "[\"507f191e810c19729de860ea\", \"My First List\"]"
-                }
               }
           }
         }
