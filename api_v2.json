@@ -2319,8 +2319,8 @@
             "description": "Custom fields length in current campaign, overwrite default settings. See /custom-fields  \n\n**Example:** `{\"firstname\":\"20\"}`",
             "type": "object",
             "properties": {
-              "firstname": {
-                "description": "Custom Field Name",
+              "customfield": {
+                "description": "Custom field name and max length",
                 "type": "integer",
                 "example": 20
               }
@@ -2334,6 +2334,34 @@
                 "description": "Campaign title \n\n**Example:** `My first campaign`",
                 "type": "string",
                 "example": "My first campaign"
+              },
+              "subject": {
+                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+              "text": {
+                "description": "Text body \n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+              "fallbackText": {
+                "description": "Custom fallback text if mms cannot be received. Should contains '[url=\"%%fallback_link%%\"]' placeholder that will be replaced with a link to the message \n\n**Example:** `Some text`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+              "mediaItems": {
+                "description": "List of mms media urls for temporal storing or media items ids \n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
+                "type": "array",
+                "example": [
+                  "https://txt.so/img.jpg",
+                  "507f1f77bcf86cd799439011"
+                ],
+                "items": {
+                  "description": "List of mms media urls or media items ids",
+                  "type": "string",
+                  "example": "[\"507f191e810c19729de860ea\", \"https://txt.so/img.jpg\"]"
+                }
               }
           }
         }
