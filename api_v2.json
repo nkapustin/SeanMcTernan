@@ -589,7 +589,7 @@
         }
       }
     },
-    "/api/campaigns/{campaignIdOrName}": {
+    "/api/campaigns/{campaignId}": {
       "get": {
         "tags": [
           "Campaigns"
