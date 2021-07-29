@@ -584,14 +584,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Campaign was created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseID"
-                }
-              }
-            }
+            "description": "Success. Campaign was created"
           }
         }
       }
@@ -599,30 +592,30 @@
     "/api/campaigns/{campaignIdOrName}": {
       "get": {
         "tags": [
-          "Contacts"
+          "Campaigns"
         ],
-        "summary": "Fetch a contact",
-        "description": "Fetch a contact via their unique id, or their phone number. The phone number is the preferred parameter for this call.",
-        "operationId": "getContact",
+        "summary": "Fetch a campaign",
+        "description": "Fetch a campaign via its unique id.",
+        "operationId": "getCampaign",
         "parameters": [
           {
-            "name": "phoneNumberOrContactId",
+            "name": "campaignId",
             "in": "path",
-            "description": "Phone number (preferred) or Contact id in hexadecimal format",
+            "description": "Campaign id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "example": "3051234567 or 507f1f77bcf86cd799439011"
+            "example": "507f1f77bcf86cd799439011"
           }
         ],
         "responses": {
           "200": {
-            "description": "Success. Fetched contact",
+            "description": "Success. Fetched campaign",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Contact"
+                  "$ref": "#/components/schemas/FetchedCampaign"
                 }
               }
             }
