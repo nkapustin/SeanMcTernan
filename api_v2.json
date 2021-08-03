@@ -2193,7 +2193,7 @@
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
+      "Bearer Token": {
         "type": "http",
         "scheme": "bearer",
         "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
