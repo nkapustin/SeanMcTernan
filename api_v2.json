@@ -3,7 +3,7 @@
   "info": {
     "title": "SimpleTexting API Documentation",
     "version": "2.0.0",
-    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n[Contact Us](https://simpletexting.com/contact-us) | [Terms of Service](https://simpletexting.com/terms)\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n"
+    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.<br><br>[Contact Us](https://simpletexting.com/contact-us) | [Terms of Service](https://simpletexting.com/terms)\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n"
   },
   "servers": [
     {
@@ -2194,7 +2194,7 @@
       "Bearer Token": {
         "type": "http",
         "scheme": "bearer",
-        "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
+        "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.<br><br>To understand more about bearer tokens, please take a look at the following [resource](https://swagger.io/docs/specification/authentication/bearer-authentication/).",
         "name": "Authorization",
         "in": "header"
       }
