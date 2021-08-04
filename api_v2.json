@@ -16,6 +16,10 @@
       "description": "\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n<SecurityDefinitions />\n"
     },
     {
+      "name": "File Size",
+      "description": "We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts."
+    },
+    {
       "name": "Contacts",
       "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
     },
