@@ -3,7 +3,7 @@
   "info": {
     "title": "SimpleTexting API Documentation",
     "version": "2.0.0",
-    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.<br><br>[Contact Us](https://simpletexting.com/contact-us) | [Terms of Service](https://simpletexting.com/terms)# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n"
+    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.<br><br>[Contact Us](https://simpletexting.com/contact-us) | [Terms of Service](https://simpletexting.com/terms)# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n\n # File Size We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts."
   },
   "servers": [
     {
