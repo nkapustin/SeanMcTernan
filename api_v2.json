@@ -13,7 +13,7 @@
   "tags": [
     {
       "name": "Authentication",
-      "description": "\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n<SecurityDefinitions />\n"
+      "description": "SimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n<SecurityDefinitions />\n"
     },
     {
       "name": "File Size",
@@ -37,7 +37,7 @@
     },
     {
       "name": "Media Items",
-      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
+      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments. The size limitations of these items are discussed [here](#tag/File-Size)"
     },
     {
       "name": "Messages",
@@ -744,7 +744,7 @@
           "Messages"
         ],
         "summary": "Send message",
-        "description": "Send either an MMS, or SMS message to a contact. Use this programmatically to send to multiple contacts.",
+        "description": "Send either an MMS, or SMS message to a contact. Use this programmatically to send to multiple contacts. There are limitations on Media Files with MMS messages. The size limitations of these items are discussed [here](#tag/File-Size)",
         "operationId": "createMessage",
         "requestBody": {
           "content": {
