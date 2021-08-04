@@ -1634,12 +1634,6 @@
         ],
         "type": "object",
         "properties": {
-          "listsReplacement": {
-            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list. \n\n**Example:** `true`",
-            "type": "boolean",
-            "example": true,
-            "default": true
-          },
           "updates": {
             "description": "List of updates for contacts",
             "maxItems": 500,
@@ -1647,7 +1641,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ContactUpdate"
-            }
+            },
+          "listsReplacement": {
+            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list. \n\n**Example:** `true`",
+            "type": "boolean",
+            "example": true,
+            "default": true
+          }
           }
         },
         "description": "Add new contacts or update existing, based on unique contact phone. One contact per object in the array"
