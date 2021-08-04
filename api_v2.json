@@ -1287,11 +1287,6 @@
               "MMS_STRICTLY"
             ]
           },
-          "subject": {
-            "description": "MMS Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
-            "type": "string",
-            "example": "Some message from SimpleTexting"
-          },
           "text": {
             "description": "Text Body \n\n**Example:** `Hello! How are you?`",
             "type": "string",
@@ -1301,6 +1296,11 @@
             "description": "Contact phone \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
+          },
+          "subject": {
+            "description": "MMS Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+            "type": "string",
+            "example": "Some message from SimpleTexting"
           },
           "fallbackText": {
             "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
