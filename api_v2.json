@@ -1553,11 +1553,6 @@
             "type": "string",
             "example": "Hello! How are you?"
           },
-          "contactPhone": {
-            "description": "Contact phone \n\n**Example:** `1234567890`",
-            "type": "string",
-            "example": "1234567890"
-          },
           "subject": {
             "description": "MMS Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
             "type": "string",
