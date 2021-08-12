@@ -13,7 +13,7 @@
   "tags": [
     {
       "name": "File Size",
-      "description": "We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts.
+      "description": "We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts."
     },
     {
       "name": "Campaigns",
@@ -2501,7 +2501,7 @@
               "SCHEDULED",
               "READY_FOR_SEND",
               "MONITORING",
-              "IN_PROGRESS", 
+              "IN_PROGRESS",
               "QUEUED",
               "COMPLETED",
               "ERROR",
@@ -2560,13 +2560,13 @@
         }
       },
       "FetchedCampaignTemplate": {
-          "subject": "Some message from SimpleTexting",
-          "text": "Hello! How are you?",
-          "fallbackText": "Some text",
-          "mediaItems": [
-            "https://txt.so/img.jpg",
-            "507f1f77bcf86cd799439333"
-          ]
+        "subject": "Some message from SimpleTexting",
+        "text": "Hello! How are you?",
+        "fallbackText": "Some text",
+        "mediaItems": [
+          "https://txt.so/img.jpg",
+          "507f1f77bcf86cd799439333"
+        ]
       },
       "CreateCampaignTemplate": {
         "required": [
@@ -2607,8 +2607,8 @@
                 "type": "integer",
                 "example": 20
               }
-          }
-        },
+            }
+          },
           "messageTemplate": {
             "description": "Campaign Template \n\n**Example:** `555888`",
             "type": "object",
@@ -2646,8 +2646,8 @@
                   "example": "[\"507f191e810c19729de860ea\", \"https://txt.so/img.jpg\"]"
                 }
               }
+            }
           }
-        }
         }
       },
       "Contact": {
