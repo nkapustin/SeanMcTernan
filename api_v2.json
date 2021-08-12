@@ -13,7 +13,11 @@
   "tags": [
     {
       "name": "File Size",
-      "description": "We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts."
+      "description": "We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts.
+    },
+    {
+      "name": "Campaigns",
+      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or ID, or list all of your SimpleTexting campaigns."
     },
     {
       "name": "Contacts",
@@ -41,7 +45,11 @@
     },
     {
       "name": "Webhooks",
-      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
+      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include code  Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
+    },
+    {
+      "name": "Webhook Reports",
+      "description": "Use webhooks to communicate between the SimpleTexting platform and your server. Webhooks can be used to forward messages as well as provide info about unsubscribes and message delivery. SimpleTexting can trigger webhooks for new incoming messages, delivery reports and unsubscribes."
     }
   ],
   "paths": {
@@ -450,6 +458,174 @@
         }
       }
     },
+    "/api/campaigns": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Fetch all campaigns",
+        "description": "Fetch all campaigns from the SimpleTexting system.",
+        "operationId": "fetchCampaigns",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 1
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "accountPhone",
+            "in": "query",
+            "description": "The phone number the campaign was sent from",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 555888
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "The the current state of the campaigns you wish to retrieve",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "SENT",
+              "enum": [
+                "DRAFT",
+                "PAUSED",
+                "SENT",
+                "SCHEDULED"
+              ]
+            },
+            "example": "SENT"
+          },
+          {
+            "name": "listNameOrId",
+            "in": "query",
+            "description": "The list name or list Id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "My First List"
+          },
+          {
+            "name": "startDateFrom",
+            "in": "query",
+            "description": "List campaigns starting from a certain date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
+          },
+          {
+            "name": "startDateTo",
+            "in": "query",
+            "description": "List campaigns up to a certain date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-30T12:47:40.123-05:00"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Fetched list of campaigns",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignPageView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Send a campaign",
+        "description": "Create and send a campaign",
+        "operationId": "createCampaign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCampaignTemplate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success. Campaign was created"
+          }
+        }
+      }
+    },
+    "/api/campaigns/{campaignId}": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Fetch a campaign",
+        "description": "Fetch a campaign via its unique id.",
+        "operationId": "getCampaign",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Campaign id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Fetched campaign",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FetchedCampaign"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/contact-lists": {
       "get": {
         "tags": [
@@ -628,6 +804,81 @@
           "204": {
             "description": "Success. List was deleted"
           }
+        }
+      }
+    },
+    "/report/incoming": {
+      "post": {
+        "tags": [
+          "Webhook Reports"
+        ],
+        "summary": "Incomming/Outgoing message report",
+        "description": "Triggers when an outgoing message or incomming message is handeled.\n\n**Example:** We create the incoming webhook for 555888 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`",
+        "servers": [
+          {
+            "url": "https://yourdomain.com/"
+          }
+        ],
+        "operationId": "incomingMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncommingMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/delivery": {
+      "post": {
+        "tags": [
+          "Webhook Reports"
+        ],
+        "summary": "Delivery/Non delivered message report",
+        "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.\n\n**Example:** We create the Delivery report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
+        "servers": [
+          {
+            "url": "https://yourdomain.com/"
+          }
+        ],
+        "operationId": "deliveryMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/unsubscribe": {
+      "post": {
+        "tags": [
+          "Webhook Reports"
+        ],
+        "summary": "Unsubscribe report",
+        "description": "Triggers when client send STOP to your number.\n\n**Example:** We create the Unsubscribe report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"UNSUBSCRIBE_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as unsubscribe report URL for this example. The SimpleTexting server will invoke the given call when the subscriber with the number 8001234567 unsubscribes.",
+        "servers": [
+          {
+            "url": "https://yourdomain.com/"
+          }
+        ],
+        "operationId": "unsubscribeMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeReport"
+              }
+            }
+          },
+          "required": true
         }
       }
     },
@@ -1277,6 +1528,16 @@
         ],
         "type": "object",
         "properties": {
+          "contactPhone": {
+            "description": "Contact phone to send to \n\n**Example:** `1234567890`",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "accountPhone": {
+            "description": "Account phone to send from \n\n**Example:** `555888`",
+            "type": "string",
+            "example": "555888"
+          },
           "mode": {
             "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
@@ -1442,6 +1703,209 @@
           }
         },
         "description": "Page representation for search/fetch result"
+      },
+      "UnsubscribeReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "UNSUBSCRIBE_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "description": "Contact id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "phone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              }
+            }
+          }
+        }
+      },
+      "DeliveryMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "DELIVERY_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "carrier": {
+                "description": "Name of carrier \n\n**Example:** `Verizon`",
+                "type": "string",
+                "example": "Verizon"
+              }
+            }
+          }
+        }
+      },
+      "IncommingMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "INCOMING_MESSAGE",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "subject": {
+                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "type": "string",
+                "example": "Some message from SimpleTexting"
+              },
+              "mediaItems": {
+                "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+                "type": "array",
+                "example": [
+                  "507f1f77bcf86cd799439011",
+                  "507f1f77bcf86cd799439333"
+                ],
+                "items": {
+                  "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+                  "type": "string",
+                  "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
+                }
+              },
+              "text": {
+                "description": "Text \n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "Hello! How are you?"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "timestamp": {
+                "description": "Date of sending - ISO Format \n\n**Example:** `2020-04-28T23:20:08.489Z`",
+                "type": "string",
+                "format": "date-time",
+                "example": "2020-04-28T23:20:08.489Z"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              }
+            }
+          }
+        }
       },
       "MediaFile": {
         "type": "object",
@@ -1902,6 +2366,29 @@
           }
         }
       },
+      "CampaignPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "description": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FetchedCampaign"
+            }
+          },
+          "totalPages": {
+            "description": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "description": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
       "ContactPageView": {
         "type": "object",
         "properties": {
@@ -1973,6 +2460,194 @@
             "format": "int32",
             "example": 15
           }
+        }
+      },
+      "FetchedCampaign": {
+        "description": "Page content, number of elements is restricted by page size",
+        "type": "object",
+        "properties": {
+          "campaignId": {
+            "description": "Existing campaign id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "type": "string",
+            "example": "607f0558a7c898629dd47d7a"
+          },
+          "title": {
+            "description": "Campaign name \n\n**Example:** `My first campaign`",
+            "type": "string",
+            "example": "My first campaign"
+          },
+          "accountPhone": {
+            "description": "Number the campaign was sent from \n\n**Example:** `555888`",
+            "type": "string",
+            "example": "555888"
+          },
+          "customFieldsMaxLength": {
+            "description": "Custom fields length in current campaign",
+            "type": "object",
+            "additionalProperties": {
+              "description": "\n\n**Example:** `{\"firstname\":\"20\"}`",
+              "type": "string",
+              "example": "{\"firstname\":\"20\"}"
+            },
+            "example": {
+              "firstname": "20"
+            }
+          },
+          "state": {
+            "description": "The the current state of the campaign \n\n**Example:** `COMPLETED`",
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "SCHEDULED",
+              "READY_FOR_SEND",
+              "MONITORING",
+              "IN_PROGRESS", 
+              "QUEUED",
+              "COMPLETED",
+              "ERROR",
+              "PAUSED_ON_SCHEDULED",
+              "PAUSED_ON_IN_PROGRESS",
+              "PAUSED_ON_QUEUED",
+              "PAUSED_ON_RUN",
+              "PAUSED"
+            ],
+            "example": "COMPLETED"
+          },
+          "listsOrSegments": {
+            "description": "List of lists or segments campaign was sent to",
+            "type": "array",
+            "example": [
+              {
+                "id": "5f6c760379f4e93135aac72b",
+                "name": "My First List"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Contact list"
+            }
+          },
+          "created": {
+            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "modified": {
+            "description": "Modified timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "started": {
+            "description": "Started timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "finished": {
+            "description": "Finished timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-04-28T23:20:08.489Z"
+          },
+          "messageTemplate": {
+            "description": "Template of message sent \n\n**Example:** `{\"subject\": \"Some message from SimpleTexting\",\"text\": \"Hello! How are you?\",\"fallbackText\": \"Some text\",\"mediaItems\": [\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]}`",
+            "type": "object",
+            "example": {
+              "$ref": "#/components/schemas/FetchedCampaignTemplate"
+            }
+          }
+        }
+      },
+      "FetchedCampaignTemplate": {
+          "subject": "Some message from SimpleTexting",
+          "text": "Hello! How are you?",
+          "fallbackText": "Some text",
+          "mediaItems": [
+            "https://txt.so/img.jpg",
+            "507f1f77bcf86cd799439333"
+          ]
+      },
+      "CreateCampaignTemplate": {
+        "required": [
+          "title",
+          "messageTemplate"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Campaign title \n\n**Example:** `My first campaign`",
+            "type": "string",
+            "example": "My first campaign"
+          },
+          "listsOrSegments": {
+            "description": "Lists or segments ids or names \n\n**Example:** `[\"507f191e810c19729de860ea\",\"My First List\"]`",
+            "type": "array",
+            "example": [
+              "507f191e810c19729de860ea",
+              "My First List"
+            ],
+            "items": {
+              "description": "Lists or segments ids or names",
+              "type": "string",
+              "example": "[\"507f191e810c19729de860ea\", \"My First List\"]"
+            }
+          },
+          "accountPhone": {
+            "description": "Account phone, primary number is default \n\n**Example:** `555888`",
+            "type": "string",
+            "example": "555888"
+          },
+          "customFieldsMaxLength": {
+            "description": "Custom fields length in current campaign, overwrite default settings. See /custom-fields  \n\n**Example:** `{\"firstname\":\"20\"}`",
+            "type": "object",
+            "properties": {
+              "customfield": {
+                "description": "Custom field name and max length",
+                "type": "integer",
+                "example": 20
+              }
+          }
+        },
+          "messageTemplate": {
+            "description": "Campaign Template \n\n**Example:** `555888`",
+            "type": "object",
+            "properties": {
+              "title": {
+                "description": "Campaign title \n\n**Example:** `My first campaign`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+              "subject": {
+                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+              "text": {
+                "description": "Text body \n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+              "fallbackText": {
+                "description": "Custom fallback text if mms cannot be received. Should contains '[url=\"%%fallback_link%%\"]' placeholder that will be replaced with a link to the message \n\n**Example:** `Some text`",
+                "type": "string",
+                "example": "My first campaign"
+              },
+              "mediaItems": {
+                "description": "List of mms media urls for temporal storing or media items ids \n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
+                "type": "array",
+                "example": [
+                  "https://txt.so/img.jpg",
+                  "507f1f77bcf86cd799439011"
+                ],
+                "items": {
+                  "description": "List of mms media urls or media items ids",
+                  "type": "string",
+                  "example": "[\"507f191e810c19729de860ea\", \"https://txt.so/img.jpg\"]"
+                }
+              }
+          }
+        }
         }
       },
       "Contact": {
