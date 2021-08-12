@@ -1529,6 +1529,16 @@
         ],
         "type": "object",
         "properties": {
+          "contactPhone": {
+            "description": "Contact phone to send to \n\n**Example:** `1234567890`",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "accountPhone": {
+            "description": "Account phone to send from \n\n**Example:** `555888`",
+            "type": "string",
+            "example": "555888"
+          },
           "mode": {
             "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
@@ -1548,11 +1558,6 @@
             "description": "Text Body \n\n**Example:** `Hello! How are you?`",
             "type": "string",
             "example": "Hello! How are you?"
-          },
-          "contactPhone": {
-            "description": "Contact phone \n\n**Example:** `1234567890`",
-            "type": "string",
-            "example": "1234567890"
           },
           "fallbackText": {
             "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
