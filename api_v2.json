@@ -42,7 +42,11 @@
     },
     {
       "name": "Webhooks",
-      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include Incoming Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
+      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include code  Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
+    },
+    {
+      "name": "Webhook Reports",
+      "description": "Use webhooks to communicate between the SimpleTexting platform and your server. Webhooks can be used to forward messages as well as provide info about unsubscribes and message delivery. SimpleTexting can trigger webhooks for new incoming messages, delivery reports and unsubscribes."
     }
   ],
   "paths": {
@@ -629,6 +633,81 @@
           "204": {
             "description": "Success. List was deleted"
           }
+        }
+      }
+    },
+    "/report/incoming": {
+      "post": {
+        "tags": [
+          "Webhook Reports"
+        ],
+        "summary": "Incomming/Outgoing message report",
+        "description": "Triggers when an outgoing message or incomming message is handeled.\n\n**Example:** We create the incoming webhook for 555888 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`",
+        "servers": [
+          {
+            "url": "https://yourdomain.com/"
+          }
+        ],
+        "operationId": "incomingMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncommingMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/delivery": {
+      "post": {
+        "tags": [
+          "Webhook Reports"
+        ],
+        "summary": "Delivery/Non delivered message report",
+        "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.\n\n**Example:** We create the Delivery report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
+        "servers": [
+          {
+            "url": "https://yourdomain.com/"
+          }
+        ],
+        "operationId": "deliveryMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/unsubscribe": {
+      "post": {
+        "tags": [
+          "Webhook Reports"
+        ],
+        "summary": "Unsubscribe report",
+        "description": "Triggers when client send STOP to your number.\n\n**Example:** We create the Unsubscribe report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"UNSUBSCRIBE_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as unsubscribe report URL for this example. The SimpleTexting server will invoke the given call when the subscriber with the number 8001234567 unsubscribes.",
+        "servers": [
+          {
+            "url": "https://yourdomain.com/"
+          }
+        ],
+        "operationId": "unsubscribeMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeReport"
+              }
+            }
+          },
+          "required": true
         }
       }
     },
@@ -1444,6 +1523,209 @@
           }
         },
         "description": "Page representation for search/fetch result"
+      },
+      "UnsubscribeReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "UNSUBSCRIBE_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "description": "Contact id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "phone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              }
+            }
+          }
+        }
+      },
+      "DeliveryMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "DELIVERY_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "carrier": {
+                "description": "Name of carrier \n\n**Example:** `Verizon`",
+                "type": "string",
+                "example": "Verizon"
+              }
+            }
+          }
+        }
+      },
+      "IncommingMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "INCOMING_MESSAGE",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "subject": {
+                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "type": "string",
+                "example": "Some message from SimpleTexting"
+              },
+              "mediaItems": {
+                "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+                "type": "array",
+                "example": [
+                  "507f1f77bcf86cd799439011",
+                  "507f1f77bcf86cd799439333"
+                ],
+                "items": {
+                  "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+                  "type": "string",
+                  "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
+                }
+              },
+              "text": {
+                "description": "Text \n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "Hello! How are you?"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "timestamp": {
+                "description": "Date of sending - ISO Format \n\n**Example:** `2020-04-28T23:20:08.489Z`",
+                "type": "string",
+                "format": "date-time",
+                "example": "2020-04-28T23:20:08.489Z"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              }
+            }
+          }
+        }
       },
       "MediaFile": {
         "type": "object",
