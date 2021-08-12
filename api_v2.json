@@ -3,12 +3,7 @@
   "info": {
     "title": "SimpleTexting API Documentation",
     "version": "2.0.0",
-    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n",
-    "termsOfService": "https://simpletexting.com/terms/",
-    "contact": {
-      "name": "SimpleTexting",
-      "url": "https://simpletexting.com/contact-us/"
-    }
+    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n[Contact Us](https://simpletexting.com/contact-us) | [Terms of Service](https://simpletexting.com/terms)"
   },
   "servers": [
     {
@@ -16,6 +11,10 @@
     }
   ],
   "tags": [
+    {
+      "name": "File Size",
+      "description": "We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts.
+    },
     {
       "name": "Campaigns",
       "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or ID, or list all of your SimpleTexting campaigns."
@@ -38,7 +37,7 @@
     },
     {
       "name": "Media Items",
-      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
+      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments. The size limitations of these items are discussed [here](#tag/File-Size)."
     },
     {
       "name": "Messages",
@@ -992,7 +991,7 @@
           "Messages"
         ],
         "summary": "Send message",
-        "description": "Send either an MMS, or SMS message to a contact. Use this programmatically to send to multiple contacts.",
+        "description": "Send either an MMS, or SMS message to a contact. Use this programmatically to send to multiple contacts. There are limitations on Media Files with MMS messages. The size limitations of these items are discussed [here](#tag/File-Size).",
         "operationId": "createMessage",
         "requestBody": {
           "content": {
@@ -1549,15 +1548,20 @@
               "MMS_STRICTLY"
             ]
           },
-          "subject": {
-            "description": "MMS Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
-            "type": "string",
-            "example": "Some message from SimpleTexting"
-          },
           "text": {
             "description": "Text Body \n\n**Example:** `Hello! How are you?`",
             "type": "string",
             "example": "Hello! How are you?"
+          },
+          "contactPhone": {
+            "description": "Contact phone \n\n**Example:** `1234567890`",
+            "type": "string",
+            "example": "1234567890"
+          },
+          "subject": {
+            "description": "MMS Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+            "type": "string",
+            "example": "Some message from SimpleTexting"
           },
           "fallbackText": {
             "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
@@ -1576,11 +1580,15 @@
       },
       "EvaluateMessage": {
         "required": [
-          "contactPhone",
           "text"
         ],
         "type": "object",
         "properties": {
+          "text": {
+            "description": "Text Body \n\n**Example:** `Hello! How are you?`",
+            "type": "string",
+            "example": "Hello! How are you?"
+          },
           "mode": {
             "description": "Configures how to present your message\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content\n\n**SMS_STRICTLY -** will send only single sms or return  an error\n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
@@ -1595,11 +1603,6 @@
             "description": "MMS Subject (available for MMS) \n\n**Example:** `New In Store`",
             "type": "string",
             "example": "Some message from SimpleTexting"
-          },
-          "text": {
-            "description": "Text Body \n\n**Example:** `Hello! How are you?`",
-            "type": "string",
-            "example": "Hello! How are you?"
           },
           "fallbackText": {
             "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
@@ -2094,12 +2097,6 @@
         ],
         "type": "object",
         "properties": {
-          "listsReplacement": {
-            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list. \n\n**Example:** `true`",
-            "type": "boolean",
-            "example": true,
-            "default": true
-          },
           "updates": {
             "description": "List of updates for contacts",
             "maxItems": 500,
@@ -2108,6 +2105,12 @@
             "items": {
               "$ref": "#/components/schemas/ContactUpdate"
             }
+          },
+          "listsReplacement": {
+            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list. \n\n**Example:** `true`",
+            "type": "boolean",
+            "example": true,
+            "default": true
           }
         },
         "description": "Add new contacts or update existing, based on unique contact phone. One contact per object in the array"
@@ -2866,10 +2869,10 @@
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
+      "Bearer Token": {
         "type": "http",
         "scheme": "bearer",
-        "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
+        "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.<br><br>To understand more about bearer tokens, please take a look at the following [resource](https://swagger.io/docs/specification/authentication/bearer-authentication/).",
         "name": "Authorization",
         "in": "header"
       }
