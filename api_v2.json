@@ -3,7 +3,7 @@
   "info": {
     "title": "SimpleTexting API Documentation",
     "version": "2.0.0",
-    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n[Contact Us](https://simpletexting.com/contact-us) | [Terms of Service](https://simpletexting.com/terms) # Base URL `https://api-app2.simpletexting.com/v2/api/`"
+    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n[Contact Us](https://simpletexting.com/contact-us) | [Terms of Service](https://simpletexting.com/terms)"
   },
   "servers": [
     {
@@ -11,6 +11,10 @@
     }
   ],
   "tags": [
+    {
+      "name": "Base URL",
+      "description": "`https://api-app2.simpletexting.com/v2/api/`"
+    },
     {
       "name": "File Size",
       "description": "We support a wide variety of file types over MMS. The industry standard maximum file size limit is 600KB for toll-free accounts and is 1MB on shortcode accounts."
