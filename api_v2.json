@@ -45,7 +45,7 @@
     },
     {
       "name": "Messages",
-      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
+      "description": "In SimpleTexting, users can send and receive messages. With our API, this can be done programmatically."
     },
     {
       "name": "Webhooks",
@@ -891,8 +891,8 @@
         "tags": [
           "Messages"
         ],
-        "summary": "Fetch messages",
-        "description": "Fetch all messages sent to a specific phone number from a specified line on your account.",
+        "summary": "Get All Messages",
+        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.",
         "operationId": "getMessages",
         "parameters": [
           {
@@ -924,7 +924,7 @@
           {
             "name": "accountPhone",
             "in": "query",
-            "description": "Account phone number",
+            "description": "The phone number on the account",
             "required": false,
             "schema": {
               "type": "string"
@@ -945,7 +945,7 @@
           {
             "name": "contactPhone",
             "in": "query",
-            "description": "Account phone number",
+            "description": "The contact's phone number",
             "required": false,
             "schema": {
               "type": "string"
@@ -955,7 +955,7 @@
           {
             "name": "category",
             "in": "query",
-            "description": "Category - available only for MT (Mobile Terminating) messages",
+            "description": "Category is only available for messages you send",
             "required": false,
             "schema": {
               "type": "string"
@@ -965,7 +965,7 @@
           {
             "name": "directionType",
             "in": "query",
-            "description": "MT/MO (Mobile-Terminated / Mobile-Originated)",
+            "description": "MO/MT (mobile terminated) refers to sent messages. MO (mobile originated) refers to received messages",
             "required": false,
             "schema": {
               "type": "string",
@@ -979,7 +979,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns page of messages",
+            "description": "Success. Returns a list of messages.",
             "content": {
               "application/json": {
                 "schema": {
@@ -994,8 +994,8 @@
         "tags": [
           "Messages"
         ],
-        "summary": "Send message",
-        "description": "Send either an MMS, or SMS message to a contact. Use this programmatically to send to multiple contacts. There are limitations on Media Files with MMS messages. The size limitations of these items are discussed [here](#tag/File-Size).",
+        "summary": "Send a Message",
+        "description": "Send either an MMS or SMS message to a contact. Use this programmatically to send to multiple contacts.\n\nIf the message contains a link from a common third-party link shortener such as [bit.ly](http://bit.ly/), it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners).\n\nThere are limitations on Media Files with MMS messages. The size limitations of these items are discussed [here](#tag/File-Size).",
         "operationId": "createMessage",
         "requestBody": {
           "content": {
@@ -1180,7 +1180,7 @@
           "Media Items"
         ],
         "summary": "Delete media",
-        "description": "Remove items that you have previously uploaded to the SimpleTexting system.",
+        "description": "Remove media that you have previously uploaded to SimpleTexting.",
         "operationId": "delete",
         "parameters": [
           {
@@ -1195,7 +1195,7 @@
           }
         ],
         "responses": {
-          "description": "Success. Media was deleted",
+          "description": "Success. Media was deleted.",
           "204": {
             "description": "Media is deleted"
           }
@@ -1207,14 +1207,14 @@
         "tags": [
           "Media Items"
         ],
-        "summary": "Upload media",
-        "description": "Upload media directly that can be sent along with your message to a contact.",
+        "summary": "Upload Media",
+        "description": "Upload a media file directly to SimpleTexting that can then be sent in a message to a contact.",
         "operationId": "upload",
         "parameters": [
           {
             "name": "shared",
             "in": "query",
-            "description": "State whether media is shared between teammates",
+            "description": "Define whether a media file is shared with teammates",
             "schema": {
               "type": "boolean",
               "default": true
@@ -1231,7 +1231,7 @@
                 "properties": {
                   "file": {
                     "type": "string",
-                    "description": "Media file to be uploaded",
+                    "description": "The media file you want to upload",
                     "format": "binary"
                   }
                 }
@@ -1241,7 +1241,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Uploaded media",
+            "description": "Success. Media is uploaded.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1915,49 +1915,49 @@
             "example": "607f0558a7c898629dd47d7a"
           },
           "createdDate": {
-            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the media was created\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "name": {
-            "description": "File name \n\n**Example:** `test.jpg`",
+            "description": "File name\n\n**Example:** `test.jpg`",
             "type": "string",
             "example": "myfile.jpg"
           },
           "gallery": {
-            "description": "Gallery \n\n**Example:** `mms`",
+            "description": "Gallery\n\n**Example:** `mms`",
             "type": "string",
             "example": "mms"
           },
           "size": {
-            "description": "File size \n\n**Example:** `10`",
+            "description": "File size\n\n**Example:** `10`",
             "type": "integer",
             "format": "int64",
             "example": 10
           },
           "status": {
-            "description": "Status of the file \n\n**Example:** `PROCESSED`",
+            "description": "Status of the file\n\n**Example:** `PROCESSED`",
             "type": "string",
             "example": "PROCESSED"
           },
           "link": {
-            "description": "Location of file \n\n**Example:** `https://app2.simpletexting.com/content/public-files/607f0558a7c898629dd47d7a`",
+            "description": "Location of file\n\n**Example:** `https://app2.simpletexting.com/content/public-files/607f0558a7c898629dd47d7a`",
             "type": "string",
             "example": "https://app2.simpletexting.com/content/public-files/607f0558a7c898629dd47d7a"
           },
           "contentType": {
-            "description": "File media type \n\n**Example:** `image/png`",
+            "description": "File media type\n\n**Example:** `image/png`",
             "type": "string",
             "example": "image/png"
           },
           "ext": {
-            "description": "File extension \n\n**Example:** `png`",
+            "description": "File extension\n\n**Example:** `png`",
             "type": "string",
             "example": "png"
           },
           "canDelete": {
-            "description": "Ability to delete file \n\n**Example:** `true`",
+            "description": "Ability to delete file\n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           }
