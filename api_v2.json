@@ -1258,8 +1258,8 @@
         "tags": [
           "Contacts Batch"
         ],
-        "summary": "Process contacts batch update",
-        "description": "Update multiple fields at once for a batch of contacts. You can update their first name, last name, emails, lists and much more.",
+        "summary": "Update a group of contacts",
+        "description": "Update multiple fields at once for a batch of contacts. You can update their first name, last name, emails, lists, and more.",
         "operationId": "processBatchUpdate",
         "requestBody": {
           "content": {
@@ -1273,7 +1273,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Contact batch update was processed",
+            "description": "Success. Contacts were successfully updated.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1290,8 +1290,8 @@
         "tags": [
           "Contacts Batch"
         ],
-        "summary": "Process contacts batch delete by contact phone",
-        "description": "Delete a group of contacts from the SimpleTexting system using their phone numbers.",
+        "summary": "Batch Update or Delete Contacts",
+        "description": "This endpoint is used to delete a group of contacts or update existing ones using the contacts phone as an id.",
         "operationId": "processBatchDelete",
         "requestBody": {
           "content": {
@@ -2106,7 +2106,7 @@
             }
           },
           "listsReplacement": {
-            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list. \n\n**Example:** `true`",
+            "description": "If listsReplacement is set to true, a contact will be removed from their existing list. If set to false, a contact will be added to a new list and stay in their original list.\n\n**Example:** `true`",
             "type": "boolean",
             "example": true,
             "default": true
