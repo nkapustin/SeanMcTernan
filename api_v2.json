@@ -927,7 +927,7 @@
           {
             "name": "accountPhone",
             "in": "query",
-            "description": "The phone number on the account",
+            "description": "The phone number on your account the messages were sent to. If blank, the request will return all messages to all numbers",
             "required": false,
             "schema": {
               "type": "string"
@@ -1541,7 +1541,7 @@
             "example": "1234567890"
           },
           "accountPhone": {
-            "description": "Account phone to send from\n\n**Example:** `555888`",
+            "description": "The account phone to send from. If this field is left blank, the primary account number will be used as a default\n\n**Example:** `555888`",
             "type": "string",
             "example": "555888"
           },
