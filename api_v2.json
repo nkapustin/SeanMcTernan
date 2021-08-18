@@ -201,7 +201,7 @@
           "Contacts"
         ],
         "summary": "Fetch all contacts",
-        "description": "Fetch all contacts from the SimpleTexting system.",
+        "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you",
         "operationId": "fetchContacts",
         "parameters": [
           {
@@ -267,6 +267,10 @@
                 }
               }
             }
+          }
+        },
+        "Special Behaviour": {
+            "description": "This is a test adding the special behaviour section"
           }
         }
       },
@@ -2868,7 +2872,7 @@
       }
     },
     "securitySchemes": {
-      "Bearer Token": {
+      "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
         "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.<br><br>To understand more about bearer tokens, please take a look at the following [resource](https://swagger.io/docs/specification/authentication/bearer-authentication/).",
