@@ -166,6 +166,9 @@
         "responses": {
           "204": {
             "description": "Success. Webhook was updated"
+          },
+          "404": {
+            "description": "Error. Webhook not found."
           }
         }
       },
@@ -191,9 +194,6 @@
         "responses": {
           "204": {
             "description": "Success. Webhook was updated."
-          },
-          "404": {
-            "description": "Error. Webhook not found."
           }
         }
       }
