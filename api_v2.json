@@ -759,7 +759,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListPageView"
+                  "$ref": "#/components/schemas/SegmentPageView"
                 }
               }
             }
@@ -2964,7 +2964,7 @@
           "name": {
             "description": "The Segment name\n\n**Example:** `My First List`",
             "type": "string",
-            "example": "My First List"
+            "example": "My First Segment"
           },
           "created": {
             "description": "When the Segment was created\n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
