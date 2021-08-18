@@ -203,7 +203,7 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Get all contacts",
+        "summary": "Get All Contacts",
         "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you",
         "operationId": "fetchContacts",
         "parameters": [
@@ -277,7 +277,7 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Create a contact",
+        "summary": "Create a Contact",
         "description": "Create a new contact and add them to a specific list.",
         "operationId": "createContact",
         "parameters": [
@@ -333,7 +333,7 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Get a contact",
+        "summary": "Get a Contact",
         "description": "Get a contact via their unique id or phone number. Phone number is the preferred parameter for this call.",
         "operationId": "getContact",
         "parameters": [
@@ -365,7 +365,7 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Update a contact",
+        "summary": "Update a Contact",
         "description": "Update a contact’s phone number or any other field.",
         "operationId": "updateContact",
         "parameters": [
@@ -436,7 +436,7 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Delete a contact",
+        "summary": "Delete a Contact",
         "description": "Delete a contact via their unique id or phone.",
         "operationId": "deleteContact",
         "parameters": [
@@ -470,8 +470,8 @@
         "tags": [
           "Campaigns"
         ],
-        "summary": "Fetch all campaigns",
-        "description": "Fetch all campaigns from the SimpleTexting system.",
+        "summary": "Get all Campaigns",
+        "description": "Get all campaigns from the SimpleTexting system.",
         "operationId": "fetchCampaigns",
         "parameters": [
           {
@@ -579,7 +579,7 @@
         "tags": [
           "Campaigns"
         ],
-        "summary": "Send a campaign",
+        "summary": "Send a Campaign",
         "description": "Create and send a campaign",
         "operationId": "createCampaign",
         "requestBody": {
@@ -604,8 +604,8 @@
         "tags": [
           "Campaigns"
         ],
-        "summary": "Fetch a campaign",
-        "description": "Fetch a campaign via its unique id.",
+        "summary": "Get a Campaign",
+        "description": "Get a campaign via its unique id.",
         "operationId": "getCampaign",
         "parameters": [
           {
@@ -750,7 +750,7 @@
         "tags": [
           "Contact Lists"
         ],
-        "summary": "Update List Name",
+        "summary": "Update a List Name",
         "description": "Update the name of an existing list.",
         "operationId": "updateList",
         "parameters": [
@@ -819,7 +819,7 @@
         "tags": [
           "Webhook Reports"
         ],
-        "summary": "Incomming/Outgoing message report",
+        "summary": "Incomming/Outgoing Message Report",
         "description": "Triggers when an outgoing message or incomming message is handeled.\n\n**Example:** We create the incoming webhook for 555888 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`",
         "servers": [
           {
@@ -844,7 +844,7 @@
         "tags": [
           "Webhook Reports"
         ],
-        "summary": "Delivery/Non delivered message report",
+        "summary": "Delivery/Non Delivered Message Report",
         "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.\n\n**Example:** We create the Delivery report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
         "servers": [
           {
@@ -869,7 +869,7 @@
         "tags": [
           "Webhook Reports"
         ],
-        "summary": "Unsubscribe report",
+        "summary": "Unsubscribe Report",
         "description": "Triggers when client send STOP to your number.\n\n**Example:** We create the Unsubscribe report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"UNSUBSCRIBE_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as unsubscribe report URL for this example. The SimpleTexting server will invoke the given call when the subscriber with the number 8001234567 unsubscribes.",
         "servers": [
           {
