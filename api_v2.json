@@ -1990,11 +1990,13 @@
           },
           "firstName": {
             "description": "Contact's first name.\n\n**Example:** `John`",
+            "maximum": 100,
             "type": "string",
             "example": "John"
           },
           "lastName": {
             "description": "Contact's last name\n\n**Example:** `Doe`",
+            "maximum": 100,
             "type": "string",
             "example": "Doe"
           },
@@ -2022,6 +2024,7 @@
           },
           "comment": {
             "description": "Notes about the contact.\n\n**Example:** `VIP client`",
+            "maximum": 1000,
             "type": "string",
             "example": "VIP client"
           },
@@ -2048,11 +2051,13 @@
           },
           "firstName": {
             "description": "Contact first name\n\n**Example:** `John`",
+            "maximum": 100,
             "type": "string",
             "example": "John"
           },
           "lastName": {
             "description": "Contact last name\n\n**Example:** `Doe`",
+            "maximum": 100,
             "type": "string",
             "example": "Doe"
           },
@@ -2080,6 +2085,7 @@
           },
           "comment": {
             "description": "Notes about the contact.\n\n**Example:** `VIP client`",
+            "maximum": 1000,
             "type": "string",
             "example": "VIP client"
           },
