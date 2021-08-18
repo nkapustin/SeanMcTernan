@@ -62,7 +62,7 @@
         "tags": [
           "Webhooks"
         ],
-        "summary": "Get All Webhooks",
+        "summary": "Get all Webhooks",
         "description": "Retrieve all the webhooks that you've created.",
         "operationId": "getWebhooks",
         "parameters": [
@@ -203,7 +203,7 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Get All Contacts",
+        "summary": "Get all Contacts",
         "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you",
         "operationId": "fetchContacts",
         "parameters": [
@@ -638,7 +638,7 @@
         "tags": [
           "Contact Lists"
         ],
-        "summary": "Get All Lists",
+        "summary": "Get all Lists",
         "description": "For a given SimpleTexting account, return all lists that have been created.",
         "operationId": "getLists",
         "parameters": [
@@ -894,7 +894,7 @@
         "tags": [
           "Messages"
         ],
-        "summary": "Get All Messages",
+        "summary": "Get all Messages",
         "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.",
         "operationId": "getMessages",
         "parameters": [
@@ -1182,7 +1182,7 @@
         "tags": [
           "Media Items"
         ],
-        "summary": "Delete media",
+        "summary": "Delete Media",
         "description": "Remove media that you have previously uploaded to SimpleTexting.",
         "operationId": "delete",
         "parameters": [
@@ -1325,7 +1325,7 @@
         "tags": [
           "Custom Fields"
         ],
-        "summary": "Get All Custom Fields",
+        "summary": "Get all Custom Fields",
         "description": "This endpoint allows you to retrieve all custom fields.",
         "operationId": "getCustomFields",
         "parameters": [
