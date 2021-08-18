@@ -2962,7 +2962,7 @@
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "description": "The Segment name\n\n**Example:** `My First List`",
+            "description": "The Segment name\n\n**Example:** `My First Segment`",
             "type": "string",
             "example": "My First Segment"
           },
