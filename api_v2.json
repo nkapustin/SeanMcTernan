@@ -2870,7 +2870,7 @@
             "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/List"
+              "$ref": "#/components/schemas/Segment"
             }
           },
           "totalPages": {
