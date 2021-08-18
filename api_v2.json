@@ -313,7 +313,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success. Contact created",
+            "description": "Success. Contact created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -330,8 +330,8 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Fetch a contact",
-        "description": "Fetch a contact via their unique id, or their phone number. The phone number is the preferred parameter for this call.",
+        "summary": "Get a contact",
+        "description": "Get a contact via their unique id or phone number. Phone number is the preferred parameter for this call.",
         "operationId": "getContact",
         "parameters": [
           {
@@ -363,13 +363,13 @@
           "Contacts"
         ],
         "summary": "Update a contact",
-        "description": "Update a contact's information via their unique id. Unspecified keys in a request will not be changed in the contact.",
+        "description": "Update a contact’s phone number or any other field.",
         "operationId": "updateContact",
         "parameters": [
           {
             "name": "contactIdOrNumber",
             "in": "path",
-            "description": "Contact id in hexadecimal format or phone number",
+            "description": "Contact Id in hexadecimal format or the contact's phone number.",
             "required": true,
             "schema": {
               "type": "string"
@@ -379,7 +379,7 @@
           {
             "name": "listsReplacement",
             "in": "query",
-            "description": "Set to true to remove from the existing list. Set to false to add contact to a new list, while also keeping the contact in the original list.",
+            "description": "If listsReplacement is set to true, a contact will be removed from their existing list. If set to false, a contact will be added to a new list and stay in their original list.",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -390,7 +390,7 @@
           {
             "name": "upsert",
             "in": "query",
-            "description": "If a contact exists with the phone number in your path parameters, the contact will be updated with the information within the request when set to true",
+            "description": "If a contact already exists with the phone number in your request body, the contact will be updated with the information in the request when upsert is set to true.",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -411,7 +411,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Contact updated",
+            "description": "Contact is updated.",
             "content": {
               "application/json": {
                 "schema": {
@@ -434,7 +434,7 @@
           "Contacts"
         ],
         "summary": "Delete a contact",
-        "description": "Delete a contact via their unique id.",
+        "description": "Delete a contact via their unique id or phone.",
         "operationId": "deleteContact",
         "parameters": [
           {
@@ -450,7 +450,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success. Contact deleted",
+            "description": "Success. Contact is deleted.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1981,32 +1981,32 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Unique contact phone: This field should be specified if you wish to update the contact’s phone number \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "description": "Contact first name \n\n**Example:** `John`",
+            "description": "Contact's first name. \n\n**Example:** `John`",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "description": "Contact last name \n\n**Example:** `Doe`",
+            "description": "Contact's last name \n\n**Example:** `Doe`",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
+            "description": "Contact's email \n\n**Example:** `john.doe@simpletext.org`",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
+            "description": "Contact's birthday in format (yyyy-mm-dd) \n\n**Example:** `1985-05-05`",
             "type": "string",
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Any custom field of a contact, where customField must be replaced with the actual custom field’s parameter. For example, if you have a Street address custom field, you would use the parameter street_address.",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -2018,12 +2018,12 @@
             }
           },
           "comment": {
-            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
+            "description": "Notes about the contact. \n\n**Example:** `VIP client`",
             "type": "string",
             "example": "VIP client"
           },
           "listIds": {
-            "description": "List of contact id's or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+            "description": "All the lists (List IDs or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -2039,7 +2039,7 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Contact's phone number. \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
@@ -2119,7 +2119,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "Id of item in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Id of item in hexadecimal format. \n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           }
@@ -2208,17 +2208,17 @@
             "example": true
           },
           "contactPhone": {
-            "description": "Contact phone from delete request \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number from the delete request \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "contactId": {
-            "description": "Contact id if contact was found or null \n\n**Example:** `507f1f77bcf86cd799439011`",
+            "description": "Contact Id if contact was found or null \n\n**Example:** `507f1f77bcf86cd799439011`",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
           "errorCode": {
-            "description": "Operation error code, if operation has failed \n\n**Example:** `UNKNOWN_CONTACT_PHONE`",
+            "description": "Contact's phone number from the delete request \n\n**Example:** `UNKNOWN_CONTACT_PHONE`",
             "type": "string",
             "example": "UNKNOWN_CONTACT_PHONE",
             "enum": [
@@ -2227,7 +2227,7 @@
             ]
           },
           "errorMessage": {
-            "description": "Additional error message if operation has failed \n\n**Example:** `Contact with provided phone number is missing`",
+            "description": "Additional error message if the operation has failed \n\n**Example:** `Contact with provided phone number is missing`",
             "type": "string",
             "example": "Contact with provided phone number is missing"
           }
@@ -2435,7 +2435,7 @@
         "description": "Page representation for search/fetch result"
       },
       "CustomField": {
-        "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+        "description": "Any custom field of a contact, where customField must be replaced with the actual custom field’s parameter. For example, if you have a Street address custom field, you would use the parameter street_address.",
         "type": "object",
         "properties": {
           "label": {
@@ -2659,32 +2659,32 @@
             "example": "607f0558a7c898629dd47d7a"
           },
           "contactPhone": {
-            "description": "Unique contact phone \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "description": "Contact first name \n\n**Example:** `John`",
+            "description": "Contact's first name \n\n**Example:** `John`",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "description": "Contact last name \n\n**Example:** `Doe`",
+            "description": "Contact's last name \n\n**Example:** `Doe`",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
+            "description": "Contact's email \n\n**Example:** `john.doe@simpletext.org`",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
+            "description": "Contact's birthday in format (yyyy-mm-dd) \n\n**Example:** `1985-05-05`",
             "type": "string",
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Any custom field of a contact, where customField must be replaced with the actual custom field’s parameter. For example, if you have a Street address custom field, you would use the parameter street_address.",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -2696,12 +2696,12 @@
             }
           },
           "comment": {
-            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
+            "description": "Notes about the contact \n\n**Example:** `VIP client`",
             "type": "string",
             "example": "VIP client"
           },
           "lists": {
-            "description": "List of lists, where contact is included",
+            "description": "Array of objects (Contact list) All the lists where the contact is stored subscriptionStatus",
             "type": "array",
             "example": [
               {
@@ -2714,7 +2714,7 @@
             }
           },
           "subscriptionStatus": {
-            "description": "Contact subscription status \n\n**Example:** `OPT_IN`",
+            "description": "Contact's subscription status \n\n**Example:** `OPT_IN`",
             "type": "string",
             "example": "OPT_IN",
             "enum": [
@@ -2725,19 +2725,19 @@
             ]
           },
           "created": {
-            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the contact was created \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "description": "Updated timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the contact was updated \n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-05-28T20:20:08.489Z"
           },
           "updateSource": {
-            "description": "The source from which the contact was updated \n\n**Example:** `IMPORTED_FROM_FILE`",
+            "description": "How the contact was updated \n\n**Example:** `IMPORTED_FROM_FILE`",
             "type": "string",
             "enum": [
               "IMPORTED_FROM_FILE",
