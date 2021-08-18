@@ -21,7 +21,7 @@
     },
     {
       "name": "Campaigns",
-      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or ID, or list all of your SimpleTexting campaigns."
+      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or id, or list all of your SimpleTexting campaigns."
     },
     {
       "name": "Contacts",
@@ -369,7 +369,7 @@
           {
             "name": "contactIdOrNumber",
             "in": "path",
-            "description": "Contact Id in hexadecimal format or the contact's phone number.",
+            "description": "Contact id in hexadecimal format or the contact's phone number.",
             "required": true,
             "schema": {
               "type": "string"
@@ -529,7 +529,7 @@
           {
             "name": "listNameOrId",
             "in": "query",
-            "description": "The list name or list Id",
+            "description": "The list name or list id",
             "required": false,
             "schema": {
               "type": "string"
@@ -796,7 +796,7 @@
           {
             "name": "listId",
             "in": "path",
-            "description": "List Id in hexadecimal format",
+            "description": "List id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -1009,7 +1009,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Message was created"
+            "description": "Success. A message was created."
           }
         }
       }
@@ -1019,7 +1019,7 @@
         "tags": [
           "Messages"
         ],
-        "summary": "Get message",
+        "summary": "Get a Message",
         "description": "Retrieve a specific message from the system via its message id.",
         "operationId": "getMessage",
         "parameters": [
@@ -1036,7 +1036,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Fetched message information",
+            "description": "Success. Retrieved a message.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1053,8 +1053,8 @@
         "tags": [
           "Messages"
         ],
-        "summary": "Evaluate message",
-        "description": "Evaluate the body of your message before sending it to your contact(s).\n\n**Note:** Media items within your request are not validated or downloaded to SimpleTexting.",
+        "summary": "Evaluate a Message",
+        "description": "Evaluate the body of your message before sending it to a contact or contacts.",
         "operationId": "evaluateMessage",
         "requestBody": {
           "content": {
@@ -1533,7 +1533,7 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Contact phone to send to \n\n**Example:** `1234567890`",
+            "description": "Contact's phone\n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
@@ -1543,7 +1543,7 @@
             "example": "555888"
           },
           "mode": {
-            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Determines how your message will be presented:\n\n  - **AUTO** - this means that SimpleTexting will find more relative types for your message content\n\n  - **SMS_STRICTLY** this will send only a single SMS or return an error\n\n  - **MMS** MMS: this will send a MMS or fallback SMS if MMS is not enabled by your contacts' carriers' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1553,12 +1553,12 @@
             ]
           },
           "text": {
-            "description": "Text Body \n\n**Example:** `Hello! How are you?`",
+            "description": "Text Body\n\n**Example:** `Hello! How are you?`",
             "type": "string",
             "example": "Hello! How are you?"
           },
           "subject": {
-            "description": "MMS Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+            "description": "MMS Subject (available for MMS)\n\n**Example:** `Some message from SimpleTexting`",
             "type": "string",
             "example": "Some message from SimpleTexting"
           },
@@ -1568,7 +1568,7 @@
             "example": "[url=%%fallback_link%%]"
           },
           "mediaItems": {
-            "description": "List of mms media urls for temporal storing or media items ids \n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
+            "description": "List of mms media urls for temporal storing or media items ids\n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
             "type": "array",
             "example": [
               "https://txt.so/img.jpg",
@@ -1589,7 +1589,7 @@
             "example": "Hello! How are you?"
           },
           "mode": {
-            "description": "Configures how to present your message\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content\n\n**SMS_STRICTLY -** will send only single sms or return  an error\n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Determines how your message will be presented:\n\n**AUTO: -**this means that SimpleTexting will find more relative types for your message content\n\n**SMS_STRICTLY: -**this will send only a single SMS or return an error\n\n**MMS: -**this will send a MMS or fallback SMS if MMS is not enabled by your contacts' carriers\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1599,17 +1599,17 @@
             ]
           },
           "subject": {
-            "description": "MMS Subject (available for MMS) \n\n**Example:** `New In Store`",
+            "description": "MMS Subject (available for MMS)\n\n**Example:** `New In Store`",
             "type": "string",
-            "example": "Some message from SimpleTexting"
+            "example": "New In Store"
           },
           "fallbackText": {
-            "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
+            "description": "A custom fallback text if a contact can't receive a MMS message. It should contain a '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message.\n\n**Example:** `[url=%%fallback_link%%]`",
             "type": "string",
             "example": "[url=%%fallback_link%%]"
           },
           "mediaItems": {
-            "description": "List of mms media urls for temporal storing or media items ids \n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
+            "description": "List of mms media urls for temporal storing or media items ids\n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
             "type": "array",
             "example": [
               "https://txt.so/img.jpg",
@@ -2023,7 +2023,7 @@
             "example": "VIP client"
           },
           "listIds": {
-            "description": "All the lists (List IDs or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+            "description": "All the lists (List ids or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -2081,7 +2081,7 @@
             "example": "VIP client"
           },
           "listIds": {
-            "description": "All the lists (List IDs or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+            "description": "All the lists (List ids or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -2212,8 +2212,8 @@
             "type": "string",
             "example": "1234567890"
           },
-          "contactId": {
-            "description": "Contact Id if contact was found or null \n\n**Example:** `507f1f77bcf86cd799439011`",
+          "contactid": {
+            "description": "Contact id if contact was found or null \n\n**Example:** `507f1f77bcf86cd799439011`",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
