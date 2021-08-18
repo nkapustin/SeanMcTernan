@@ -69,7 +69,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "The page number to load",
+            "description": "The page number to load.",
             "required": false,
             "schema": {
               "minimum": 0,
@@ -82,7 +82,7 @@
           {
             "name": "size",
             "in": "query",
-            "description": "The size of the page",
+            "description": "The size of the page.",
             "required": false,
             "schema": {
               "maximum": 500,
@@ -200,14 +200,14 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Fetch all contacts",
+        "summary": "Get all contacts",
         "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you",
         "operationId": "fetchContacts",
         "parameters": [
           {
             "name": "page",
             "in": "query",
-            "description": "The page number to load",
+            "description": "The page number to load.",
             "required": false,
             "schema": {
               "minimum": 0,
@@ -220,7 +220,7 @@
           {
             "name": "size",
             "in": "query",
-            "description": "The size of the page",
+            "description": "The size of the page.",
             "required": false,
             "schema": {
               "maximum": 500,
@@ -233,7 +233,7 @@
           {
             "name": "since",
             "in": "query",
-            "description": "List contacts updated since a specified date",
+            "description": "List contacts updated since a specified date.",
             "required": false,
             "schema": {
               "type": "string",
@@ -244,7 +244,7 @@
           {
             "name": "direction",
             "in": "query",
-            "description": "Specifies the sort order for results. Results are sorted by 'updated' field",
+            "description": "Specify the sort order of your results. By default, results are sorted by the 'updated' field.",
             "required": false,
             "schema": {
               "type": "string",
@@ -259,7 +259,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns a page of contacts",
+            "description": "Success. Returns a paginated list of contacts.",
             "content": {
               "application/json": {
                 "schema": {
@@ -268,9 +268,6 @@
               }
             }
           }
-        },
-        "Special Behaviour": {
-            "description": "This is a test adding the special behaviour section"
         }
       },
       "post": {
@@ -477,7 +474,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "The page number to load",
+            "description": "The page number to load.",
             "required": false,
             "schema": {
               "minimum": 0,
@@ -490,7 +487,7 @@
           {
             "name": "size",
             "in": "query",
-            "description": "The size of the page",
+            "description": "The size of the page.",
             "required": false,
             "schema": {
               "maximum": 500,
@@ -645,7 +642,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "The page number to load",
+            "description": "The page number to load.",
             "required": false,
             "schema": {
               "minimum": 0,
@@ -658,7 +655,7 @@
           {
             "name": "size",
             "in": "query",
-            "description": "The size of the page",
+            "description": "The size of the page.",
             "required": false,
             "schema": {
               "maximum": 500,
@@ -901,7 +898,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "The page number to load",
+            "description": "The page number to load.",
             "required": false,
             "schema": {
               "minimum": 0,
@@ -914,7 +911,7 @@
           {
             "name": "size",
             "in": "query",
-            "description": "The size of the page",
+            "description": "The size of the page.",
             "required": false,
             "schema": {
               "maximum": 500,
@@ -1332,7 +1329,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "The page number to load",
+            "description": "The page number to load.",
             "required": false,
             "schema": {
               "minimum": 0,
@@ -1345,7 +1342,7 @@
           {
             "name": "size",
             "in": "query",
-            "description": "The size of the page",
+            "description": "The size of the page.",
             "required": false,
             "schema": {
               "maximum": 500,
@@ -1470,7 +1467,7 @@
         }
       },
       "Webhook": {
-        "description": "Page content, number of elements is restricted by page size",
+        "description": "Page content and number of elements is restricted by page size.",
         "required": [
           "triggers",
           "url"
@@ -1687,19 +1684,19 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MediaFile"
             }
           },
           "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "description": "Total number of elements",
+            "description": "The total number of elements.",
             "type": "integer",
             "format": "int64"
           }
@@ -2042,7 +2039,7 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Unique contact phone\n\n**Example:** `1234567890`",
+            "description": "Contact's phone number. \n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
@@ -2057,17 +2054,17 @@
             "example": "Doe"
           },
           "email": {
-            "description": "Contact email \n\n**Example:** `john.doe@simpletext.org`",
+            "description": "Contact's email \n\n**Example:** `john.doe@simpletexting.net`",
             "type": "string",
-            "example": "john.doe@simpletext.org"
+            "example": "john.doe@simpletexting.net"
           },
           "birthday": {
-            "description": "Birth date in ISO format: yyyy-mm-dd \n\n**Example:** `1985-05-05`",
+            "description": "Contact's birthday in format (yyyy-mm-dd): yyyy-mm-dd \n\n**Example:** `1985-05-05`",
             "type": "string",
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Any custom field of a contact, where customField must be replaced with the actual custom field’s parameter. For example, if you have a Street address custom field, you would use the parameter street_address.",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -2079,12 +2076,12 @@
             }
           },
           "comment": {
-            "description": "Comment attached to contact \n\n**Example:** `VIP client`",
+            "description": "Notes about the contact. \n\n**Example:** `VIP client`",
             "type": "string",
             "example": "VIP client"
           },
           "listIds": {
-            "description": "List of contact list id's or names to replace or add \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+            "description": "All the lists (List IDs or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -2252,19 +2249,19 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FetchedWebhook"
             }
           },
           "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "description": "Total number of elements",
+            "description": "The total number of elements.",
             "type": "integer",
             "format": "int64"
           }
@@ -2275,19 +2272,19 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Message"
             }
           },
           "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "description": "Total number of elements",
+            "description": "The total number of elements.",
             "type": "integer",
             "format": "int64"
           }
@@ -2295,7 +2292,7 @@
         "description": "Page representation for search/fetch result"
       },
       "Message": {
-        "description": "Page content, number of elements is restricted by page size",
+        "description": "Page content and number of elements is restricted by page size.",
         "type": "object",
         "properties": {
           "id": {
@@ -2372,19 +2369,19 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FetchedCampaign"
             }
           },
           "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "description": "Total number of elements",
+            "description": "The total number of elements.",
             "type": "integer",
             "format": "int64"
           }
@@ -2395,19 +2392,19 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Contact"
             }
           },
           "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "description": "Total number of elements",
+            "description": "The total number of elements.",
             "type": "integer",
             "format": "int64"
           }
@@ -2418,19 +2415,19 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomField"
             }
           },
           "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "description": "Total number of elements",
+            "description": "The total number of elements.",
             "type": "integer",
             "format": "int64"
           }
@@ -2465,7 +2462,7 @@
         }
       },
       "FetchedCampaign": {
-        "description": "Page content, number of elements is restricted by page size",
+        "description": "Page content and number of elements is restricted by page size.",
         "type": "object",
         "properties": {
           "campaignId": {
@@ -2653,7 +2650,7 @@
         }
       },
       "Contact": {
-        "description": "Page content, number of elements is restricted by page size",
+        "description": "Page content and number of elements is restricted by page size.",
         "type": "object",
         "properties": {
           "contactId": {
@@ -2784,19 +2781,19 @@
         "type": "object",
         "properties": {
           "content": {
-            "description": "Page content, number of elements is restricted by page size",
+            "description": "Page content and number of elements is restricted by page size.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/List"
             }
           },
           "totalPages": {
-            "description": "Total number of pages, which is number of elements divided by page size",
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
             "type": "integer",
             "format": "int32"
           },
           "totalElements": {
-            "description": "Total number of elements",
+            "description": "The total number of elements.",
             "type": "integer",
             "format": "int64"
           }
@@ -2804,7 +2801,7 @@
         "description": "Page representation for search/fetch result"
       },
       "List": {
-        "description": "Page content, number of elements is restricted by page size",
+        "description": "Page content and number of elements is restricted by page size.",
         "type": "object",
         "properties": {
           "listId": {
