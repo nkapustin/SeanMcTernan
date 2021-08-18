@@ -16,7 +16,7 @@
       "description": "`https://api-app2.simpletexting.com/v2/api/`"
     },
     {
-      "name": "File Size",
+      "name": "File Information",
       "description": "We can accept a wide variety of file types over MMS. The industry standard maximum file size limit is `600KB` for toll-free accounts and is `1MB` on shortcode accounts.\n\nWe support the following file type: `MPEG Audio, MPEG Video, MP4 Video, VCARDs, PDF`\n\n For popular image types we can accept media up to `15MB`, our system will automatically compress these to the `600KB` industry limitation. These media types include: `JPEG, PNG, GIF`"
     },
     {
