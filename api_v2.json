@@ -3,7 +3,7 @@
   "info": {
     "title": "SimpleTexting API Documentation",
     "version": "2.0.0",
-    "description": "# Introduction \n\nThousands of businesses rely on SimpleTexting to communicate with their audience via text message. With our API, developers can access many of our platform’s features and integrate them with other websites or applications. This document details the available SimpleTexting API functions and their parameters. For additional security, our API is by approval only. If you’d like access, sign up for a trial account and email [support@simpletexting.net](https://simpletexting.com/api/docs/support@simpletexting.net) with details about your use case.\n\n**How it works**\n\nOur API is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). It uses standard HTTP response codes and authentication. Before you get started, there a few things to keep in mind:\n\n- When using the POST request, you must specify that `content-type` is `application/json`.\n\n- The default response for all requests is JSON. To use XML, you must change the value for the `Accept` request header to `application/xml`.\n\n- If the message contains a link from a common third-party link shortener such a bit.ly, it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners)."
+    "description": "# Introduction\n\nThousands of businesses rely on SimpleTexting to communicate with their audience via text message. With our API, developers can access many of our platform’s features and integrate them with other websites or applications. This document details the available SimpleTexting API functions and their parameters. For additional security, our API is by approval only. If you’d like access, sign up for a trial account and email [support@simpletexting.net](https://simpletexting.com/api/docs/support@simpletexting.net) with details about your use case.\n\n**How it works**\n\nOur API is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). It uses standard HTTP response codes and authentication. Before you get started, there a few things to keep in mind:\n\n- When using the POST request, you must specify that `content-type` is `application/json`.\n\n- The default response for all requests is JSON. To use XML, you must change the value for the `Accept` request header to `application/xml`.\n\n- If the message contains a link from a common third-party link shortener such a bit.ly, it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners)."
   },
   "servers": [
     {
@@ -49,7 +49,7 @@
     },
     {
       "name": "Webhooks",
-      "description": "For more powerful integrations, you may need to make custom webhooks that are triggered by certain actions. These actions include code  Messages, Outgoing Messages sent by your team, Delivery Reports and much more."
+      "description": "Use webhooks to communicate between the SimpleTexting platform and your server. Webhooks can be used to forward messages as well as provide info about unsubscribes and message delivery.\n\nSimpleTexting can trigger webhooks for new incoming messages, delivery reports, unsubscribes, and more. Now you can build scripts that interpret and respond to events that occur in your SimpleTexting account! To set the URLs for your webhooks, visit the Webhooks tab on the API section of [settings](https://app2.simpletexting.com/account/api)."
     },
     {
       "name": "Webhook Reports",
@@ -138,8 +138,8 @@
         "tags": [
           "Webhooks"
         ],
-        "summary": "Update a webhook",
-        "description": "Update an exsisting webhook by its unique id",
+        "summary": "Update a Webhook",
+        "description": "Update an existing webhook using its unique id.",
         "operationId": "updateWebhook",
         "parameters": [
           {
@@ -190,7 +190,10 @@
         ],
         "responses": {
           "204": {
-            "description": "Success. Webhook was deleted"
+            "description": "Success. Webhook was updated."
+          },
+          "404": {
+            "description": "Error. Webhook not found."
           }
         }
       }
@@ -1068,7 +1071,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Evaluation result",
+            "description": "Success. You have a message to evaluate.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1424,18 +1427,18 @@
         "type": "object",
         "properties": {
           "url": {
-            "description": "URL for handling POST request\n\n**Example:** `https://example.com`",
+            "description": "The URL for handling a POST request\n\n**Example:** `https://example.com`",
             "type": "string",
             "example": "https://example.com"
           },
           "triggers": {
-            "description": "Trigger a webhook on specific platform events\n\n**Example:** `INCOMING_MESSAGE`",
+            "description": "Trigger a webhook based on a specific platform event\n\n**Example:** `INCOMING_MESSAGE`",
             "type": "array",
             "example": [
               "INCOMING_MESSAGE"
             ],
             "items": {
-              "description": "Trigger a webhook on specific platform events",
+              "description": "Trigger a webhook based on a specific platform event",
               "type": "string",
               "example": "[\"INCOMING_MESSAGE\"]",
               "enum": [
@@ -1448,7 +1451,7 @@
             }
           },
           "requestPerSecLimit": {
-            "description": "The maximum number of requests that can be sent within one second\n\n**Example:** `25`",
+            "description": "The maximum number of requests that can be sent within a second\n\n**Example:** `25`",
             "maximum": 25,
             "type": "integer",
             "format": "int32",
@@ -1460,7 +1463,7 @@
             "example": "8881234567"
           },
           "contactPhone": {
-            "description": "Optional: requests will come exclusively for the specified contact phone number\n\n**Example:** `3051234567`",
+            "description": "Optional: requests will come exclusively for the specified contact's phone number\n\n**Example:** `3051234567`",
             "type": "string",
             "example": "3051234567"
           }
@@ -1538,7 +1541,7 @@
             "example": "1234567890"
           },
           "accountPhone": {
-            "description": "Account phone to send from \n\n**Example:** `555888`",
+            "description": "Account phone to send from\n\n**Example:** `555888`",
             "type": "string",
             "example": "555888"
           },
@@ -1563,7 +1566,7 @@
             "example": "Some message from SimpleTexting"
           },
           "fallbackText": {
-            "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message \n\n**Example:** `[url=%%fallback_link%%]`",
+            "description": "Custom fallback text if mms cannot be received. Should contain '[url=%%fallback_link%%]' placeholder that will be replaced with a link to the message\n\n**Example:** `[url=%%fallback_link%%]`",
             "type": "string",
             "example": "[url=%%fallback_link%%]"
           },
@@ -1584,12 +1587,12 @@
         "type": "object",
         "properties": {
           "text": {
-            "description": "Text Body \n\n**Example:** `Hello! How are you?`",
+            "description": "Text Body\n\n**Example:** `Hello! How are you?`",
             "type": "string",
             "example": "Hello! How are you?"
           },
           "mode": {
-            "description": "Determines how your message will be presented:\n\n**AUTO: -**this means that SimpleTexting will find more relative types for your message content\n\n**SMS_STRICTLY: -**this will send only a single SMS or return an error\n\n**MMS: -**this will send a MMS or fallback SMS if MMS is not enabled by your contacts' carriers\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Determines how your message will be presented:\n\n**AUTO: **this means that SimpleTexting will find more relative types for your message content\n\n**SMS_STRICTLY: **this will send only a single SMS or return an error\n\n**MMS: **this will send a MMS or fallback SMS if MMS is not enabled by your contacts' carriers\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1622,7 +1625,7 @@
         "type": "object",
         "properties": {
           "detectedCategory": {
-            "description": "Autodetected category of message \n\n**Example:** `SMS`",
+            "description": "Autodetected category of message\n\n**Example:** `SMS`",
             "type": "string",
             "example": "SMS",
             "enum": [
@@ -1632,48 +1635,48 @@
             ]
           },
           "length": {
-            "description": "Message length in chars \n\n**Example:** `134`",
+            "description": "The message length in characters\n\n**Example:** `134`",
             "type": "integer",
             "format": "int32",
             "example": 134
           },
           "remains": {
-            "description": "Remaining characters \n\n**Example:** `23`",
+            "description": "The remaining characters\n\n**Example:** `23`",
             "type": "integer",
             "format": "int32",
             "example": 23
           },
           "maxLength": {
-            "description": "Message max length in chars with current type and encoding n\n**Example:** `300`",
+            "description": "The maximum message length in characters with the current message type and encoding\n\n**Example:** `300`",
             "type": "integer",
             "format": "int32",
             "example": 300
           },
           "containsUtfChars": {
-            "description": "Is UTF encoding used? \n\n**Example:** `false`",
+            "description": "Determines whether UTF encoding is used\n\n**Example:** `false`",
             "type": "boolean",
             "example": false
           },
           "sumOfCredits": {
-            "description": "How much credits message will cost \n\n**Example:** `1`",
+            "description": "How much credits message will cost\n\n**Example:** `1`",
             "type": "integer",
             "format": "int32",
             "example": 1
           },
           "warnings": {
-            "description": "List of warning messages if present \n\n**Example:** `[\"Text is blank\"]`",
+            "description": "A list of warning messages if present\n\n**Example:** `[\"Text is blank\"]`",
             "type": "array",
             "items": {
-              "description": "List of warning messages if present",
+              "description": "A list of warning messages if present",
               "type": "string",
               "example": "Text is blank"
             }
           },
           "errors": {
-            "description": "List of error messages if present  \n\n**Example:** `[\"Invalid phone number\"]`",
+            "description": "List of error messages if present\n\n**Example:** `[\"Invalid phone number\"]`",
             "type": "array",
             "items": {
-              "description": "List of error messages if present",
+              "description": "A list of error messages if present",
               "type": "string",
               "example": "Invalid phone number"
             }
@@ -1707,12 +1710,12 @@
         "type": "object",
         "properties": {
           "reportId": {
-            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Unique report id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "webhookId": {
-            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Webhook id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
@@ -1733,12 +1736,12 @@
             "type": "object",
             "properties": {
               "contactId": {
-                "description": "Contact id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "description": "Contact id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
                 "type": "string",
                 "example": "507f191e810c19729de860ea"
               },
               "phone": {
-                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "description": "Contact phone\n\n**Example:** `8001234567`",
                 "type": "string",
                 "example": "8001234567"
               }
@@ -1750,12 +1753,12 @@
         "type": "object",
         "properties": {
           "reportId": {
-            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Unique report id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "webhookId": {
-            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Webhook id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
@@ -1776,12 +1779,12 @@
             "type": "object",
             "properties": {
               "messageId": {
-                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "description": "Message id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
                 "type": "string",
                 "example": "507f191e810c19729de860ea"
               },
               "category": {
-                "description": "Message category \n\n**Example:** `SMS`",
+                "description": "Message category\n\n**Example:** `SMS`",
                 "type": "string",
                 "example": "SMS",
                 "enum": [
@@ -1791,22 +1794,22 @@
                 ]
               },
               "type": {
-                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "description": "Reference type (available only for MT messages)\n\n**Example:** `API`",
                 "type": "string",
                 "example": "API"
               },
               "tenantPhone": {
-                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "description": "Account phone (primary or secondary)\n\n**Example:** `555888`",
                 "type": "string",
                 "example": "555888"
               },
               "contactPhone": {
-                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "description": "Contact phone\n\n**Example:** `8001234567`",
                 "type": "string",
                 "example": "8001234567"
               },
               "carrier": {
-                "description": "Name of carrier \n\n**Example:** `Verizon`",
+                "description": "Name of carrier\n\n**Example:** `Verizon`",
                 "type": "string",
                 "example": "Verizon"
               }
@@ -1818,12 +1821,12 @@
         "type": "object",
         "properties": {
           "reportId": {
-            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Unique report id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "webhookId": {
-            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Webhook id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
@@ -1844,17 +1847,17 @@
             "type": "object",
             "properties": {
               "messageId": {
-                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "description": "Message id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
                 "type": "string",
                 "example": "507f191e810c19729de860ea"
               },
               "subject": {
-                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "description": "Subject (available for MMS)\n\n**Example:** `Some message from SimpleTexting`",
                 "type": "string",
                 "example": "Some message from SimpleTexting"
               },
               "mediaItems": {
-                "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+                "description": "List of mms media descriptors: id in hexadecimal format for st-stored file\n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
                 "type": "array",
                 "example": [
                   "507f1f77bcf86cd799439011",
@@ -1867,28 +1870,28 @@
                 }
               },
               "text": {
-                "description": "Text \n\n**Example:** `Hello! How are you?`",
+                "description": "Text\n\n**Example:** `Hello! How are you?`",
                 "type": "string",
                 "example": "Hello! How are you?"
               },
               "tenantPhone": {
-                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "description": "Account phone (primary or secondary)\n\n**Example:** `555888`",
                 "type": "string",
                 "example": "555888"
               },
               "contactPhone": {
-                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "description": "Contact phone\n\n**Example:** `8001234567`",
                 "type": "string",
                 "example": "8001234567"
               },
               "timestamp": {
-                "description": "Date of sending - ISO Format \n\n**Example:** `2020-04-28T23:20:08.489Z`",
+                "description": "Date of sending - ISO Format\n\n**Example:** `2020-04-28T23:20:08.489Z`",
                 "type": "string",
                 "format": "date-time",
                 "example": "2020-04-28T23:20:08.489Z"
               },
               "category": {
-                "description": "Message category \n\n**Example:** `SMS`",
+                "description": "Message category\n\n**Example:** `SMS`",
                 "type": "string",
                 "example": "SMS",
                 "enum": [
@@ -1898,7 +1901,7 @@
                 ]
               },
               "type": {
-                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "description": "Reference type (available only for MT messages)\n\n**Example:** `API`",
                 "type": "string",
                 "example": "API"
               }
@@ -1910,7 +1913,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "Existing media id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "description": "Existing media id in hexadecimal format\n\n**Example:** `607f0558a7c898629dd47d7a`",
             "type": "string",
             "example": "607f0558a7c898629dd47d7a"
           },
@@ -1970,7 +1973,7 @@
         "type": "object",
         "properties": {
           "link": {
-            "description": "The url you will upload your media to \n\n**Example:** `https://simpletexting.com/wp-content/uploads/2019/08/7kAnVTq5Pb9TxEJbBNMDwh-768-80-1.jpg`",
+            "description": "The url you will upload your media to\n\n**Example:** `https://simpletexting.com/wp-content/uploads/2019/08/7kAnVTq5Pb9TxEJbBNMDwh-768-80-1.jpg`",
             "type": "string",
             "example": "https://simpletexting.com/wp-content/uploads/2019/08/7kAnVTq5Pb9TxEJbBNMDwh-768-80-1.jpg"
           }
@@ -1981,27 +1984,27 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Contact's phone number \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number\n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "description": "Contact's first name. \n\n**Example:** `John`",
+            "description": "Contact's first name.\n\n**Example:** `John`",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "description": "Contact's last name \n\n**Example:** `Doe`",
+            "description": "Contact's last name\n\n**Example:** `Doe`",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "description": "Contact's email \n\n**Example:** `john.doe@simpletext.org`",
+            "description": "Contact's email\n\n**Example:** `john.doe@simpletext.org`",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "description": "Contact's birthday in format (yyyy-mm-dd) \n\n**Example:** `1985-05-05`",
+            "description": "Contact's birthday in format (yyyy-mm-dd)\n\n**Example:** `1985-05-05`",
             "type": "string",
             "example": "1985-05-05"
           },
@@ -2018,12 +2021,12 @@
             }
           },
           "comment": {
-            "description": "Notes about the contact. \n\n**Example:** `VIP client`",
+            "description": "Notes about the contact.\n\n**Example:** `VIP client`",
             "type": "string",
             "example": "VIP client"
           },
           "listIds": {
-            "description": "All the lists (List ids or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+            "description": "All the lists (List ids or names) to add the contact to or replace.\n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -2039,27 +2042,27 @@
         "type": "object",
         "properties": {
           "contactPhone": {
-            "description": "Contact's phone number \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number\n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "description": "Contact first name \n\n**Example:** `John`",
+            "description": "Contact first name\n\n**Example:** `John`",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "description": "Contact last name \n\n**Example:** `Doe`",
+            "description": "Contact last name\n\n**Example:** `Doe`",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "description": "Contact's email \n\n**Example:** `john.doe@simpletexting.net`",
+            "description": "Contact's email\n\n**Example:** `john.doe@simpletexting.net`",
             "type": "string",
             "example": "john.doe@simpletexting.net"
           },
           "birthday": {
-            "description": "Contact's birthday in format (yyyy-mm-dd): yyyy-mm-dd \n\n**Example:** `1985-05-05`",
+            "description": "Contact's birthday in format (yyyy-mm-dd): yyyy-mm-dd\n\n**Example:** `1985-05-05`",
             "type": "string",
             "example": "1985-05-05"
           },
@@ -2076,12 +2079,12 @@
             }
           },
           "comment": {
-            "description": "Notes about the contact. \n\n**Example:** `VIP client`",
+            "description": "Notes about the contact.\n\n**Example:** `VIP client`",
             "type": "string",
             "example": "VIP client"
           },
           "listIds": {
-            "description": "All the lists (List ids or names) to add the contact to or replace. \n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
+            "description": "All the lists (List ids or names) to add the contact to or replace.\n\n**Example:** `[\"507f191e810c19729de860ea\", \"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -2119,7 +2122,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "Id of item in hexadecimal format. \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Id of item in hexadecimal format.\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           }
@@ -2130,22 +2133,22 @@
         "type": "object",
         "properties": {
           "done": {
-            "description": "If operation was successful \n\n**Example:** `true`",
+            "description": "If operation was successful\n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
           "contactPhone": {
-            "description": "Contact phone from update request \n\n**Example:** `1234567890`",
+            "description": "Contact phone from update request\n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "contactId": {
-            "description": "Contact id if contact exists \n\n**Example:** `507f1f77bcf86cd799439011`",
+            "description": "Contact id if contact exists\n\n**Example:** `507f1f77bcf86cd799439011`",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
           "errorCode": {
-            "description": "Operation error code, if operation has failed \n\n**Example:** `CONTACT_CREATE_FAILED`",
+            "description": "Operation error code, if operation has failed\n\n**Example:** `CONTACT_CREATE_FAILED`",
             "type": "string",
             "example": "CONTACT_CREATE_FAILED",
             "enum": [
@@ -2157,7 +2160,7 @@
             ]
           },
           "errorMessage": {
-            "description": "Additional error message if operation has failed \n\n**Example:** `Contacts limit is reached`",
+            "description": "Additional error message if operation has failed\n\n**Example:** `Contacts limit is reached`",
             "type": "string",
             "example": "Contacts limit is reached"
           }
@@ -2182,7 +2185,7 @@
         "type": "object",
         "properties": {
           "contactPhones": {
-            "description": "List of contacts' phone numbers for deletion \n\n**Example:** `[\"1234567890\",\"1234567891\"]`",
+            "description": "List of contacts' phone numbers for deletion\n\n**Example:** `[\"1234567890\",\"1234567891\"]`",
             "maxItems": 500,
             "minItems": 0,
             "type": "array",
@@ -2203,22 +2206,22 @@
         "type": "object",
         "properties": {
           "done": {
-            "description": "If operation was successful \n\n**Example:** `true`",
+            "description": "If operation was successful\n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
           "contactPhone": {
-            "description": "Contact's phone number from the delete request \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number from the delete request\n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "contactid": {
-            "description": "Contact id if contact was found or null \n\n**Example:** `507f1f77bcf86cd799439011`",
+            "description": "Contact id if contact was found or null\n\n**Example:** `507f1f77bcf86cd799439011`",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
           "errorCode": {
-            "description": "Contact's phone number from the delete request \n\n**Example:** `UNKNOWN_CONTACT_PHONE`",
+            "description": "Contact's phone number from the delete request\n\n**Example:** `UNKNOWN_CONTACT_PHONE`",
             "type": "string",
             "example": "UNKNOWN_CONTACT_PHONE",
             "enum": [
@@ -2227,7 +2230,7 @@
             ]
           },
           "errorMessage": {
-            "description": "Additional error message if the operation has failed \n\n**Example:** `Contact with provided phone number is missing`",
+            "description": "Additional error message if the operation has failed\n\n**Example:** `Contact with provided phone number is missing`",
             "type": "string",
             "example": "Contact with provided phone number is missing"
           }
@@ -2296,27 +2299,27 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "Message id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "subject": {
-            "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+            "description": "Subject (available for MMS)\n\n**Example:** `Some message from SimpleTexting`",
             "type": "string",
             "example": "Some message from SimpleTexting"
           },
           "text": {
-            "description": "Text \n\n**Example:** `Hello! How are you?`",
+            "description": "Text\n\n**Example:** `Hello! How are you?`",
             "type": "string",
             "example": "Hello! How are you?"
           },
           "contactPhone": {
-            "description": "Contact phone \n\n**Example:** `8001234567`",
+            "description": "Contact phone\n\n**Example:** `8001234567`",
             "type": "string",
             "example": "8001234567"
           },
           "accountPhone": {
-            "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+            "description": "Account phone (primary or secondary)\n\n**Example:** `555888`",
             "type": "string",
             "example": "555888"
           },
@@ -2330,18 +2333,18 @@
             ]
           },
           "timestamp": {
-            "description": "Date of sending - ISO Format \n\n**Example:** `2020-04-28T23:20:08.489Z`",
+            "description": "Date of sending - ISO Format\n\n**Example:** `2020-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2020-04-28T23:20:08.489Z"
           },
           "referenceType": {
-            "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+            "description": "Reference type (available only for MT messages)\n\n**Example:** `API`",
             "type": "string",
             "example": "API"
           },
           "category": {
-            "description": "Message category \n\n**Example:** `SMS`",
+            "description": "Message category\n\n**Example:** `SMS`",
             "type": "string",
             "example": "SMS",
             "enum": [
@@ -2351,7 +2354,7 @@
             ]
           },
           "mediaItems": {
-            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+            "description": "List of mms media descriptors: id in hexadecimal format for st-stored file\n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
             "type": "array",
             "example": [
               "507f1f77bcf86cd799439011",
@@ -2439,22 +2442,22 @@
         "type": "object",
         "properties": {
           "label": {
-            "description": "Label Given to Custom Field Type \n\n**Example:** `My Custom Field`",
+            "description": "Label Given to Custom Field Type\n\n**Example:** `My Custom Field`",
             "type": "string",
             "example": "My Custom Field"
           },
           "type": {
-            "description": "Custom Field Type \n\n**Example:** `text`",
+            "description": "Custom Field Type\n\n**Example:** `text`",
             "type": "string",
             "example": "text"
           },
           "mergeTag": {
-            "description": "Merge tag to be added to message \n\n**Example:** `my_custom_field`",
+            "description": "Merge tag to be added to message\n\n**Example:** `my_custom_field`",
             "type": "string",
             "example": "my_custom_field"
           },
           "defaultMaxLength": {
-            "description": "Max length of the custom field \n\n**Example:** `15`",
+            "description": "Max length of the custom field\n\n**Example:** `15`",
             "type": "integer",
             "format": "int32",
             "example": 15
@@ -2466,17 +2469,17 @@
         "type": "object",
         "properties": {
           "campaignId": {
-            "description": "Existing campaign id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "description": "Existing campaign id in hexadecimal format\n\n**Example:** `607f0558a7c898629dd47d7a`",
             "type": "string",
             "example": "607f0558a7c898629dd47d7a"
           },
           "title": {
-            "description": "Campaign name \n\n**Example:** `My first campaign`",
+            "description": "Campaign name\n\n**Example:** `My first campaign`",
             "type": "string",
             "example": "My first campaign"
           },
           "accountPhone": {
-            "description": "Number the campaign was sent from \n\n**Example:** `555888`",
+            "description": "Number the campaign was sent from\n\n**Example:** `555888`",
             "type": "string",
             "example": "555888"
           },
@@ -2493,7 +2496,7 @@
             }
           },
           "state": {
-            "description": "The the current state of the campaign \n\n**Example:** `COMPLETED`",
+            "description": "The the current state of the campaign\n\n**Example:** `COMPLETED`",
             "type": "string",
             "enum": [
               "DRAFT",
@@ -2526,31 +2529,31 @@
             }
           },
           "created": {
-            "description": "Created timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Created timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "modified": {
-            "description": "Modified timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Modified timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "started": {
-            "description": "Started timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Started timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "finished": {
-            "description": "Finished timestamp - ISO format \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Finished timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "messageTemplate": {
-            "description": "Template of message sent \n\n**Example:** `{\"subject\": \"Some message from SimpleTexting\",\"text\": \"Hello! How are you?\",\"fallbackText\": \"Some text\",\"mediaItems\": [\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]}`",
+            "description": "Template of message sent\n\n**Example:** `{\"subject\": \"Some message from SimpleTexting\",\"text\": \"Hello! How are you?\",\"fallbackText\": \"Some text\",\"mediaItems\": [\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]}`",
             "type": "object",
             "example": {
               "$ref": "#/components/schemas/FetchedCampaignTemplate"
@@ -2575,12 +2578,12 @@
         "type": "object",
         "properties": {
           "title": {
-            "description": "Campaign title \n\n**Example:** `My first campaign`",
+            "description": "Campaign title\n\n**Example:** `My first campaign`",
             "type": "string",
             "example": "My first campaign"
           },
           "listsOrSegments": {
-            "description": "Lists or segments ids or names \n\n**Example:** `[\"507f191e810c19729de860ea\",\"My First List\"]`",
+            "description": "Lists or segments ids or names\n\n**Example:** `[\"507f191e810c19729de860ea\",\"My First List\"]`",
             "type": "array",
             "example": [
               "507f191e810c19729de860ea",
@@ -2593,12 +2596,12 @@
             }
           },
           "accountPhone": {
-            "description": "Account phone, primary number is default \n\n**Example:** `555888`",
+            "description": "Account phone, primary number is default\n\n**Example:** `555888`",
             "type": "string",
             "example": "555888"
           },
           "customFieldsMaxLength": {
-            "description": "Custom fields length in current campaign, overwrite default settings. See /custom-fields  \n\n**Example:** `{\"firstname\":\"20\"}`",
+            "description": "Custom fields length in current campaign, overwrite default settings. See /custom-fields\n\n**Example:** `{\"firstname\":\"20\"}`",
             "type": "object",
             "properties": {
               "customfield": {
@@ -2609,31 +2612,31 @@
             }
           },
           "messageTemplate": {
-            "description": "Campaign Template \n\n**Example:** `555888`",
+            "description": "Campaign Template\n\n**Example:** `555888`",
             "type": "object",
             "properties": {
               "title": {
-                "description": "Campaign title \n\n**Example:** `My first campaign`",
+                "description": "Campaign title\n\n**Example:** `My first campaign`",
                 "type": "string",
                 "example": "My first campaign"
               },
               "subject": {
-                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "description": "Subject (available for MMS)\n\n**Example:** `Some message from SimpleTexting`",
                 "type": "string",
                 "example": "My first campaign"
               },
               "text": {
-                "description": "Text body \n\n**Example:** `Hello! How are you?`",
+                "description": "Text body\n\n**Example:** `Hello! How are you?`",
                 "type": "string",
                 "example": "My first campaign"
               },
               "fallbackText": {
-                "description": "Custom fallback text if mms cannot be received. Should contains '[url=\"%%fallback_link%%\"]' placeholder that will be replaced with a link to the message \n\n**Example:** `Some text`",
+                "description": "Custom fallback text if mms cannot be received. Should contains '[url=\"%%fallback_link%%\"]' placeholder that will be replaced with a link to the message\n\n**Example:** `Some text`",
                 "type": "string",
                 "example": "My first campaign"
               },
               "mediaItems": {
-                "description": "List of mms media urls for temporal storing or media items ids \n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
+                "description": "List of mms media urls for temporal storing or media items ids\n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
                 "type": "array",
                 "example": [
                   "https://txt.so/img.jpg",
@@ -2654,32 +2657,32 @@
         "type": "object",
         "properties": {
           "contactId": {
-            "description": "Existing contact id in hexadecimal format \n\n**Example:** `607f0558a7c898629dd47d7a`",
+            "description": "Existing contact id in hexadecimal format\n\n**Example:** `607f0558a7c898629dd47d7a`",
             "type": "string",
             "example": "607f0558a7c898629dd47d7a"
           },
           "contactPhone": {
-            "description": "Contact's phone number \n\n**Example:** `1234567890`",
+            "description": "Contact's phone number\n\n**Example:** `1234567890`",
             "type": "string",
             "example": "1234567890"
           },
           "firstName": {
-            "description": "Contact's first name \n\n**Example:** `John`",
+            "description": "Contact's first name\n\n**Example:** `John`",
             "type": "string",
             "example": "John"
           },
           "lastName": {
-            "description": "Contact's last name \n\n**Example:** `Doe`",
+            "description": "Contact's last name\n\n**Example:** `Doe`",
             "type": "string",
             "example": "Doe"
           },
           "email": {
-            "description": "Contact's email \n\n**Example:** `john.doe@simpletext.org`",
+            "description": "Contact's email\n\n**Example:** `john.doe@simpletext.org`",
             "type": "string",
             "example": "john.doe@simpletext.org"
           },
           "birthday": {
-            "description": "Contact's birthday in format (yyyy-mm-dd) \n\n**Example:** `1985-05-05`",
+            "description": "Contact's birthday in format (yyyy-mm-dd)\n\n**Example:** `1985-05-05`",
             "type": "string",
             "example": "1985-05-05"
           },
@@ -2696,7 +2699,7 @@
             }
           },
           "comment": {
-            "description": "Notes about the contact \n\n**Example:** `VIP client`",
+            "description": "Notes about the contact\n\n**Example:** `VIP client`",
             "type": "string",
             "example": "VIP client"
           },
@@ -2714,7 +2717,7 @@
             }
           },
           "subscriptionStatus": {
-            "description": "Contact's subscription status \n\n**Example:** `OPT_IN`",
+            "description": "Contact's subscription status\n\n**Example:** `OPT_IN`",
             "type": "string",
             "example": "OPT_IN",
             "enum": [
@@ -2725,19 +2728,19 @@
             ]
           },
           "created": {
-            "description": "When the contact was created \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the contact was created\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "description": "When the contact was updated \n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the contact was updated\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-05-28T20:20:08.489Z"
           },
           "updateSource": {
-            "description": "How the contact was updated \n\n**Example:** `IMPORTED_FROM_FILE`",
+            "description": "How the contact was updated\n\n**Example:** `IMPORTED_FROM_FILE`",
             "type": "string",
             "enum": [
               "IMPORTED_FROM_FILE",
@@ -2805,58 +2808,58 @@
         "type": "object",
         "properties": {
           "listId": {
-            "description": "List id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "description": "List id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
             "type": "string",
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "description": "The list name \n\n**Example:** `My First List`",
+            "description": "The list name\n\n**Example:** `My First List`",
             "type": "string",
             "example": "My First List"
           },
           "created": {
-            "description": "When the list was created \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "description": "When the list was created\n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
             "type": "string",
             "format": "date-time",
             "example": "2020-03-30T12:47:40.123-05:00"
           },
           "updated": {
-            "description": "When the list was updated \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "description": "When the list was updated\n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
             "type": "string",
             "format": "date-time",
             "example": "2020-03-30T12:47:40.123-05:00"
           },
           "description": {
-            "description": "Title is present when list is created automatically by a keyword via the dashboard, otherwise defaults to null \n\n**Example:** `List for 'MYFIRSTKEYWORD' keyword`",
+            "description": "Title is present when list is created automatically by a keyword via the dashboard, otherwise defaults to null\n\n**Example:** `List for 'MYFIRSTKEYWORD' keyword`",
             "type": "string",
             "example": "List for 'SALE' keyword"
           },
           "totalContactsCount": {
-            "description": "The number of contacts \n\n**Example:** `50`",
+            "description": "The number of contacts\n\n**Example:** `50`",
             "type": "integer",
             "format": "int32",
             "example": 50
           },
           "activeContactsCount": {
-            "description": "The number of active contacts \n\n**Example:** `40`",
+            "description": "The number of active contacts\n\n**Example:** `40`",
             "type": "integer",
             "format": "int32",
             "example": 40
           },
           "invalidContactsCount": {
-            "description": "The number of invalid contacts \n\n**Example:** `1`",
+            "description": "The number of invalid contacts\n\n**Example:** `1`",
             "type": "integer",
             "format": "int32",
             "example": 1
           },
           "unsubscribedContactsCount": {
-            "description": "The number of unsubscribed contacts \n\n**Example:** `2`",
+            "description": "The number of unsubscribed contacts\n\n**Example:** `2`",
             "type": "integer",
             "format": "int32",
             "example": 2
           },
           "keywords": {
-            "description": "Keywords associated with the list \n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
+            "description": "Keywords associated with the list\n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
             "type": "array",
             "items": {
               "description": "Keywords that bound to the list",
