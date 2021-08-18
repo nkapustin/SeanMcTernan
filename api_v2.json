@@ -62,8 +62,8 @@
         "tags": [
           "Webhooks"
         ],
-        "summary": "Fetch webhooks",
-        "description": "Fetch all webhooks that you have created",
+        "summary": "Get All Webhooks",
+        "description": "Retrieve all the webhooks that you've created.",
         "operationId": "getWebhooks",
         "parameters": [
           {
@@ -95,7 +95,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns page of webhooks",
+            "description": "Success. Returns page of webhooks.",
             "content": {
               "application/json": {
                 "schema": {
@@ -110,7 +110,7 @@
         "tags": [
           "Webhooks"
         ],
-        "summary": "Create a webhook",
+        "summary": "Create a Webhook",
         "description": "Create a new webhook from scratch",
         "operationId": "createWebhook",
         "requestBody": {
@@ -125,10 +125,10 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Webhook was created"
+            "description": "Success. Webhook was created."
           },
           "400": {
-            "description": "Error. Invalid phone format"
+            "description": "Error. Invalid phone format."
           }
         }
       }
@@ -176,7 +176,7 @@
         "tags": [
           "Webhooks"
         ],
-        "summary": "Delete a webhook",
+        "summary": "Delete a Webhook",
         "description": "Delete an exsisting webhook by its unique id",
         "operationId": "deleteWebhook",
         "parameters": [
@@ -193,7 +193,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success. Webhook was updated."
+            "description": "Success. Webhook was deleted."
           }
         }
       }
