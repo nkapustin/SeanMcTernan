@@ -28,12 +28,12 @@
       "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
     },
     {
-      "name": "Contacts Batch",
+      "name": "Batch Update or Delete Contacts",
       "description": "An endpoint to assist in batch operations on your contacts. Using these operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
       "name": "Contact Lists",
-      "description": "The following endpoints allow you to manage your lists. Lists can be used to manage your contacts so the right message is being sent to the right people."
+      "description": "Create, update, and delete contact lists."
     },
     {
       "name": "Custom Fields",
@@ -635,8 +635,8 @@
         "tags": [
           "Contact Lists"
         ],
-        "summary": "Fetch lists",
-        "description": "Fetch all lists from the SimpleTexting system.",
+        "summary": "Get All Lists",
+        "description": "For a given SimpleTexting account, return all lists that have been created.",
         "operationId": "getLists",
         "parameters": [
           {
@@ -668,7 +668,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns an array of lists.",
+            "description": "Success. Returns all lists in a given SimpleTexting account.",
             "content": {
               "application/json": {
                 "schema": {
@@ -683,8 +683,8 @@
         "tags": [
           "Contact Lists"
         ],
-        "summary": "Create list",
-        "description": "Create a new list on the SimpleTexting system.",
+        "summary": "Create a List",
+        "description": "This endpoint is used to create a new contact list in a given SimpleTexting account.",
         "operationId": "createList",
         "requestBody": {
           "content": {
@@ -715,8 +715,8 @@
         "tags": [
           "Contact Lists"
         ],
-        "summary": "Get list",
-        "description": "Retrieve a list of contacts that you have uploaded to the SimpleTexting system.",
+        "summary": "Get a List",
+        "description": "Return a contact list by its unique list id.",
         "operationId": "getList",
         "parameters": [
           {
@@ -747,7 +747,7 @@
         "tags": [
           "Contact Lists"
         ],
-        "summary": "Update list",
+        "summary": "Update List Name",
         "description": "Update the name of an existing list.",
         "operationId": "updateList",
         "parameters": [
@@ -774,7 +774,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success. List updated",
+            "description": "Success. List name updated",
             "content": {
               "application/json": {
                 "schema": {
@@ -789,14 +789,14 @@
         "tags": [
           "Contact Lists"
         ],
-        "summary": "Delete list",
+        "summary": "Delete a List",
         "description": "Delete an existing list using the list id.",
         "operationId": "deleteList",
         "parameters": [
           {
             "name": "listId",
             "in": "path",
-            "description": "List id in hexadecimal format",
+            "description": "List Id in hexadecimal format",
             "required": true,
             "schema": {
               "type": "string"
@@ -1085,8 +1085,8 @@
         "tags": [
           "Media Items"
         ],
-        "summary": "Fetch media items",
-        "description": "Retrieve items that you have previously uploaded to the SimpleTexting system.",
+        "summary": "Get Media Items",
+        "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments.",
         "operationId": "getMediaItems",
         "parameters": [
           {
@@ -1118,7 +1118,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns a page of media items",
+            "description": "Success. Returns a page of media items.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1135,14 +1135,14 @@
         "tags": [
           "Media Items"
         ],
-        "summary": "Upload media by link",
-        "description": "Upload media via a link. The file can then be sent along with your message to a contact.",
+        "summary": "Upload Media Using a URL",
+        "description": "This endpoint allows you to upload media via a URL so that you can send it in a message to a contact.",
         "operationId": "uploadByLink",
         "parameters": [
           {
             "name": "shared",
             "in": "query",
-            "description": "State whether media is shared between teammates",
+            "description": "Define whether a media file is shared with teammates",
             "schema": {
               "type": "boolean",
               "default": true
@@ -1162,7 +1162,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Uploaded media",
+            "description": "Success. Media is uploaded.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1256,7 +1256,7 @@
     "/api/contacts-batch/batch-update": {
       "post": {
         "tags": [
-          "Contacts Batch"
+          "Batch Update or Delete Contacts"
         ],
         "summary": "Update a group of contacts",
         "description": "Update multiple fields at once for a batch of contacts. You can update their first name, last name, emails, lists, and more.",
@@ -1288,10 +1288,10 @@
     "/api/contacts-batch/batch-delete": {
       "post": {
         "tags": [
-          "Contacts Batch"
+          "Batch Update or Delete Contacts"
         ],
-        "summary": "Batch Update or Delete Contacts",
-        "description": "This endpoint is used to delete a group of contacts or update existing ones using the contacts phone as an id.",
+        "summary": "Delete a group of contacts",
+        "description": "Delete a group of contacts from SimpleTexting using their phone numbers.",
         "operationId": "processBatchDelete",
         "requestBody": {
           "content": {
@@ -1305,7 +1305,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success. Contact batch delete was processed",
+            "description": "Success. Contacts were successfully deleted.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1322,8 +1322,8 @@
         "tags": [
           "Custom Fields"
         ],
-        "summary": "Fetch custom fields",
-        "description": "Fetch all custom fields you've created on the SimpleTexting system.",
+        "summary": "Get All Custom Fields",
+        "description": "This endpoint allows you to retrieve all custom fields.",
         "operationId": "getCustomFields",
         "parameters": [
           {
@@ -1355,7 +1355,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. Returns an array of custom fields",
+            "description": "Success. All custom fields retrieved.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1518,9 +1518,9 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "List name containing less than 42 characters\n\n**Example:** `My new list`",
+            "description": "A list name containing less than 42 characters\n\n**Example:** `My new list`",
             "type": "string",
-            "example": "My First List"
+            "example": "My new list"
           }
         }
       },
@@ -1970,9 +1970,9 @@
         "type": "object",
         "properties": {
           "link": {
-            "description": "Link to be used for upload \n\n**Example:** `https://img.gazeta.ru/files3/941/10500941/cat-pic905-895x505-29911.jpg`",
+            "description": "The url you will upload your media to \n\n**Example:** `https://simpletexting.com/wp-content/uploads/2019/08/7kAnVTq5Pb9TxEJbBNMDwh-768-80-1.jpg`",
             "type": "string",
-            "example": "https://img.gazeta.ru/files3/941/10500941/cat-pic905-895x505-29911.jpg"
+            "example": "https://simpletexting.com/wp-content/uploads/2019/08/7kAnVTq5Pb9TxEJbBNMDwh-768-80-1.jpg"
           }
         },
         "description": "UploadByLink Request"
@@ -2182,7 +2182,7 @@
         "type": "object",
         "properties": {
           "contactPhones": {
-            "description": "List of contact phones for deletion \n\n**Example:** `[\"1234567890\",\"1234567891\"]`",
+            "description": "List of contacts' phone numbers for deletion \n\n**Example:** `[\"1234567890\",\"1234567891\"]`",
             "maxItems": 500,
             "minItems": 0,
             "type": "array",
@@ -2237,7 +2237,7 @@
         "type": "object",
         "properties": {
           "results": {
-            "description": "List of deletion results",
+            "description": "List of the deleted contacts",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ContactDeleteResult"
@@ -2810,53 +2810,53 @@
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "description": "List name \n\n**Example:** `My First List`",
+            "description": "The list name \n\n**Example:** `My First List`",
             "type": "string",
             "example": "My First List"
           },
           "created": {
-            "description": "Created timestamp \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "description": "When the list was created \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
             "type": "string",
             "format": "date-time",
             "example": "2020-03-30T12:47:40.123-05:00"
           },
           "updated": {
-            "description": "Updated timestamp \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "description": "When the list was updated \n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
             "type": "string",
             "format": "date-time",
             "example": "2020-03-30T12:47:40.123-05:00"
           },
           "description": {
-            "description": "Description. Title is present when list is created automatically by a keyword via the dashboard, otherwise defaults to null \n\n**Example:** `List for 'MYFIRSTKEYWORD' keyword`",
+            "description": "Title is present when list is created automatically by a keyword via the dashboard, otherwise defaults to null \n\n**Example:** `List for 'MYFIRSTKEYWORD' keyword`",
             "type": "string",
             "example": "List for 'SALE' keyword"
           },
           "totalContactsCount": {
-            "description": "Total contacts count \n\n**Example:** `50`",
+            "description": "The number of contacts \n\n**Example:** `50`",
             "type": "integer",
             "format": "int32",
             "example": 50
           },
           "activeContactsCount": {
-            "description": "Active contacts count  \n\n**Example:** `40`",
+            "description": "The number of active contacts \n\n**Example:** `40`",
             "type": "integer",
             "format": "int32",
             "example": 40
           },
           "invalidContactsCount": {
-            "description": "Invalid contacts count \n\n**Example:** `1`",
+            "description": "The number of invalid contacts \n\n**Example:** `1`",
             "type": "integer",
             "format": "int32",
             "example": 1
           },
           "unsubscribedContactsCount": {
-            "description": "Unsubscribed contacts count  \n\n**Example:** `2`",
+            "description": "The number of unsubscribed contacts \n\n**Example:** `2`",
             "type": "integer",
             "format": "int32",
             "example": 2
           },
           "keywords": {
-            "description": "Keywords that bound to the list  \n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
+            "description": "Keywords associated with the list \n\n**Example:** `[\"SALE\",\"MYFIRSTKEYWORD\"]`",
             "type": "array",
             "items": {
               "description": "Keywords that bound to the list",
