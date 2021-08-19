@@ -236,7 +236,7 @@
           {
             "name": "since",
             "in": "query",
-            "description": "List contacts updated since a specified date.",
+            "description": "List contacts updated since a specified date. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
             "required": false,
             "schema": {
               "type": "string",
@@ -535,7 +535,7 @@
           {
             "name": "startDateFrom",
             "in": "query",
-            "description": "List campaigns starting from a certain date",
+            "description": "List campaigns starting from a certain date. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
             "required": false,
             "schema": {
               "type": "string",
@@ -546,7 +546,7 @@
           {
             "name": "startDateTo",
             "in": "query",
-            "description": "List campaigns up to a certain date",
+            "description": "List campaigns up to a certain date. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
             "required": false,
             "schema": {
               "type": "string",
@@ -930,7 +930,7 @@
           {
             "name": "since",
             "in": "query",
-            "description": "First sent/received timestamp",
+            "description": "First sent/received timestamp. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
             "required": false,
             "schema": {
               "type": "string",
@@ -1911,7 +1911,7 @@
             "example": "607f0558a7c898629dd47d7a"
           },
           "createdDate": {
-            "description": "When the media was created\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the media was created. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
@@ -2528,25 +2528,25 @@
             }
           },
           "created": {
-            "description": "Created timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Created timestamp. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "modified": {
-            "description": "Modified timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Modified timestamp. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "started": {
-            "description": "Started timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Started timestamp. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "finished": {
-            "description": "Finished timestamp - ISO format\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "Finished timestamp. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
@@ -2727,13 +2727,13 @@
             ]
           },
           "created": {
-            "description": "When the contact was created\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the contact was created. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "description": "When the contact was updated\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the contact was updated. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-05-28T20:20:08.489Z"
@@ -2817,13 +2817,13 @@
             "example": "My First List"
           },
           "created": {
-            "description": "When the list was created\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the list was created. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "description": "When the list was updated\n\n**Example:** `2021-04-28T23:20:08.489Z`",
+            "description": "When the list was updated. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2021-04-28T23:20:08.489Z"
