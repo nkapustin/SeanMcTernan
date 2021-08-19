@@ -242,7 +242,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "example": "2020-03-30T12:47:40.123-05:00"
+            "example": "2021-04-28T23:20:08.489Z"
           },
           {
             "name": "direction",
@@ -541,7 +541,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "example": "2020-03-30T12:47:40.123-05:00"
+            "example": "2021-04-28T23:20:08.489Z"
           },
           {
             "name": "startDateTo",
@@ -552,7 +552,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "example": "2020-03-30T12:47:40.123-05:00"
+            "example": "2021-04-28T23:20:08.489Z"
           }
         ],
         "responses": {
@@ -936,7 +936,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "example": "2020-03-30T12:47:40.123-05:00"
+            "example": "2021-04-28T23:20:08.489Z"
           },
           {
             "name": "contactPhone",
@@ -2817,16 +2817,16 @@
             "example": "My First List"
           },
           "created": {
-            "description": "When the list was created\n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "description": "When the list was created\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
-            "example": "2020-03-30T12:47:40.123-05:00"
+            "example": "2021-04-28T23:20:08.489Z"
           },
           "updated": {
-            "description": "When the list was updated\n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "description": "When the list was updated\n\n**Example:** `2021-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
-            "example": "2020-03-30T12:47:40.123-05:00"
+            "example": "2021-04-28T23:20:08.489Z"
           },
           "description": {
             "description": "Title is present when list is created automatically by a keyword via the dashboard, otherwise defaults to null\n\n**Example:** `List for 'MYFIRSTKEYWORD' keyword`",
