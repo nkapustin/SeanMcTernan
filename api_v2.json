@@ -1883,7 +1883,7 @@
                 "example": "8001234567"
               },
               "timestamp": {
-                "description": "Date of sending - ISO Format\n\n**Example:** `2020-04-28T23:20:08.489Z`",
+                "description": "Time of sending. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2020-04-28T23:20:08.489Z`",
                 "type": "string",
                 "format": "date-time",
                 "example": "2020-04-28T23:20:08.489Z"
@@ -2337,7 +2337,7 @@
             ]
           },
           "timestamp": {
-            "description": "Date of sending - ISO Format\n\n**Example:** `2020-04-28T23:20:08.489Z`",
+            "description": "Time of sending. The time is in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.\n\n**Example:** `2020-04-28T23:20:08.489Z`",
             "type": "string",
             "format": "date-time",
             "example": "2020-04-28T23:20:08.489Z"
