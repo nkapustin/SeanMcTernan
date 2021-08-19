@@ -21,7 +21,7 @@
     },
     {
       "name": "Campaigns",
-      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or id, or list all of your SimpleTexting campaigns. \n\nNote: If the message contains a link from a common third-party link shortener such a bit.ly, it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners)."
+      "description": "Send and manage campaigns directly from the SimpleTexting API. The endpoint allows you to Create and Send a campaign, get a specific campaign by its name or id, or list all of your SimpleTexting campaigns. \n\n**Note:** If the message contains a link from a common third-party link shortener such a bit.ly, it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners)."
     },
     {
       "name": "Contacts",
@@ -45,7 +45,7 @@
     },
     {
       "name": "Messages",
-      "description": "In SimpleTexting, users can send and receive messages. With our API, this can be done programmatically.\n\nNote: If the message contains a link from a common third-party link shortener such a bit.ly, it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners)."
+      "description": "In SimpleTexting, users can send and receive messages. With our API, this can be done programmatically.\n\n**Note:** If the message contains a link from a common third-party link shortener such a bit.ly, it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners)."
     },
     {
       "name": "Webhooks",
