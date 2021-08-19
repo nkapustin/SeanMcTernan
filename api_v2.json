@@ -453,14 +453,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success. Contact is deleted.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactDeleteResult"
-                }
-              }
-            }
+            "description": "Success. Contact is deleted."
           }
         }
       }
