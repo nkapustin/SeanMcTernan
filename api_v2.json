@@ -2222,7 +2222,7 @@
             "example": "1234567890"
           },
           "contactid": {
-            "description": "Contact id if contact was found or null\n\n**Example:** `507f1f77bcf86cd799439011`",
+            "description": "Contact id if contact was found\n\n**Example:** `507f1f77bcf86cd799439011`",
             "type": "string",
             "example": "507f1f77bcf86cd799439011"
           },
