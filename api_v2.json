@@ -954,7 +954,12 @@
             "description": "Category is only available for messages you send",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "SMS",
+                "MMS",
+                "EXTENDED_SMS"
+              ]
             },
             "example": "API"
           },
