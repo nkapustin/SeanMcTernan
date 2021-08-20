@@ -464,7 +464,7 @@
           "Campaigns"
         ],
         "summary": "Get all Campaigns",
-        "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 555888 to the list `My  First List:\n\n`https://api-app2.simpletexting.com/v2/api/api/campaigns?page=100&size=2&accountPhone=555888&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
+        "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 555888 to the list `My  First List`:\n\n`https://api-app2.simpletexting.com/v2/api/api/campaigns?page=100&size=2&accountPhone=555888&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
         "operationId": "fetchCampaigns",
         "parameters": [
           {
@@ -573,7 +573,7 @@
           "Campaigns"
         ],
         "summary": "Send a Campaign",
-        "description": "Create and send a campaign",
+        "description": "Create and send a campaign\n\n**Example:** Here we created a campaign and sent it to a segment with the identified here by it's id, and a list called `My First List`. :\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
         "operationId": "createCampaign",
         "requestBody": {
           "content": {
@@ -2608,7 +2608,7 @@
             "description": "Custom fields length in current campaign, overwrite default settings. See /custom-fields\n\n**Example:** `{\"firstname\":\"20\"}`",
             "type": "object",
             "properties": {
-              "customfield": {
+              "firstName": {
                 "description": "Custom field name and max length",
                 "type": "integer",
                 "example": 20
@@ -2616,7 +2616,7 @@
             }
           },
           "messageTemplate": {
-            "description": "Campaign Template\n\n**Example:** `555888`",
+            "description": "Campaign Template\n\n**Example:** `{ \"title\": \"My first campaign\", \"subject\": \"My first campaign\", \"text\": \"Hi %%firstname%%, welcome to our campaign!\", \"fallbackText\": \"My first campaign\", \"mediaItems\": [ \"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\" ] }`",
             "type": "object",
             "properties": {
               "title": {
@@ -2630,7 +2630,7 @@
                 "example": "My first campaign"
               },
               "text": {
-                "description": "Text body\n\n**Example:** `Hello! How are you?`",
+                "description": "Text body\n\n**Example:** `Hi %%firstname%%, welcome to our campaign!`",
                 "type": "string",
                 "example": "My first campaign"
               },
