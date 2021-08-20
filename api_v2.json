@@ -464,7 +464,7 @@
           "Campaigns"
         ],
         "summary": "Get all Campaigns",
-        "description": "Get all campaigns from the SimpleTexting system.",
+        "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 555888 to the list `My  First List:\n\n`https://api-app2.simpletexting.com/v2/api/api/campaigns?page=100&size=2&accountPhone=555888&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
         "operationId": "fetchCampaigns",
         "parameters": [
           {
@@ -491,7 +491,7 @@
               "format": "int32",
               "default": 50
             },
-            "example": 50
+            "example": 2
           },
           {
             "name": "accountPhone",
@@ -552,7 +552,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "example": "2021-04-28T23:20:08.489Z"
+            "example": "2021-05-28T23:20:08.489Z"
           }
         ],
         "responses": {
@@ -1449,7 +1449,7 @@
             }
           },
           "requestPerSecLimit": {
-            "description": "The maximum number of requests that can be sent within a second\n\n**Example:** `25`",
+            "description": "The maximum number of requests that can be sent within a second\n\n**Example:** `15`",
             "maximum": 25,
             "type": "integer",
             "format": "int32",
@@ -1645,7 +1645,7 @@
             "example": 23
           },
           "maxLength": {
-            "description": "The maximum message length in characters with the current message type and encoding\n\n**Example:** `300`",
+            "description": "The maximum message length in characters with the current message type and encoding\n\n**Example:** `150`",
             "type": "integer",
             "format": "int32",
             "example": 150
@@ -2839,7 +2839,7 @@
             "example": "List for 'SALE' keyword"
           },
           "totalContactsCount": {
-            "description": "The number of contacts\n\n**Example:** `50`",
+            "description": "The number of contacts\n\n**Example:** `25`",
             "type": "integer",
             "format": "int32",
             "example": 25
