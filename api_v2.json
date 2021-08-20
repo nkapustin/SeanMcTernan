@@ -573,7 +573,7 @@
           "Campaigns"
         ],
         "summary": "Send a Campaign",
-        "description": "Create and send a campaign\n\n**Example:** Here we created a campaign and sent it to a segment with the identified here by it's id, and a list called `My First List`. :\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
+        "description": "Create and send a campaign\n\n**Example:** Here we created a campaign from our short code 555888 and sent it to a segment identified here by its id, along with a list called `My First List`. We also specified that the `First Name` custom field will only take up 20 characters. Finally, we specified that 2 pieces of media will be attached. One is housed on SimpleTexting and identified by its id, the other is getting pulled from an external link:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
         "operationId": "createCampaign",
         "requestBody": {
           "content": {
@@ -2632,7 +2632,7 @@
               "text": {
                 "description": "Text body\n\n**Example:** `Hi %%firstname%%, welcome to our campaign!`",
                 "type": "string",
-                "example": "My first campaign"
+                "example": "Hi %%firstname%%, welcome to our campaign!"
               },
               "fallbackText": {
                 "description": "Custom fallback text if mms cannot be received. Should contains '[url=\"%%fallback_link%%\"]' placeholder that will be replaced with a link to the message\n\n**Example:** `Some text`",
