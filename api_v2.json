@@ -41,7 +41,7 @@
     },
     {
       "name": "Media Items",
-      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments. The size limitations of these items are discussed [here](#tag/File-Size)."
+      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments. The size limitations of these items are discussed [here](#tag/File-Information)."
     },
     {
       "name": "Messages",
@@ -1022,7 +1022,7 @@
           "Messages"
         ],
         "summary": "Send a Message",
-        "description": "Send either an MMS or SMS message to a contact. Use this programmatically to send to multiple contacts.\n\nIf the message contains a link from a common third-party link shortener such as [bit.ly](http://bit.ly/), it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners).\n\nThere are limitations on Media Files with MMS messages. The size limitations of these items are discussed [here](#tag/File-Size).",
+        "description": "Send either an MMS or SMS message to a contact. Use this programmatically to send to multiple contacts.\n\nIf the message contains a link from a common third-party link shortener such as [bit.ly](http://bit.ly/), it will appear from our URL shortener instead and occupy 20 characters. [Learn more](https://help.simpletexting.com/en/articles/3362741-why-carriers-don-t-allow-bit-ly-and-other-third-party-link-shorteners).\n\nThere are limitations on Media Files with MMS messages. The size limitations of these items are discussed [here](#tag/File-Information).",
         "operationId": "createMessage",
         "requestBody": {
           "content": {
