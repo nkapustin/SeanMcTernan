@@ -624,7 +624,7 @@
           "Campaigns"
         ],
         "summary": "Get a Campaign",
-        "description": "Get a campaign via its unique id.\n\n**Example:** Below we return the information associated with the campaign whose id is `507f1f77bcf86cd799439011`. You can use the [Get all Campaigns](#operation/fetchCampaigns) to retrieve campaign id's for all of your campaigns:\n\n`https://api-app2.simpletexting.com/v2/api/api/507f1f77bcf86cd799439011`",
+        "description": "Get a campaign via its unique id.\n\n**Example:** Below we return the information associated with the campaign whose id is `507f1f77bcf86cd799439011`. You can use the [Get all Campaigns](#operation/fetchCampaigns) endpoint to retrieve campaign id's for all of your campaigns:\n\n`https://api-app2.simpletexting.com/v2/api/api/507f1f77bcf86cd799439011`",
         "operationId": "getCampaign",
         "parameters": [
           {
@@ -914,7 +914,7 @@
           "Messages"
         ],
         "summary": "Get all Messages",
-        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.",
+        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all messages from an account:\n\n`https://api-app2.simpletexting.com/v2/api/api/507f1f77bcf86cd799439011`",
         "operationId": "getMessages",
         "parameters": [
           {
