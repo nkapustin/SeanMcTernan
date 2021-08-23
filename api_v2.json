@@ -230,8 +230,8 @@
           "Contacts"
         ],
         "summary": "Get all Contacts",
-        "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you**Example:** Here we return all Contacts from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contacts`",
-        "operationId": "fetchContacts",
+        "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you:\n\n**Example:** Here we return all Contacts from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contacts`",
+        "operationId": "getContacts",
         "parameters": [
           {
             "name": "page",
@@ -360,7 +360,7 @@
           "Contacts"
         ],
         "summary": "Get a Contact",
-        "description": "Get a contact via their unique id or phone number. Phone number is the preferred parameter for this call.",
+        "description": "Get a contact via their unique id or phone number. Phone number is the preferred parameter for this call.\n\n**Example:** Below we return the information associated with the Contact whose id is `507f1f77bcf86cd799439011`. You can use the [Get all Contacts](#operation/getContacts) endpoint to retrieve contact id's for all of your contacts:\n\n`https://api-app2.simpletexting.com/v2/api/messages/507f1f77bcf86cd799439011`",
         "operationId": "getContact",
         "parameters": [
           {
@@ -491,7 +491,7 @@
         ],
         "summary": "Get all Campaigns",
         "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 8005551234 to the list `My  First List`:\n\n`https://api-app2.simpletexting.com/v2/api/campaigns?page=100&size=2&accountPhone=8005551234&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
-        "operationId": "fetchCampaigns",
+        "operationId": "getCampaigns",
         "parameters": [
           {
             "name": "page",
