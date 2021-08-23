@@ -28,7 +28,7 @@
       "description": "At a minimum, each contact in SimpleTexting must have a phone number. Contacts can also hold additional information including first name, last name, and email address. You can also create custom fields to store data specific to your website or app’s needs."
     },
     {
-      "name": "Batch Update or Delete Contacts",
+      "name": "Contacts - Batch Operations",
       "description": "An endpoint to assist in batch operations on your contacts. Using these operations, you can update specific contact information, or delete contacts, all using the contacts phone as an id."
     },
     {
@@ -54,6 +54,32 @@
     {
       "name": "Webhook Reports",
       "description": "Use webhooks to communicate between the SimpleTexting platform and your server. Webhooks can be used to forward messages as well as provide info about unsubscribes and message delivery. SimpleTexting can trigger webhooks for new incoming messages, delivery reports and unsubscribes."
+    }
+  ],  "x-tagGroups": [
+    {
+      "name": "Campaigns & Messages",
+      "tags": [
+        "Campaigns",
+        "Messages",
+        "Custom Fields",
+        "Media Items",
+        "File Information"
+      ]
+    },
+    {
+      "name": "Contacts",
+      "tags": [
+        "Contacts",
+        "Contacts - Batch Operations",
+        "Contact Lists"
+      ]
+    },
+    {
+      "name": "Webhook Services",
+      "tags": [
+        "Webhooks",
+        "Webhook Reports"
+      ]
     }
   ],
   "paths": {
@@ -1257,7 +1283,7 @@
     "/api/contacts-batch/batch-update": {
       "post": {
         "tags": [
-          "Batch Update or Delete Contacts"
+          "Contacts - Batch Operations"
         ],
         "summary": "Update a group of contacts",
         "description": "Update multiple fields at once for a batch of contacts. You can update their first name, last name, emails, lists, and more.",
@@ -1289,7 +1315,7 @@
     "/api/contacts-batch/batch-delete": {
       "post": {
         "tags": [
-          "Batch Update or Delete Contacts"
+          "Contacts - Batch Operations"
         ],
         "summary": "Delete a group of contacts",
         "description": "Delete a group of contacts from SimpleTexting using their phone numbers.",
