@@ -1081,7 +1081,7 @@
           "Messages"
         ],
         "summary": "Evaluate a Message",
-        "description": "Evaluate the body of your message before sending it to a contact or contacts.",
+        "description": "Evaluate the body of your message before sending it to a contact or contacts.\n\n**Example:** We evaluate a message to determine a number of properties. These include the number of credits it will use, whether it is an extended SMS or a regular SMS and any potential errors that may occur:\n\n`https://api-app2.simpletexting.com/v2/api/messages/evaluate`",
         "operationId": "evaluateMessage",
         "requestBody": {
           "content": {
@@ -1570,7 +1570,7 @@
             "example": "8005551234"
           },
           "mode": {
-            "description": "Determines how your message will be presented:\n\n  - **AUTO** - this means that SimpleTexting will find more relative types for your message content\n\n  - **SMS_STRICTLY** this will send only a single SMS or return an error\n\n  - **MMS** MMS: this will send a MMS or fallback SMS if MMS is not enabled by your contacts' carriers' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Determines how your message will be presented:\n\n  - **AUTO** - this means that SimpleTexting will find more relative types for your message content\n\n  - **SMS_STRICTLY** this will send only a single SMS or return an error\n\n  - **MMS** MMS: this will send a MMS or fallback SMS if MMS is not enabled by your contacts' carriers' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`\n\n`AUTO` is the default value for this field.",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
