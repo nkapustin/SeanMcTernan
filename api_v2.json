@@ -304,7 +304,7 @@
           "Contacts"
         ],
         "summary": "Create a Contact",
-        "description": "Create a new contact and add them to a specific list.\n\n**Example:** Below we created our contact, John Doe. We declared his custom field value is `12345` and that he gets added to the list with an id `507f191e810c19729de860ea and another list called `My First List`:\n\n`{ \"contactPhone\": \"1234567890\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@simpletexting.net\", \"birthday\": \"1985-05-05\", \"customFields\": { \"zipcode\": \"12345\" }, \"comment\": \"VIP client\", \"listIds\": [ \"507f191e810c19729de860ea\", \"My First List\" ] }`",
+        "description": "Create a new contact and add them to a specific list.\n\n**Example:** Below we created our contact, John Doe. We declared his custom field value for `zipcode` is `12345` and that he gets added to the list with an id `507f191e810c19729de860ea` and another list called `My First List`:\n\n`{ \"contactPhone\": \"1234567890\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@simpletexting.net\", \"birthday\": \"1985-05-05\", \"customFields\": { \"zipcode\": \"12345\" }, \"comment\": \"VIP client\", \"listIds\": [ \"507f191e810c19729de860ea\", \"My First List\" ] }`",
         "operationId": "createContact",
         "parameters": [
           {
@@ -392,7 +392,7 @@
           "Contacts"
         ],
         "summary": "Update a Contact",
-        "description": "Update a contact’s phone number or any other field.",
+        "description": "Update a contact’s phone number or any other field.\n\n**Example:** Below we update our contact, 3051234567. We declared thier custom field value for `zipcode` is `12345` and that they get added to the list with an id `507f191e810c19729de860ea` and another list called `My First List`. In our URL, we requested that the contact gets added to a new list while remaining on the current one. We also requested not to update the contact's information if they already exist within the system:\n\nhttps://api-app2.simpletexting.com/v2/api/contacts/3051234567?listsReplacement=false&false\n\n`{ \"contactPhone\": \"1234567890\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@simpletexting.net\", \"birthday\": \"1985-05-05\", \"customFields\": { \"zipcode\": \"12345\" }, \"comment\": \"VIP client\", \"listIds\": [ \"507f191e810c19729de860ea\", \"My First List\" ] }`",
         "operationId": "updateContact",
         "parameters": [
           {
