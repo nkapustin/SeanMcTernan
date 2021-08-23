@@ -658,7 +658,7 @@
           "Contact Lists"
         ],
         "summary": "Get all Lists",
-        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all lists from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contact-lists`",
+        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all lists from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contact-lists?page=100&size=2`",
         "operationId": "getLists",
         "parameters": [
           {
@@ -914,7 +914,7 @@
           "Messages"
         ],
         "summary": "Get all Messages",
-        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all messages from an account:\n\n`https://api-app2.simpletexting.com/v2/api/messages`",
+        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all messages from an account:\n\n`https://api-app2.simpletexting.com/v2/api/messages?page=100&size=500`",
         "operationId": "getMessages",
         "parameters": [
           {
@@ -1113,7 +1113,7 @@
           "Media Items"
         ],
         "summary": "Get Media Items",
-        "description": "This endpoint allows you to retrieve all Media Items.**Example:** Here we return all Media Items from an account:\n\n`https://api-app2.simpletexting.com/v2/api/mediaitems`",
+        "description": "This endpoint allows you to retrieve all Media Items.\n\n**Example:** Here we return all Media Items from an account:\n\n`https://api-app2.simpletexting.com/v2/api/mediaitems?page=100&size=500`",
         "operationId": "getMediaItems",
         "parameters": [
           {
@@ -1163,7 +1163,7 @@
           "Media Items"
         ],
         "summary": "Upload Media Using a URL",
-        "description": "This endpoint allows you to upload media via a URL so that you can send it in a message to a contact.",
+        "description": "This endpoint allows you to upload media via a URL so that you can send it in a message to a contact.\n\n**Example:** Below we upload some media via a hosted URL to the SimpleTexting system:\n\n`{ \"link\": \"https://dropbox.com/uploads/2019/08/7kAnVTq5Pb9TxEJbBNMDwh-768-80-1.jpg\" }`",
         "operationId": "uploadByLink",
         "parameters": [
           {
@@ -1350,7 +1350,7 @@
           "Custom Fields"
         ],
         "summary": "Get all Custom Fields",
-        "description": "This endpoint allows you to retrieve all custom fields.**Example:** Here we return all Custom Fields from an account:\n\n`https://api-app2.simpletexting.com/v2/api/custom-fields`",
+        "description": "This endpoint allows you to retrieve all custom fields.\n\n**Example:** Here we return all Custom Fields from an account:\n\n`https://api-app2.simpletexting.com/v2/api/custom-fields?page=100&size=500`",
         "operationId": "getCustomFields",
         "parameters": [
           {
