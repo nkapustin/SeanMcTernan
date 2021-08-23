@@ -203,7 +203,7 @@
           "Webhooks"
         ],
         "summary": "Delete a Webhook",
-        "description": "Delete an exsisting webhook by its unique id",
+        "description": "Delete an exsisting Webhook by its unique id.\n\n**Example:** Here we delete a Webhook whose id is`507f1f77bcf86cd799439011`. You can use the [Get all Webhooks](#operation/getWebhooks) endpoint to retrieve message id's for all of your Webhooks:\n\n`https://api-app2.simpletexting.com/v2/api/webhooks/507f1f77bcf86cd799439011`",
         "operationId": "deleteWebhook",
         "parameters": [
           {
@@ -463,7 +463,7 @@
           "Contacts"
         ],
         "summary": "Delete a Contact",
-        "description": "Delete a contact via their unique id or phone.",
+        "description": "Delete a contact via their unique id or phone.\n\n**Example:** Here we delete a Contact whose id is`507f1f77bcf86cd799439011`. You can use the [Get all Contacts](#operation/getContacts) endpoint to retrieve Contact id's for all of your Contacts:\n\n`https://api-app2.simpletexting.com/v2/api/webhooks/507f1f77bcf86cd799439011`",
         "operationId": "deleteContact",
         "parameters": [
           {
@@ -738,7 +738,7 @@
           "Contact Lists"
         ],
         "summary": "Get a List",
-        "description": "Return a contact list by its unique list id.",
+        "description": "Return a contact list by its unique list id.\n\n**Example:** Below we return the information associated with the List whose id is `507f1f77bcf86cd799439011`. You can use the [Get all Lists](#operation/getLists) endpoint to retrieve List id's for all of your Lists:\n\n`https://api-app2.simpletexting.com/v2/api/messages/507f1f77bcf86cd799439011`",
         "operationId": "getList",
         "parameters": [
           {
@@ -812,7 +812,7 @@
           "Contact Lists"
         ],
         "summary": "Delete a List",
-        "description": "Delete an existing list using the list id.",
+        "description": "Delete an existing list using the list id.\n\n**Example:** Here we delete a List whose id is`507f1f77bcf86cd799439011`. You can use the [Get all Lists](#operation/getLists) endpoint to retrieve List id's for all of your Lists:\n\n`https://api-app2.simpletexting.com/v2/api/contact-lists/507f1f77bcf86cd799439011`",
         "operationId": "deleteList",
         "parameters": [
           {
@@ -1207,7 +1207,7 @@
           "Media Items"
         ],
         "summary": "Delete Media",
-        "description": "Remove media that you have previously uploaded to SimpleTexting.",
+        "description": "Remove media that you have previously uploaded to SimpleTexting.\n\n**Example:** Here we delete a Media Item whose id is`507f1f77bcf86cd799439011`. You can use the [Get all Media Items](#operation/getMediaItems) endpoint to retrieve Media Items id's for all of your Media Items:\n\n`https://api-app2.simpletexting.com/v2/api/contact-lists/507f1f77bcf86cd799439011`",
         "operationId": "delete",
         "parameters": [
           {
