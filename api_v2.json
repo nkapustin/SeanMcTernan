@@ -89,7 +89,7 @@
           "Webhooks"
         ],
         "summary": "Get all Webhooks",
-        "description": "Retrieve all the webhooks that you've created.",
+        "description": "Retrieve all the webhooks that you've created.\n\n**Example:** Here we return all Webhooks from an account:\n\n`https://api-app2.simpletexting.com/v2/api/webhooks`",
         "operationId": "getWebhooks",
         "parameters": [
           {
@@ -230,7 +230,7 @@
           "Contacts"
         ],
         "summary": "Get all Contacts",
-        "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you",
+        "description": "For a given account, return all contacts that have been created in the account. A paginated list of contacts will be returned to you**Example:** Here we return all Contacts from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contacts`",
         "operationId": "fetchContacts",
         "parameters": [
           {
@@ -658,7 +658,7 @@
           "Contact Lists"
         ],
         "summary": "Get all Lists",
-        "description": "For a given SimpleTexting account, return all lists that have been created.",
+        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all lists from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contact-lists`",
         "operationId": "getLists",
         "parameters": [
           {
@@ -1113,7 +1113,7 @@
           "Media Items"
         ],
         "summary": "Get Media Items",
-        "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments.",
+        "description": "This endpoint allows you to retrieve all Media Items.**Example:** Here we return all Media Items from an account:\n\n`https://api-app2.simpletexting.com/v2/api/mediaitems`",
         "operationId": "getMediaItems",
         "parameters": [
           {
@@ -1350,7 +1350,7 @@
           "Custom Fields"
         ],
         "summary": "Get all Custom Fields",
-        "description": "This endpoint allows you to retrieve all custom fields.",
+        "description": "This endpoint allows you to retrieve all custom fields.**Example:** Here we return all Custom Fields from an account:\n\n`https://api-app2.simpletexting.com/v2/api/custom-fields`",
         "operationId": "getCustomFields",
         "parameters": [
           {
