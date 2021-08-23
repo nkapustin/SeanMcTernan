@@ -624,7 +624,7 @@
           "Campaigns"
         ],
         "summary": "Get a Campaign",
-        "description": "Get a campaign via its unique id.",
+        "description": "Get a campaign via its unique id.\n\n**Example:** Below we return the information associated with the campaign whose id is `507f1f77bcf86cd799439011`. You can use the [Get all Campaigns](#operation/fetchCampaigns) to retrieve campaign id's for all of your campaigns:\n\n`https://api-app2.simpletexting.com/v2/api/api/507f1f77bcf86cd799439011`",
         "operationId": "getCampaign",
         "parameters": [
           {
@@ -839,7 +839,7 @@
           "Webhook Reports"
         ],
         "summary": "Incoming/Outgoing Message Report",
-        "description": "Triggers when an outgoing message or Incoming message is handeled.\n\n**Example:** We create the incoming webhook for 8005551234 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`",
+        "description": "Triggers when an outgoing message or Incoming message is handled.\n\n**Example:** We create the incoming webhook for 8005551234 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`",
         "servers": [
           {
             "url": "https://yourdomain.com/"
