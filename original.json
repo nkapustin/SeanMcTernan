@@ -427,7 +427,7 @@
               "schema": {
                 "type": "string"
               },
-              "example": 555888
+              "example": 8005551234
             },
             {
               "name": "since",
@@ -1758,7 +1758,7 @@
             "accountPhone": {
               "title": "Account phone (primary or secondary)",
               "type": "string",
-              "example": "555888"
+              "example": "8005551234"
             },
             "directionType": {
               "title": "MT/MO (Mobile-Terminated / Mobile-Originated)",

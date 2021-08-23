@@ -464,7 +464,7 @@
           "Campaigns"
         ],
         "summary": "Get all Campaigns",
-        "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 555888 to the list `My  First List`:\n\n`https://api-app2.simpletexting.com/v2/api/api/campaigns?page=100&size=2&accountPhone=555888&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
+        "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 8005551234 to the list `My  First List`:\n\n`https://api-app2.simpletexting.com/v2/api/api/campaigns?page=100&size=2&accountPhone=8005551234&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
         "operationId": "fetchCampaigns",
         "parameters": [
           {
@@ -503,7 +503,7 @@
               "format": "int32",
               "default": 0
             },
-            "example": 555888
+            "example": 8005551234
           },
           {
             "name": "state",
@@ -573,7 +573,7 @@
           "Campaigns"
         ],
         "summary": "Send a Campaign",
-        "description": "Create and send a campaign\n\n**Example:** Here we created a campaign from our short code `555888` and sent it to a segment identified here by its id, along with a list called `My First List`. We also specified that the `First Name` custom field will only take up 20 characters. Finally, we specified that 2 pieces of media will be attached. One is housed on SimpleTexting and identified by its id, the other is getting pulled from an external link:\n\n`{ \"title\": \"My first campaign\", \"listsOrSegments\": [ \"507f191e810c19729de860ea\", \"My First List\" ], \"accountPhone\": \"555888\", \"customFieldsMaxLength\": { \"firstName\": 20 }, \"messageTemplate\": { \"title\": \"My first campaign\", \"subject\": \"My first campaign\", \"text\": \"Hi %%firstname%%, welcome to our campaign!\", \"fallbackText\": \"My first campaign\", \"mediaItems\": [ \"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\" ] } }`",
+        "description": "Create and send a campaign\n\n**Example:** Here we created a campaign from our short code `8005551234` and sent it to a segment identified here by its id, along with a list called `My First List`. We also specified that the `First Name` custom field will only take up 20 characters. Finally, we specified that 2 pieces of media will be attached. One is housed on SimpleTexting and identified by its id, the other is getting pulled from an external link:\n\n`{ \"title\": \"My first campaign\", \"listsOrSegments\": [ \"507f191e810c19729de860ea\", \"My First List\" ], \"accountPhone\": \"8005551234\", \"customFieldsMaxLength\": { \"firstName\": 20 }, \"messageTemplate\": { \"title\": \"My first campaign\", \"subject\": \"My first campaign\", \"text\": \"Hi %%firstname%%, welcome to our campaign!\", \"fallbackText\": \"My first campaign\", \"mediaItems\": [ \"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\" ] } }`",
         "operationId": "createCampaign",
         "requestBody": {
           "content": {
@@ -813,7 +813,7 @@
           "Webhook Reports"
         ],
         "summary": "Incomming/Outgoing Message Report",
-        "description": "Triggers when an outgoing message or incomming message is handeled.\n\n**Example:** We create the incoming webhook for 555888 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`",
+        "description": "Triggers when an outgoing message or incomming message is handeled.\n\n**Example:** We create the incoming webhook for 8005551234 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`",
         "servers": [
           {
             "url": "https://yourdomain.com/"
@@ -838,7 +838,7 @@
           "Webhook Reports"
         ],
         "summary": "Delivery/Non Delivered Message Report",
-        "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.\n\n**Example:** We create the Delivery report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
+        "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.\n\n**Example:** We create the Delivery report for 8005551234 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
         "servers": [
           {
             "url": "https://yourdomain.com/"
@@ -863,7 +863,7 @@
           "Webhook Reports"
         ],
         "summary": "Unsubscribe Report",
-        "description": "Triggers when client send STOP to your number.\n\n**Example:** We create the Unsubscribe report for 555888 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"UNSUBSCRIBE_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"555888\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as unsubscribe report URL for this example. The SimpleTexting server will invoke the given call when the subscriber with the number 8001234567 unsubscribes.",
+        "description": "Triggers when client send STOP to your number.\n\n**Example:** We create the Unsubscribe report for 8005551234 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"UNSUBSCRIBE_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as unsubscribe report URL for this example. The SimpleTexting server will invoke the given call when the subscriber with the number 8001234567 unsubscribes.",
         "servers": [
           {
             "url": "https://yourdomain.com/"
@@ -925,7 +925,7 @@
             "schema": {
               "type": "string"
             },
-            "example": 555888
+            "example": 8005551234
           },
           {
             "name": "since",
@@ -1539,9 +1539,9 @@
             "example": "1234567890"
           },
           "accountPhone": {
-            "description": "The account phone to send from. If this field is left blank, the primary account number will be used as a default\n\n**Example:** `555888`",
+            "description": "The account phone to send from. If this field is left blank, the primary account number will be used as a default\n\n**Example:** `8005551234`",
             "type": "string",
-            "example": "555888"
+            "example": "8005551234"
           },
           "mode": {
             "description": "Determines how your message will be presented:\n\n  - **AUTO** - this means that SimpleTexting will find more relative types for your message content\n\n  - **SMS_STRICTLY** this will send only a single SMS or return an error\n\n  - **MMS** MMS: this will send a MMS or fallback SMS if MMS is not enabled by your contacts' carriers' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
@@ -1797,9 +1797,9 @@
                 "example": "API"
               },
               "tenantPhone": {
-                "description": "Account phone (primary or secondary)\n\n**Example:** `555888`",
+                "description": "Account phone (primary or secondary)\n\n**Example:** `8005551234`",
                 "type": "string",
-                "example": "555888"
+                "example": "8005551234"
               },
               "contactPhone": {
                 "description": "Contact phone\n\n**Example:** `8001234567`",
@@ -1873,9 +1873,9 @@
                 "example": "Hello! How are you?"
               },
               "tenantPhone": {
-                "description": "Account phone (primary or secondary)\n\n**Example:** `555888`",
+                "description": "Account phone (primary or secondary)\n\n**Example:** `8005551234`",
                 "type": "string",
-                "example": "555888"
+                "example": "8005551234"
               },
               "contactPhone": {
                 "description": "Contact phone\n\n**Example:** `8001234567`",
@@ -2323,9 +2323,9 @@
             "example": "8001234567"
           },
           "accountPhone": {
-            "description": "Account phone (primary or secondary)\n\n**Example:** `555888`",
+            "description": "Account phone (primary or secondary)\n\n**Example:** `8005551234`",
             "type": "string",
-            "example": "555888"
+            "example": "8005551234"
           },
           "directionType": {
             "description": "MT/MO (Mobile-Terminated / Mobile-Originated)\n\n**Example:** `MO`",
@@ -2483,9 +2483,9 @@
             "example": "My first campaign"
           },
           "accountPhone": {
-            "description": "Number the campaign was sent from\n\n**Example:** `555888`",
+            "description": "Number the campaign was sent from\n\n**Example:** `8005551234`",
             "type": "string",
-            "example": "555888"
+            "example": "8005551234"
           },
           "customFieldsMaxLength": {
             "description": "Custom fields length in current campaign",
@@ -2600,9 +2600,9 @@
             }
           },
           "accountPhone": {
-            "description": "Account phone, primary number is default\n\n**Example:** `555888`",
+            "description": "Account phone, primary number is default\n\n**Example:** `8005551234`",
             "type": "string",
-            "example": "555888"
+            "example": "8005551234"
           },
           "customFieldsMaxLength": {
             "description": "Custom fields length in current campaign, overwrite default settings. See /custom-fields\n\n**Example:** `{\"firstname\":\"20\"}`",
