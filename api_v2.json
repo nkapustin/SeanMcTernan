@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api-app2.simpletexting.com/v2/api/"
+      "url": "https://api-app2.simpletexting.com/v2/"
     }
   ],
   "tags": [
@@ -490,7 +490,7 @@
           "Campaigns"
         ],
         "summary": "Get all Campaigns",
-        "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 8005551234 to the list `My  First List`:\n\n`https://api-app2.simpletexting.com/v2/api/api/campaigns?page=100&size=2&accountPhone=8005551234&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
+        "description": "Get all campaigns from the SimpleTexting system.\n\n**Example:** We request all `SENT` campaigns sent from 8005551234 to the list `My  First List`:\n\n`https://api-app2.simpletexting.com/v2/api/campaigns?page=100&size=2&accountPhone=8005551234&state=SENT&listNameOrId=My First List&startDateFrom=2021-04-28T23:20:08.489Z&startDateTo=2021-05-28T23:20:08.489Z`",
         "operationId": "fetchCampaigns",
         "parameters": [
           {
@@ -914,7 +914,7 @@
           "Messages"
         ],
         "summary": "Get all Messages",
-        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all messages from an account:\n\n`https://api-app2.simpletexting.com/v2/api/api/messages`",
+        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all messages from an account:\n\n`https://api-app2.simpletexting.com/v2/api/messages`",
         "operationId": "getMessages",
         "parameters": [
           {
@@ -1047,7 +1047,7 @@
           "Messages"
         ],
         "summary": "Get a Message",
-        "description": "Retrieve a specific message from the system via its message id.",
+        "description": "Retrieve a specific message from the system via its message id.\n\n**Example:** Below we return the information associated with the message whose id is `507f1f77bcf86cd799439011`. You can use the [Get all Messages](#operation/getMessages) endpoint to retrieve message id's for all of your messages:\n\n`https://api-app2.simpletexting.com/v2/api/messages/507f1f77bcf86cd799439011`",
         "operationId": "getMessage",
         "parameters": [
           {
