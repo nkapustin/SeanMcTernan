@@ -838,8 +838,8 @@
         "tags": [
           "Webhook Reports"
         ],
-        "summary": "Incomming/Outgoing Message Report",
-        "description": "Triggers when an outgoing message or incomming message is handeled.\n\n**Example:** We create the incoming webhook for 8005551234 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`",
+        "summary": "Incoming/Outgoing Message Report",
+        "description": "Triggers when an outgoing message or Incoming message is handeled.\n\n**Example:** We create the incoming webhook for 8005551234 from contact phone 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`",
         "servers": [
           {
             "url": "https://yourdomain.com/"
@@ -850,7 +850,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/IncommingMessageReport"
+                "$ref": "#/components/schemas/IncomingMessageReport"
               }
             }
           },
@@ -1841,7 +1841,7 @@
           }
         }
       },
-      "IncommingMessageReport": {
+      "IncomingMessageReport": {
         "type": "object",
         "properties": {
           "reportId": {
