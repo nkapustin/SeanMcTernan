@@ -1373,7 +1373,7 @@
           "Contacts - Batch Operations"
         ],
         "summary": "Delete a group of contacts",
-        "description": "Delete a group of contacts from SimpleTexting using their phone numbers.",
+        "description": "Delete a group of contacts from SimpleTexting using their phone numbers.\n\n**Example:** Below, we delete a batch of contacts identified here by their phone number in the array:\n\n`{ \"contactPhones\": [ \"1234567890\", \"0987654321\", \"1122334455\" ] }`",
         "operationId": "processBatchDelete",
         "requestBody": {
           "content": {
