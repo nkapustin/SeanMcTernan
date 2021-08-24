@@ -1731,7 +1731,7 @@
             "example": 150
           },
           "unicode": {
-            "description": "Returns true if there is some number of Latin-1 or GSM-7 character present\n\n**Example:** `true`",
+            "description": "Returns true if there is some number of Latin-1 or GSM-7 characters present\n\n**Example:** `true`",
             "type": "boolean",
             "example": true
           },
