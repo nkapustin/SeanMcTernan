@@ -2744,7 +2744,7 @@
             }
           },
           "messageTemplate": {
-            "description": "Campaign Template\n\n**Example:** `{ \"title\": \"My first campaign\", \"subject\": \"My first campaign\", \"text\": \"Hi %%firstname%%, welcome to our campaign!\", \"fallbackText\": \"My first campaign\", \"mediaItems\": [ \"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\" ] }`",
+            "description": "Campaign Template\n\n**Example:** `{ \"mode\": \"MMS_PREFERRED\", \"subject\": \"My first campaign\", \"text\": \"Hi %%firstname%%, welcome to our campaign!\", \"fallbackText\": \"My first campaign\", \"unsubscribeText\": \"If you no longer wish to hear from us, reply STOP\", \"fallbackUnsubscribeText\": \"If you no longer wish to hear from us, reply STOP\", \"mediaItems\": [ \"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\" ] }`",
             "type": "object",
             "properties": {
               "mode": {
