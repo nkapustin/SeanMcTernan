@@ -1609,7 +1609,6 @@
       "MessageRequest": {
         "required": [
           "contactPhone",
-          "mode",
           "text"
         ],
         "type": "object",
