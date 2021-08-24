@@ -1730,10 +1730,10 @@
             "format": "int32",
             "example": 150
           },
-          "containsUtfChars": {
-            "description": "Determines whether UTF encoding is used\n\n**Example:** `false`",
+          "unicode": {
+            "description": "Returns true if there is some number of Latin-1 or GSM-7 character present\n\n**Example:** `true`",
             "type": "boolean",
-            "example": false
+            "example": true
           },
           "sumOfCredits": {
             "description": "How much credits message will cost\n\n**Example:** `1`",
