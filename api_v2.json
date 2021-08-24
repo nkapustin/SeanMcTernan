@@ -36,6 +36,10 @@
       "description": "Create, update, and delete contact lists."
     },
     {
+      "name": "Contact Segments",
+      "description": "Get all of the segments on a given SimpleTexting account."
+    },
+    {
       "name": "Custom Fields",
       "description": "SimpleTexting's Custom Fields feature plays a key role in managing your customer data. Not only does it give you enormous flexibility when it comes to [collecting](https://help.simpletexting.com/using-simpletexting/apps-and-features/collecting-subscriber-data) or [importing](https://help.simpletexting.com/using-simpletexting/lists-and-contacts/importing-contacts) data, it also lets you quickly and easily personalize each message in a [mass text](https://simpletexting.com/mass-texting/) campaign."
     },
@@ -725,6 +729,56 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseID"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contact-segments": {
+      "get": {
+        "tags": [
+          "Contact Segments"
+        ],
+        "summary": "Get all Segments",
+        "description": "Return all of the segments created on your SimpleTexting account.",
+        "operationId": "getSegments",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to load.",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page.",
+            "required": false,
+            "schema": {
+              "maximum": 500,
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. Returns all segments from your SimpleTexting account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SegmentPageView"
                 }
               }
             }
@@ -2883,6 +2937,29 @@
         },
         "description": "Page representation for search/fetch result"
       },
+      "SegmentPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "description": "Page content and number of elements is restricted by page size.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Segment"
+            }
+          },
+          "totalPages": {
+            "description": "The total number of pages. This is the number of elements divided by the page size.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "description": "The total number of elements.",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
       "List": {
         "description": "Page content and number of elements is restricted by page size.",
         "type": "object",
@@ -2946,6 +3023,34 @@
               "type": "string",
               "example": "MYFIRSTKEYWORD"
             }
+          }
+        }
+      },
+      "Segment": {
+        "description": "Page content and number of elements is restricted by page size.",
+        "type": "object",
+        "properties": {
+          "segmentId": {
+            "description": "Segment id in hexadecimal format\n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "name": {
+            "description": "The Segment name\n\n**Example:** `My First Segment`",
+            "type": "string",
+            "example": "My First Segment"
+          },
+          "created": {
+            "description": "When the Segment was created\n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2020-03-30T12:47:40.123-05:00"
+          },
+          "updated": {
+            "description": "When the Segment was updated\n\n**Example:** `2020-03-30T12:47:40.123-05:00`",
+            "type": "string",
+            "format": "date-time",
+            "example": "2020-03-30T12:47:40.123-05:00"
           }
         }
       }
