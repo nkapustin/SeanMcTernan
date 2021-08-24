@@ -2685,7 +2685,7 @@
             "example": "2021-04-28T23:20:08.489Z"
           },
           "messageTemplate": {
-            "description": "Template of message sent\n\n**Example:** `{\"subject\": \"Some message from SimpleTexting\",\"text\": \"Hello! How are you?\",\"fallbackText\": \"Some text\",\"mediaItems\": [\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]}`",
+            "description": "Template of message sent\n\n**Example:** `{\"mode\": \"MMS\",\"subject\": \"Some message from SimpleTexting\",\"text\": \"Hello! How are you?\",\"fallbackText\": \"Some text\",\"mediaItems\": [\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]}`",
             "type": "object",
             "properties": {
               "category": {
@@ -2701,20 +2701,20 @@
               "subject": {
                 "description": "The message Subject (available for MMS)\n\n**Example:** `Some message from SimpleTexting`",
                 "type": "string",
-                "example": "EXTENDED_SMS"
+                "example": "Some message from SimpleTexting"
               },
               "text": {
                 "description": "The message body\n\n**Example:** `Hello! How are you?`",
                 "type": "string",
-                "example": "EXTENDED_SMS"
+                "example": "Hello! How are you"
               },
               "fallbackText": {
-                "description": "The fallback message (available for MMS)\n\n**Example:** `Hello! How are you?`",
+                "description": "The fallback message (available for MMS)\n\n**Example:** `We sent you a message!`",
                 "type": "string",
-                "example": "EXTENDED_SMS"
+                "example": "We sent you a message!"
               },
               "mediaItems": {
-                "description": "A list of attached media item ids or URLs\n\n**Example:** `Hello! How are you?`",
+                "description": "A list of attached media item ids or URLs\n\n**Example:** `[\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]`",
                 "type": "array",
                 "example": [
                   "https://txt.so/img.jpg",
