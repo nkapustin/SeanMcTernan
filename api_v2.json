@@ -2687,6 +2687,41 @@
           "messageTemplate": {
             "description": "Template of message sent\n\n**Example:** `{\"subject\": \"Some message from SimpleTexting\",\"text\": \"Hello! How are you?\",\"fallbackText\": \"Some text\",\"mediaItems\": [\"https://txt.so/img.jpg\",\"507f1f77bcf86cd799439333\"]}`",
             "type": "object",
+            "properties": {
+              "category": {
+                "description": "The detected category of the message\n\n**Example:** `EXTENDED_SMS`",
+                "type": "string",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ],
+                "example": "EXTENDED_SMS"
+              },
+              "subject": {
+                "description": "The message Subject (available for MMS)\n\n**Example:** `Some message from SimpleTexting`",
+                "type": "string",
+                "example": "EXTENDED_SMS"
+              },
+              "text": {
+                "description": "The message body\n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "EXTENDED_SMS"
+              },
+              "fallbackText": {
+                "description": "The fallback message (available for MMS)\n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "EXTENDED_SMS"
+              },
+              "mediaItems": {
+                "description": "A list of attached media item ids or URLs\n\n**Example:** `Hello! How are you?`",
+                "type": "array",
+                "example": [
+                  "https://txt.so/img.jpg",
+                  "507f1f77bcf86cd799439333"
+                ]
+              }
+            },
             "example": {
               "$ref": "#/components/schemas/FetchedCampaignTemplate"
             }
@@ -2694,6 +2729,7 @@
         }
       },
       "FetchedCampaignTemplate": {
+        "category": "MMS",
         "subject": "Some message from SimpleTexting",
         "text": "Hello! How are you?",
         "fallbackText": "Some text",
