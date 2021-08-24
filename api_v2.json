@@ -1341,7 +1341,7 @@
           "Contacts - Batch Operations"
         ],
         "summary": "Update a group of contacts",
-        "description": "Update multiple fields at once for a batch of contacts. You can update their first name, last name, emails, lists, and more.",
+        "description": "Update multiple fields at once for a batch of contacts. You can update their first name, last name, emails, lists, and more.\n\n**Example:** Here we update two contacts, seen here in the array. The list replacement is set to true, so they will be removed from their existing list and added to a new one:\n\n`{ \"updates\": [ { \"contactPhone\": \"1234567890\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@simpletexting.net\", \"birthday\": \"1985-05-05\", \"customFields\": { \"zipcode\": \"12345\" }, \"comment\": \"VIP client\", \"listIds\": [ \"507f191e810c19729de860ea\", \"My First List\" ] },{ \"contactPhone\": \"0987654321\", \"firstName\": \"Jane\", \"lastName\": \"Doe\", \"email\": \"jane.doe@simpletexting.net\", \"birthday\": \"1984-05-05\", \"customFields\": { \"zipcode\": \"54321\" }, \"comment\": \"VIP client\", \"listIds\": [ \"507f191e810c19729de860ea\", \"My First List\" ] } ], \"listsReplacement\": true }`",
         "operationId": "processBatchUpdate",
         "requestBody": {
           "content": {
