@@ -663,7 +663,7 @@
           "Contact Lists"
         ],
         "summary": "Get all Lists",
-        "description": "Retrieves a list of all messages sent to a specific contact from a specific number on your account.\n\n**Example:** Here we return all lists from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contact-lists?page=100&size=2`",
+        "description": "Retrieves all lists from your SimpleTexting account.\n\n**Example:** Here we return all lists from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contact-lists?page=100&size=2`",
         "operationId": "getLists",
         "parameters": [
           {
@@ -743,7 +743,7 @@
           "Contact Segments"
         ],
         "summary": "Get all Segments",
-        "description": "Return all of the segments created on your SimpleTexting account.",
+        "description": "Retrieves all segments from your SimpleTexting account.\n\n**Example:** Here we return all segments from an account:\n\n`https://api-app2.simpletexting.com/v2/api/contact-segments?page=100&size=2`",
         "operationId": "getSegments",
         "parameters": [
           {
