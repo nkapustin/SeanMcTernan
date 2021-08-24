@@ -711,7 +711,7 @@
           "Contact Lists"
         ],
         "summary": "Create a List",
-        "description": "This endpoint is used to create a new contact list in a given SimpleTexting account.",
+        "description": "This endpoint is used to create a new contact list in a given SimpleTexting account.\n\n**Example:** Here we create a list whose name is `My First List`:\n\n`{ \"name\": \"My new list\" }`",
         "operationId": "createList",
         "requestBody": {
           "content": {
