@@ -61,7 +61,6 @@
       "tags": [
         "Campaigns",
         "Messages",
-        "Custom Fields",
         "Media Items",
         "File Information"
       ]
@@ -71,7 +70,8 @@
       "tags": [
         "Contacts",
         "Contacts - Batch Operations",
-        "Contact Lists"
+        "Contact Lists",
+        "Custom Fields"
       ]
     },
     {
