@@ -2747,10 +2747,15 @@
             "description": "Campaign Template\n\n**Example:** `{ \"title\": \"My first campaign\", \"subject\": \"My first campaign\", \"text\": \"Hi %%firstname%%, welcome to our campaign!\", \"fallbackText\": \"My first campaign\", \"mediaItems\": [ \"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\" ] }`",
             "type": "object",
             "properties": {
-              "title": {
-                "description": "Campaign title\n\n**Example:** `My first campaign`",
+              "mode": {
+                "description": "SMS OR MMS? AUTO by default\n\n**Example:** `MMS_PREFERRED`",
                 "type": "string",
-                "example": "My first campaign"
+                "enum": [
+                  "AUTO",
+                  "MMS_PREFERRED",
+                  "SINGLE_SMS_STRICTLY"
+                ],
+                "example": "MMS_PREFERRED"
               },
               "subject": {
                 "description": "Subject (available for MMS)\n\n**Example:** `Some message from SimpleTexting`",
@@ -2766,6 +2771,16 @@
                 "description": "Custom fallback text if mms cannot be received. Should contains '[url=\"%%fallback_link%%\"]' placeholder that will be replaced with a link to the message\n\n**Example:** `Some text`",
                 "type": "string",
                 "example": "My first campaign"
+              },
+              "unsubscribeText": {
+                "description": "Custom unsubscribe message will be appended to the message text. A default message will be appended if not specified.\n\n**Example:** `If you no longer wish to hear from us, reply STOP`",
+                "type": "string",
+                "example": "If you no longer wish to hear from us, reply STOP"
+              },
+              "fallbackUnsubscribeText": {
+                "description": "Custom unsubscribe message will be appended to the fallback text. A default message will be appended if not specified.\n\n**Example:** `If you no longer wish to hear from us, reply STOP`",
+                "type": "string",
+                "example": "If you no longer wish to hear from us, reply STOP"
               },
               "mediaItems": {
                 "description": "List of mms media urls for temporal storing or media items ids\n\n**Example:** `[\"https://txt.so/img.jpg\", \"507f1f77bcf86cd799439011\"]`",
