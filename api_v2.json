@@ -919,7 +919,7 @@
           "Webhook Reports"
         ],
         "summary": "Delivery/Non Delivered Message Report",
-        "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.\n\n**Example:** We create the Delivery report for 8005551234 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"DELIVERY_REPORT\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
+        "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.\n\n**Example:** We create the Delivery report for 8005551234 for the status of the outgoing messages to 8001234567:\n\n`{\"url\": \"http://www.yourdomain.com/receivesms.php\",\"triggers\": [\"INCOMING_MESSAGE\"],\"requestPerSecLimit\": 25,\"tenantPhone\": \"8005551234\",\"contactPhone\": \"8001234567\"}`\n\n Your custom domain `http://www.yourdomain.com/delivery.php` has been set as delivery report webhook for this example. The SimpleTexting server will invoke the given call when a message with the messageId 507f191e810c19729de860ea is delivered.",
         "servers": [
           {
             "url": "https://yourdomain.com/"
@@ -1844,13 +1844,10 @@
           "type": {
             "description": "Webhook report content type",
             "type": "string",
-            "example": "DELIVERY_REPORT",
+            "example": "OUTGOING_MESSAGE",
             "enum": [
               "INCOMING_MESSAGE",
-              "OUTGOING_MESSAGE",
-              "DELIVERY_REPORT",
-              "NON_DELIVERED_REPORT",
-              "UNSUBSCRIBE_REPORT"
+              "OUTGOING_MESSAGE"
             ]
           },
           "values": {
