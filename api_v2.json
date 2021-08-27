@@ -10,7 +10,7 @@
       "url": "https://api-app2.simpletexting.com/v2/"
     }
   ],
-  "tags": [
+   "tags": [
     {
       "name": "Base URL",
       "description": "`https://api-app2.simpletexting.com/v2/api/`"
