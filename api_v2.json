@@ -3,7 +3,7 @@
   "info": {
     "title": "Integration WS API Documentation",
     "version": "2.0",
-    "description" : "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n",
+    "description": "# Introduction \n\nSimpleTexting’s API 2.0 provides programmatic access to SimpleTexting data and functionality. You can build custom features to do things like sync and manage audiences with your database, send MMS and SMS, and more.\n\n# Authentication\n\nSimpleTexting offers Bearer authentication, also known as token authentication. Using the [token generated](https://app2.simpletexting.com/account/api) on the SimpleTexting platform, developers can securely make calls to the SimpleTexting API. Don’t share it in any public areas such as GitHub, client-side code, etc.\n\n<SecurityDefinitions />\n",
     "termsOfService": "https://simpletexting.com/terms/",
     "contact": {
       "name": "SimpleTexting",
@@ -34,14 +34,83 @@
     },
     {
       "name": "Media Items",
-      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
+      "description": "When sending messages via the SimpleTexting platform, you may need to attach various media items. This API allows you to perform various operations needed to manage your media attachments."
     },
     {
       "name": "Messages",
-      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
+      "description": "Using the SimpleTexting API, you can send messages programmatically from your server depending on the situation. Send to just one, or many contacts. Whatever your needs may be, we've got you covered. \n\nBelow are some endpoints that allow you to get the most out of our message sending features."
+    },
+    {
+      "name": "Webhook report",
+      "description": "Use webhooks to communicate between the SimpleTexting platform and your server. Webhooks can be used to forward messages as well as provide info about unsubscribes and message delivery. \n\nSimpleTexting can trigger webhooks for new incoming messages, delivery reports and unsubscribes. Now you can build scripts that interpret and respond to events that occur in your SimpleTexting account!"
     }
   ],
   "paths": {
+    "/api/webhooks/{webhookId}": {
+      "put": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Update a webhook",
+        "description": "Update an exsisting webhook by its unique id",
+        "operationId": "updateWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "Webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success. Webhook was updated"
+          },
+          "404": {
+            "description": "Error. Webhook not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Delete a webhook",
+        "description": "Delete an exsisting webhook by its unique id",
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "Webhook id in hexadecimal format",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success. Webhook was deleted"
+          }
+        }
+      }
+    },
     "/api/contacts": {
       "get": {
         "tags": [
@@ -490,6 +559,66 @@
         }
       }
     },
+    "/report/incomming": {
+      "post": {
+        "tags": [
+          "Webhook report"
+        ],
+        "summary": "Incomming/Outgoing message report",
+        "description": "Triggers when an outgoing message or incomming message is handeled",
+        "operationId": "incommingMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncommingMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/delivery": {
+      "post": {
+        "tags": [
+          "Webhook report"
+        ],
+        "summary": "Delivery/Non delivered message report",
+        "description": "Triggers when an outgoing message is reported as delivered or undelivered by the carrier.",
+        "operationId": "deliveryMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryMessageReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report/unsubscribe": {
+      "post": {
+        "tags": [
+          "Webhook report"
+        ],
+        "summary": "Unsubscribe report",
+        "description": "Triggers when client send STOP to your number",
+        "operationId": "unsubscribeMessageReport",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeReport"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/api/messages": {
       "get": {
         "tags": [
@@ -690,7 +819,7 @@
           "Media Items"
         ],
         "summary": "Fetch media items",
-        "description" : "Retrieve items that you have previously uploaded to the SimpleTexting system.",
+        "description": "Retrieve items that you have previously uploaded to the SimpleTexting system.",
         "operationId": "getMediaItems",
         "parameters": [
           {
@@ -740,7 +869,7 @@
           "Media Items"
         ],
         "summary": "Upload media by link",
-        "description" : "Upload media via a link. The file can then be sent along with your message to a contact.",
+        "description": "Upload media via a link. The file can then be sent along with your message to a contact.",
         "operationId": "uploadByLink",
         "parameters": [
           {
@@ -784,7 +913,7 @@
           "Media Items"
         ],
         "summary": "Delete media",
-        "description" : "Remove items that you have previously uploaded to the SimpleTexting system.",
+        "description": "Remove items that you have previously uploaded to the SimpleTexting system.",
         "operationId": "delete",
         "parameters": [
           {
@@ -799,10 +928,10 @@
           }
         ],
         "responses": {
-          "description": "Success. Media was deleted",
           "204": {
             "description": "Media is deleted"
-          }
+          },
+          "description": "Success. Media was deleted"
         }
       }
     },
@@ -812,7 +941,7 @@
           "Media Items"
         ],
         "summary": "Upload media",
-        "description" : "Upload media directly that can be sent along with your message to a contact.",
+        "description": "Upload media directly that can be sent along with your message to a contact.",
         "operationId": "upload",
         "parameters": [
           {
@@ -974,6 +1103,147 @@
   },
   "components": {
     "schemas": {
+      "FetchedWebhook": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "URL for handling POST request\n\n**Example:** `https://example.com`",
+            "type": "string",
+            "example": "https://example.com"
+          },
+          "triggers": {
+            "description": "Trigger a webhook on specific platform events\n\n**Example:** `INCOMING_MESSAGE`",
+            "type": "array",
+            "example": [
+              "INCOMING_MESSAGE"
+            ],
+            "items": {
+              "description": "Trigger a webhook on specific platform events",
+              "type": "string",
+              "example": "[\"INCOMING_MESSAGE\"]",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "description": "The maximum number of requests that can be sent within one second\n\n**Example:** `25`",
+            "maximum": 25,
+            "type": "integer",
+            "format": "int32",
+            "example": 25
+          },
+          "tenantPhone": {
+            "description": "Optional: requests will come exclusively for the specified tenant phone number\n\n**Example:** `8881234567`",
+            "type": "string",
+            "example": "8881234567"
+          },
+          "contactPhone": {
+            "description": "Optional: requests will come exclusively for the specified contact phone number\n\n**Example:** `3051234567`",
+            "type": "string",
+            "example": "3051234567"
+          }
+        }
+      },
+      "WebhookRequest": {
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "URL for handling POST request\n\n**Example:** `https://example.com`",
+            "type": "string",
+            "example": "https://example.com"
+          },
+          "triggers": {
+            "description": "Trigger a webhook on specific platform events\n\n**Example:** `INCOMING_MESSAGE`",
+            "type": "array",
+            "example": [
+              "INCOMING_MESSAGE"
+            ],
+            "items": {
+              "description": "Trigger a webhook on specific platform events",
+              "type": "string",
+              "example": "[\"INCOMING_MESSAGE\"]",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "description": "The maximum number of requests that can be sent within one second\n\n**Example:** `25`",
+            "maximum": 25,
+            "type": "integer",
+            "format": "int32",
+            "example": 25
+          },
+          "tenantPhone": {
+            "description": "Optional: requests will come exclusively for the specified tenant phone number\n\n**Example:** `8881234567`",
+            "type": "string",
+            "example": "8881234567"
+          },
+          "contactPhone": {
+            "description": "Optional: requests will come exclusively for the specified contact phone number\n\n**Example:** `3051234567`",
+            "type": "string",
+            "example": "3051234567"
+          }
+        }
+      },
+      "Webhook": {
+        "description": "Page content, number of elements is restricted by page size",
+        "required": [
+          "triggers",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "webhookId": {
+            "type": "string"
+          },
+          "url": {
+            "description": "URL for handling POST request",
+            "type": "string"
+          },
+          "triggers": {
+            "description": "Trigger webhook on event types",
+            "type": "array",
+            "items": {
+              "description": "Trigger webhook on event types",
+              "type": "string",
+              "enum": [
+                "INCOMING_MESSAGE",
+                "OUTGOING_MESSAGE",
+                "DELIVERY_REPORT",
+                "NON_DELIVERED_REPORT",
+                "UNSUBSCRIBE_REPORT"
+              ]
+            }
+          },
+          "requestPerSecLimit": {
+            "description": "The maximum number of requests that can be sent within one second",
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantPhone": {
+            "description": "Optional: requests will come exclusively for the specified tenant phone number",
+            "type": "string"
+          },
+          "contactPhone": {
+            "description": "Optional: requests will come exclusively for the specified contact phone number",
+            "type": "string"
+          }
+        }
+      },
       "List Dto": {
         "required": [
           "name"
@@ -996,7 +1266,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Configures how to present your message:\n\n  - **AUTO** - means that SimpleTexting will find more relative type for your message content\n\n  - **SMS_STRICTLY** will send only single sms or return  an error\n\n  - **MMS** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1044,7 +1314,7 @@
         "type": "object",
         "properties": {
           "mode": {
-            "description": "Configures how to present your message\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content\n\n**SMS_STRICTLY -** will send only single sms or return  an error\n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
+            "description": "Configures how to present your message\n\n**AUTO -** means that SimpleTexting will find more relative type for your message content\n\n**SMS_STRICTLY -** will send only single sms or return  an error\n\n**MMS -** will send MMS or fallback SMS if MMS is not enabled by the contacts' carrier\n\n**Example:** `SINGLE_SMS_STRICTLY`",
             "type": "string",
             "example": "MMS_STRICTLY",
             "enum": [
@@ -1263,7 +1533,7 @@
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -1321,7 +1591,7 @@
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -1502,6 +1772,29 @@
           }
         }
       },
+      "WebhooksPageView": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "description": "Page content, number of elements is restricted by page size",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FetchedWebhook"
+            }
+          },
+          "totalPages": {
+            "description": "Total number of pages, which is number of elements divided by page size",
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "description": "Total number of elements",
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "description": "Page representation for search/fetch result"
+      },
       "MessagePageView": {
         "type": "object",
         "properties": {
@@ -1524,6 +1817,209 @@
           }
         },
         "description": "Page representation for search/fetch result"
+      },
+      "UnsubscribeReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "UNSUBSCRIBE_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "contactId": {
+                "description": "Contact id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "phone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              }
+            }
+          }
+        }
+      },
+      "DeliveryMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "DELIVERY_REPORT",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "carrier": {
+                "description": "Name of carrier \n\n**Example:** `Verizon`",
+                "type": "string",
+                "example": "Verizon"
+              }
+            }
+          }
+        }
+      },
+      "IncommingMessageReport": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "description": "Unique report id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "webhookId": {
+            "description": "Webhook id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+            "type": "string",
+            "example": "507f191e810c19729de860ea"
+          },
+          "type": {
+            "description": "Webhook report content type",
+            "type": "string",
+            "example": "INCOMING_MESSAGE",
+            "enum": [
+              "INCOMING_MESSAGE",
+              "OUTGOING_MESSAGE",
+              "DELIVERY_REPORT",
+              "NON_DELIVERED_REPORT",
+              "UNSUBSCRIBE_REPORT"
+            ]
+          },
+          "values": {
+            "description": "report content",
+            "type": "object",
+            "properties": {
+              "messageId": {
+                "description": "Message id in hexadecimal format \n\n**Example:** `507f191e810c19729de860ea`",
+                "type": "string",
+                "example": "507f191e810c19729de860ea"
+              },
+              "subject": {
+                "description": "Subject (available for MMS) \n\n**Example:** `Some message from SimpleTexting`",
+                "type": "string",
+                "example": "Some message from SimpleTexting"
+              },
+              "mediaItems": {
+                "description": "List of mms media descriptors: id in hexadecimal format for st-stored file \n\n**Example:** `[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]`",
+                "type": "array",
+                "example": [
+                  "507f1f77bcf86cd799439011",
+                  "507f1f77bcf86cd799439333"
+                ],
+                "items": {
+                  "description": "List of mms media descriptors: id in hexadecimal format for st-stored file",
+                  "type": "string",
+                  "example": "[\"507f1f77bcf86cd799439011\",\"507f1f77bcf86cd799439333\"]"
+                }
+              },
+              "text": {
+                "description": "Text \n\n**Example:** `Hello! How are you?`",
+                "type": "string",
+                "example": "Hello! How are you?"
+              },
+              "tenantPhone": {
+                "description": "Account phone (primary or secondary) \n\n**Example:** `555888`",
+                "type": "string",
+                "example": "555888"
+              },
+              "contactPhone": {
+                "description": "Contact phone \n\n**Example:** `8001234567`",
+                "type": "string",
+                "example": "8001234567"
+              },
+              "timestamp": {
+                "description": "Date of sending - ISO Format \n\n**Example:** `2020-04-28T23:20:08.489Z`",
+                "type": "string",
+                "format": "date-time",
+                "example": "2020-04-28T23:20:08.489Z"
+              },
+              "category": {
+                "description": "Message category \n\n**Example:** `SMS`",
+                "type": "string",
+                "example": "SMS",
+                "enum": [
+                  "SMS",
+                  "MMS",
+                  "EXTENDED_SMS"
+                ]
+              },
+              "type": {
+                "description": "Reference type (available only for MT messages) \n\n**Example:** `API`",
+                "type": "string",
+                "example": "API"
+              }
+            }
+          }
+        }
       },
       "Message": {
         "description": "Page content, number of elements is restricted by page size",
@@ -1646,13 +2142,13 @@
         "description": "Page representation for search/fetch result"
       },
       "CustomField": {
-        "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+        "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
         "type": "object",
         "properties": {
           "label": {
             "description": "Label Given to Custom Field Type \n\n**Example:** `My Custom Field`",
             "type": "string",
-            "example": "My Custom Field" 
+            "example": "My Custom Field"
           },
           "type": {
             "description": "Custom Field Type \n\n**Example:** `text`",
@@ -1662,7 +2158,7 @@
           "mergeTag": {
             "description": "Merge tag to be added to message \n\n**Example:** `my_custom_field`",
             "type": "string",
-            "example": "my_custom_field" 
+            "example": "my_custom_field"
           },
           "defaultMaxLength": {
             "description": "Max length of the custom field \n\n**Example:** `15`",
@@ -1707,7 +2203,7 @@
             "example": "1985-05-05"
           },
           "customFields": {
-            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
+            "description": "Custom fields are key value pairs with custom information, like tags. If a key already exists the value will be replaced, if not a new pair will be added. Unspecified keys in request will not be changed in the contact",
             "type": "object",
             "additionalProperties": {
               "description": "\n\n**Example:** `{\"zipcode\":\"12345\"}`",
@@ -1833,7 +2329,7 @@
             "example": "507f191e810c19729de860ea"
           },
           "name": {
-            "description": "List name \n\n**Example:** `My First List`" ,
+            "description": "List name \n\n**Example:** `My First List`",
             "type": "string",
             "example": "My First List"
           },
@@ -1891,10 +2387,10 @@
       }
     },
     "securitySchemes": {
-      "bearerAuth" : {
+      "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
-        "description":"Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
+        "description": "Each time you make a request to our API, we use a bearer token in your header to authenticate your account. API requests without authentication will fail. Your API token can be found under [settings](https://app2.simpletexting.com/account/api).<br><br>Please be sure to keep your bearer token secure. Don’t share it any public areas such as GitHub, client-side code, etc.",
         "name": "Authorization",
         "in": "header"
       }
